@@ -7,23 +7,21 @@
  */
 class Database {
 
-    const HOST = '127.0.0.1';
-    const USER = 'root';
+    const HOST = "127.0.0.1";
+    const USER = "root";
     const PASS = NULL;
-    const NAME = 'tackit';
+    const NAME = "tackit";
     const PORT = 3306;
     const AUTOCOMMIT = TRUE;
+    const CHARSET = "utf8";
 
     private $mysqli;
 
     public function __construct() {
-        $this->mysqli = new mysqli('127.0.0.1', 'root', NULL, 'tackit', (integer) 3306);
-        $this->checkConnection();
-    }
-
-    private function checkConnection() {
+        $this->mysqli = new mysqli(self::HOST, self::USER, self::PASS, self::NAME, (integer) self::PORT);
         if ($this->mysqli->connect_error)
             throw new Exception("Database connection error: " . $this->mysqli->connect_errno . " & " . $this->mysqli->connect_error);
+        $this->mysqli->set_charset(self::CHARSET);
     }
 
     public function getConnection() {
@@ -32,22 +30,31 @@ class Database {
 
     public function doQuery($query) {
         if (is_string($query))
-            return $this->mysqli->query($this->mysqli->real_escape_string($query));
+            return $this->mysqli->query($query);
+        else
+            return FALSE;
     }
 
     public function doTransaction($queryArray) {
         if (is_array($queryArray)) {
             $this->mysqli->autocommit(FALSE);
+            $this->mysqli->commit();
 
             foreach ($queryArray as $value) {
-                if (is_string($value))
-                    $this->mysqli->query($this->mysqli->real_escape_string($value));
+                if (is_string($value)) {
+                    if ($this->mysqli->query($value) === FALSE) {
+                        $this->mysqli->rollback();
+                        return $this->mysqli->error; //TODO test
+                    }
+                }
             }
 
-            $this->mysqli->autocommit(AUTOCOMMIT);
+            $this->mysqli->commit();
+            $this->mysqli->autocommit(self::AUTOCOMMIT);
+            return TRUE;
         }
+        else
+            return FALSE;
     }
-
 }
-
 ?>
