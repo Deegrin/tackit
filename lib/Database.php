@@ -7,9 +7,9 @@
  */
 class Database {
 
-    const HOST = "127.0.0.1";
-    const USER = "root";
-    const PASS = NULL;
+    const HOST = "206.253.164.146";
+    const USER = "se165";
+    const PASS = "sjsusoftware";
     const NAME = "tackit";
     const PORT = 3306;
     const AUTOCOMMIT = TRUE;
@@ -52,8 +52,7 @@ class Database {
             $this->mysqli->commit();
             $this->mysqli->autocommit(self::AUTOCOMMIT);
             return TRUE;
-        }
-        else
+        } else
             return FALSE;
     }
 }
