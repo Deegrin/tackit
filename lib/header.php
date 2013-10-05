@@ -12,9 +12,6 @@
 </head>
 <body>
 
-
-<br clear="all">
-
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -28,14 +25,9 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div><!-- /.navbar -->
-
-<p style="margin-bottom:500px;"></p>
-</center>
-</body>
-</html>
+    
+    <div class="container">
