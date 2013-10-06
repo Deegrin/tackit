@@ -5,8 +5,9 @@
 <title>TackIT: Homage</title>
 
 <!-- Required header files -->
-<script type="text/javascript" src="bootstrap/js/jquery-1.10.2.js"></script>
-<script src = "../lib/boostrap/dist/js/bootstrap.js"></script>
+<script src="../lib/javascript/facebook_login.js"></script>
+<script type="text/javascript" src="../lib/bootstrap/js/jquery-1.10.2.js"></script>
+<script src = "../lib/bootstrap/dist/js/bootstrap.js"></script>
 <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
 
 </head>
