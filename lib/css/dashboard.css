@@ -1,5 +1,15 @@
+
+.title{
+	margin:10px;
+}
+
 .image{
-	width:      260px;
-	height: 260px
-    padding:    0px 10px 15px 10px;
+	margin: 10px 10px 15px 10px;
+}
+
+.description{
+	margin: 10px;
+	width: 250px;
+	border-color: black;
+	background-color: gray;
 }
