@@ -5,6 +5,10 @@ require_once './Database.php';
 class User {
 
     const EMPTY_STRING = '';
+    const DB_EMAIL = "email";
+    const DB_USERNAME = "username";
+    const DB_FIRSTNAME = "first_name";
+    const DB_LASTNAME = "last_name";
 
     private $id;
     private $active;
@@ -16,8 +20,11 @@ class User {
     private $password_salt;
     private $creation_time;
 
-    public function __construct() {
-        
+    public function __construct($email, $userName, $firstName = self::EMPTY_STRING, $lastName = self::EMPTY_STRING) {
+        $this->email = $email;
+        $this->username = $userName;
+        $this->first_name = $firstName;
+        $this->last_name = $lastName;
     }
 
     public function set_id($new_id) {
@@ -92,7 +99,7 @@ class User {
         return $this->creation_time;
     }
 
-    public static function registerUser($email, $userName, $password, $firstName = NULL, $lastName = NULL) {
+    public static function registerUser($email, $userName, $password, $firstName = self::EMPTY_STRING, $lastName = self::EMPTY_STRING) {
         $db = new Database();
         $con = $db->getConnection();
 
@@ -100,26 +107,36 @@ class User {
         $email = $con->real_escape_string($email);
         $userName = $con->real_escape_string($userName);
         $password = $con->real_escape_string($password);
-        if ($firstName)
-            $firstName = $con->real_escape_string($firstName);
-        else
-            $firstName = self::EMPTY_STRING;
-        if ($lastName)
-            $lastName = $con->real_escape_string($lastName);
-        else
-            $lastName = self::EMPTY_STRING;
+        $firstName = $con->real_escape_string($firstName);
+        $lastName = $con->real_escape_string($lastName);
 
         //build transaction
-        $insertUser = "INSERT INTO `tackit`.`user` (active, email, username, password, password_salt, first_name, last_name) VALUES (0, '$email', '$userName', '$password', '', '$firstName', '$lastName')";
-        $insertAccount = "INSERT INTO `tackit`.`account` (user_id, profile_title, profile_description, setting_autoprivate) VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), '', '', 1)";
-        $insertBoard = "INSERT INTO `tackit`.`board` (user_id, private, title, description) VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), 1, 'Dashboard', 'Default Board')";
+        $insertUser = "INSERT INTO `tackit`.`user` (active, email, username, password, password_salt, first_name, last_name) 
+            VALUES (0, '$email', '$userName', '$password', '', '$firstName', '$lastName')";
+        $insertAccount = "INSERT INTO `tackit`.`account` (user_id, profile_title, profile_description, setting_autoprivate) 
+            VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), '', '', 1)";
+        $insertBoard = "INSERT INTO `tackit`.`board` (user_id, private, title, description) 
+            VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), 1, 'Dashboard', 'Default Board')";
 
         //submit query
         $transaction = array();
         $transaction[] = $insertUser;
         $transaction[] = $insertAccount;
         $transaction[] = $insertBoard;
-        $db->doTransaction($transaction);
+        return $db->doTransaction($transaction);
+    }
+
+    public static function getUserFromUserName($userName) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        //escape input
+        $userName = $con->real_escape_string($userName);
+        if (($result = $db->doQuery("SELECT * FROM tackit.user WHERE username = '$userName'")) && ($row = $result->fetch_assoc())) {
+            return new User($row[self::DB_EMAIL], $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME]);
+        }
+        else
+            return NULL;
     }
 }
 ?>
