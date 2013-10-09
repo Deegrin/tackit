@@ -1,15 +1,53 @@
-
-.title{
-	margin:10px;
+#board{
+	background-color: #EBEBEB;
 }
 
-.image{
-	margin: 10px 10px 15px 10px;
+.tack{
+	margin:5px;
+}
+
+.title{
+	font-size:12px;
+	max-height: 40px;
+	width: 150px;
+}
+
+.right {
+	float: right;
+	margin-top: -35px;
 }
 
 .description{
-	margin: 10px;
-	width: 250px;
-	border-color: black;
-	background-color: gray;
+	border-color:#F0F0F0;
+	background-color: white;
+	width:250px;
+	max-height: 50px;
+	overflow:hidden;
 }
+
+.panel{
+	width:275px;
+}
+
+.panel-title{
+	font-size:12px;
+	max-height: 40px;
+	width: 150px;
+	overflow: hidden;
+}
+
+.panel-footer{
+	max-height: 155px;
+	overflow: hidden;
+}
+
+.likes{
+	display: inline-block;
+	float: right;
+	position: relative;
+}
+.likes a{
+	font-size: 11px;
+	color: #808080;
+}
+
