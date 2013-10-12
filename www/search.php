@@ -13,10 +13,23 @@
 		    <div class="input-group">
 		    	<input type="text" class="form-control" placeholder="Search">
 			    <span class="input-group-btn">
-			    	<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+			    	<button type="button" class="btn btn-default" data-toggle="dropdown">Tacks</button>
+					<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Tacks</a></li>
+							<li><a href="#">Boards</a></li>
+							<li><a href="#">Users</a></li>
+						</ul>
+
 			    </span>
 		    </div>
 	    </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<h3>Tack results for "?????" (# results)</h3>
+		</div>
 	</div>
 
 	<div id="board" class="col-md-12">
