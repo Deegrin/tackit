@@ -1,5 +1,9 @@
-#board{
+body{
 	background-color: #EBEBEB;
+}
+
+.row{
+	margin: 0px;
 }
 
 .tack{
@@ -45,6 +49,7 @@
 	float: right;
 	position: relative;
 }
+
 .likes a{
 	font-size: 11px;
 	color: #808080;
