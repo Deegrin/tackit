@@ -12,8 +12,8 @@ foreach ($requiredPosts as $required) {
 //validate input
 //register user
 if (User::registerUser($_POST[$requiredPosts[0]], $_POST[$requiredPosts[1]], $_POST[$requiredPosts[2]]) === TRUE) {
-//generate verification link and email    
-//return success
+    $exception = new TackitException("success!", 0);
+    echo $exception->getJson();
 }
 //else
 //return error and exit
