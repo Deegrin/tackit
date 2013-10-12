@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Description of TackitException
+ * Custom exception for application errors.
  *
  * @author David
  */
