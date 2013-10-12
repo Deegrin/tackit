@@ -9,12 +9,12 @@
 .title{
 	font-size:12px;
 	max-height: 40px;
-	width: 150px;
+	width: 170px;
 }
 
 .right {
 	float: right;
-	margin-top: -35px;
+	margin-top: -27px;
 }
 
 .description{
@@ -32,12 +32,11 @@
 .panel-title{
 	font-size:12px;
 	max-height: 40px;
-	width: 150px;
+	width: 170px;
 	overflow: hidden;
 }
 
 .panel-footer{
-	max-height: 155px;
 	overflow: hidden;
 }
 
