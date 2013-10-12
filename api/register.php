@@ -1,5 +1,7 @@
 <?php
 
+require_once '../lib/php/User.php';
+
 //check required input
 $requiredPosts = array('email', 'username', 'password');
 foreach ($requiredPosts as $required) {
@@ -8,7 +10,6 @@ foreach ($requiredPosts as $required) {
 }
 
 //validate input
-
 //register user
 if (User::registerUser($_POST[$requiredPosts[0]], $_POST[$requiredPosts[1]], $_POST[$requiredPosts[2]]) === TRUE) {
 //generate verification link and email    
