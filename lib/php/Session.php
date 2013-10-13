@@ -12,6 +12,7 @@ class Session {
     const COOKIE = "tackit";
     const COOKIE_EXPIRATION_SECONDS = 604800; //7 days
     const DEFAULT_SALT = "$2y$07\$UQLETgfk9isoM/OItngvME"; //triggers Blowfish hashing
+    const EMPTY_STRING = "";
 
     public static function login($id, $password) {
         $db = new Database();
@@ -51,6 +52,11 @@ class Session {
             return TRUE;
         } else
             return FALSE;
+    }
+
+    public static function logout() {
+        //expire the cookie
+        setcookie(self::COOKIE, self::EMPTY_STRING, time() - 1);
     }
 
     public static function hash($hashee) {

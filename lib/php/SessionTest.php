@@ -7,4 +7,6 @@ require_once 'Session.php';
 
 //Session::login("davidng0123@live.com", "$2y$07\$UQLETgfk9isoM/OItngvM.aWauoflTm0tVbFbCyrUSVkrHWzF28PK");
 //var_dump(Session::isLoggedIn($_COOKIE["tackit"]));
+//Session::logout();
+var_dump(Session::isLoggedIn($_COOKIE["tackit"]));
 ?>
