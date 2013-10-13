@@ -1,4 +1,5 @@
 <?php
+
 require_once 'Database.php';
 
 /**
@@ -34,6 +35,20 @@ class Session {
             return TRUE;
         } else
             throw new TackitException("The user or email does not exist, or the password is incorrect!", 0);
+    }
+
+    public static function isLoggedIn() {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        if (isset($_COOKIE[self::COOKIE])) {
+            $token = $_COOKIE[self::COOKIE];
+            if (($result = $db->doQuery("SELECT user_id FROM `tackit`.`session` WHERE token='$token' AND expiration_time > CURRENT_TIMESTAMP")) && ($row = $result->fetch_array()) !== NULL) {
+                return TRUE;
+            } else
+                return FALSE;
+        } else
+            return FALSE;
     }
 
     public static function hash($hashee) {
