@@ -10,6 +10,10 @@ class User {
     const DB_FIRSTNAME = "first_name";
     const DB_LASTNAME = "last_name";
 
+    const DB_EMAIL_LENGTH = 200;
+    const DB_USERNAME_LENGTH = 30;
+    const DB_PASSWORD_LENGTH = 30;
+
     private $id;
     private $active;
     private $first_name;
