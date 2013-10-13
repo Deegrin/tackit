@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Custom exception for application errors.
  *
@@ -8,7 +9,7 @@ class TackitException extends Exception {
 
     const EXCEPTION_HEADER = 'error';
 
-    public function __construct($message, $code, $previous) {
+    public function __construct($message, $code, $previous = NULL) {
         parent::__construct($message, $code, $previous);
     }
 
