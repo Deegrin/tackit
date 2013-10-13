@@ -1,6 +1,23 @@
 <?php include "../lib/php/header.php" ?>
 
 
+<!-- Sign-up and Login Links Starts Here -->
+
+<div class="par">
+	<div style="width:400px; margin-top:50px;  display:inline-block;" align="center">
+
+	<a href="javascript:void(0);" style="margin-left: 70px; float:left;" class="vpb_general_button" onClick="vpb_show_sign_up_box();">Sign Up</a>
+
+	<a href="javascript:void(0);" style="float:right; margin-right:70px" class="vpb_general_button" onClick="vpb_show_login_box();">Login</a>
+
+</div>
+</div>
+
+<br clear="all" />
+<!-- Sign-up and Login Links Ends Here -->
+
+
+
 
 <!-- Code Begins -->
 

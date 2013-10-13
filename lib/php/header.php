@@ -8,7 +8,12 @@
 <script src="../lib/javascript/facebook_login.js"></script>
 <script type="text/javascript" src="../lib/bootstrap/js/jquery-1.10.2.js"></script>
 <script src = "../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="../lib/javascript/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="../lib/javascript/vpb_script.js"></script>
 <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
+
+<link href="../lib/css/style.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <body>
@@ -21,7 +26,7 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#">Project name</a>
+<a class="navbar-brand" href="#">TackIT</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
