@@ -1,5 +1,4 @@
 <?php
-
 try {
     require_once '../lib/php/Session.php';
     require_once '../lib/php/User.php';
@@ -13,6 +12,12 @@ try {
     }
 
 //validate input
+    if (strlen($_POST[$requiredPosts[0]]) > User::DB_EMAIL_LENGTH)
+        throw new TackitException("Email is invalid!", 0);
+    if (strlen($_POST[$requiredPosts[1]]) > User::DB_USERNAME_LENGTH)
+        throw new TackitException("Username is invalid!", 0);
+    if (strlen($_POST[$requiredPosts[2]]) > User::DB_PASSWORD_LENGTH)
+        throw new TackitException("Password is invalid!", 0);
 //register user
     if (User::registerUser($_POST[$requiredPosts[0]], $_POST[$requiredPosts[1]], Session::hash($_POST[$requiredPosts[2]])) === TRUE) {
         throw new TackitException("Success!", 0);
