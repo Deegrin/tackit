@@ -1,12 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-<head>
+<?php include "../lib/php/header.php" ?>
 
-	<link type="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
 	<link type="text/css" rel="stylesheet" href="../lib/css/board.css">
-
-</head>
-<body>
 
 	<div id="board" class="col-md-12">
 
@@ -350,7 +344,6 @@
 	</div>
 
 
-
 	<!-- SIDENAV THAT DOESNT WORK
 	<div class="row">
 		<div class="col-mid-4 col-mid-offset-1">
@@ -389,9 +382,6 @@
 			</div>
 		</div>
 	-->
-
-	<script src="../lib/bootstrap/js/jquery-1.10.2.js"></script>
-	<script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../lib/masonry/masonry.pkgd.min.js"></script>
 	
 	<script>
@@ -410,8 +400,4 @@
 		});
 	</script>
 
-</body>
-
-
-
-</html>
+<?php include "../lib/php/footer.php" ?>
