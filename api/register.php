@@ -1,6 +1,7 @@
 <?php
 
 require_once '../lib/php/User.php';
+require_once '../lib/php/TackitException.php';
 
 //check required input
 $requiredPosts = array('email', 'username', 'password');
