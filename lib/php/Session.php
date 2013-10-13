@@ -22,7 +22,8 @@ class Session {
         $password = $con->real_escape_string($password);
 
         //authenticate user
-        if (($result = $db->doQuery("SELECT id FROM tackit.user WHERE (username = '$id' OR email = '$id') AND password = '$password'")) && ($row = $result->fetch_array()) !== NULL) {
+        if (($result = $db->doQuery("SELECT id FROM tackit.user WHERE (username = '$id' OR email = '$id') AND password = '$password'"))
+                && ($row = $result->fetch_array()) !== NULL) {
             //session token from UUID v4
             $token = Session::getUuidV4();
 
@@ -37,16 +38,17 @@ class Session {
             throw new TackitException("The user or email does not exist, or the password is incorrect!", 0);
     }
 
-    public static function isLoggedIn() {
+    public static function isLoggedIn($token) {
         $db = new Database();
         $con = $db->getConnection();
 
-        if (isset($_COOKIE[self::COOKIE])) {
-            $token = $_COOKIE[self::COOKIE];
-            if (($result = $db->doQuery("SELECT user_id FROM `tackit`.`session` WHERE token='$token' AND expiration_time > CURRENT_TIMESTAMP")) && ($row = $result->fetch_array()) !== NULL) {
-                return TRUE;
-            } else
-                return FALSE;
+        //escape input
+        $token = $con->real_escape_string($token);
+
+        //search for session
+        if (($result = $db->doQuery("SELECT user_id FROM `tackit`.`session` WHERE token='$token' AND expiration_time > CURRENT_TIMESTAMP"))
+                && ($row = $result->fetch_array()) !== NULL) {
+            return TRUE;
         } else
             return FALSE;
     }
