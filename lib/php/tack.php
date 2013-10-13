@@ -127,7 +127,17 @@ class Tack {
         else
             return NULL;
     }
-
+    public static function searchTack($topic){
+        $db = new Database();
+        $con = $db->getConnection();
+        
+        $topic = $con->real_escape_string($topic);
+        
+        $results = "SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')";
+                
+        return $db->doQuery($results);
+    }
+    
 }
 
 ?>
