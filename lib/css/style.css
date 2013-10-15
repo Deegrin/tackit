@@ -120,6 +120,7 @@
 	
 .par 
 {
+        margin: 50px;
 	width:100%;
 	text-align:center;
 	display:inline-block;
