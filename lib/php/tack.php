@@ -105,7 +105,6 @@ class Tack {
         $description = $con->real_escape_string($description);
         $tackUrl = $con->real_escape_string($tackUrl);
         $imageUrl = $con->real_escape_string($imageUrl);
-        $creationTime = $con->real_escape_string($creationTime);
 
         //build transaction
         $insertTack = "INSERT INTO `tackit`.`tack` (user_id, board_id, title, description, tackUrl, imageURL)
@@ -127,17 +126,16 @@ class Tack {
         else
             return NULL;
     }
-    public static function searchTack($topic){
+
+    public static function searchTack($topic) {
         $db = new Database();
         $con = $db->getConnection();
-        
+
         $topic = $con->real_escape_string($topic);
-        
+
         $results = "SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')";
-                
+
         return $db->doQuery($results);
     }
-    
 }
-
 ?>

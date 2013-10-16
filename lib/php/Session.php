@@ -49,7 +49,7 @@ class Session {
         //search for session
         if (($result = $db->doQuery("SELECT user_id FROM `tackit`.`session` WHERE token='$token' AND expiration_time > CURRENT_TIMESTAMP"))
                 && ($row = $result->fetch_array()) !== NULL) {
-            return TRUE;
+            return $row[0];
         } else
             return FALSE;
     }
