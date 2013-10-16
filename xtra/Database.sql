@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `tackit`.`session` (
   `token` VARCHAR(45) NOT NULL,
   `creation_time` TIMESTAMP NULL,
   `expiration_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`token`),
   CONSTRAINT `session_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `tackit`.`user` (`id`)
