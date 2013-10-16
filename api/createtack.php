@@ -13,27 +13,27 @@ try {
     //check required input
     $requiredPosts = array('board', 'title', 'desc', 'url', 'image');
     foreach ($requiredPosts as $required) {
-        if (!isset($_REQUEST[$required]))
+        if (!isset($_POST[$required]))
             throw new TackitException($required . " is missing.", 0);
     }
 
     //validate input
-    if (!is_numeric($_REQUEST[$requiredPosts[0]]) || $_REQUEST[$requiredPosts[0]] < 0)
+    if (!is_numeric($_POST[$requiredPosts[0]]) || $_POST[$requiredPosts[0]] < 0)
         throw new TackitException("Board is invalid!", 0);
-    if (strlen($_REQUEST[$requiredPosts[1]]) > Tack::DB_TITLE_LENGTH)
+    if (strlen($_POST[$requiredPosts[1]]) > Tack::DB_TITLE_LENGTH)
         throw new TackitException("Title is invalid!", 0);
-    if (strlen($_REQUEST[$requiredPosts[2]]) > Tack::DB_DESCRIPTION_LENGTH)
+    if (strlen($_POST[$requiredPosts[2]]) > Tack::DB_DESCRIPTION_LENGTH)
         throw new TackitException("Description is invalid!", 0);
-    if (strlen($_REQUEST[$requiredPosts[3]]) > Tack::DB_URL_LENGTH)
+    if (strlen($_POST[$requiredPosts[3]]) > Tack::DB_URL_LENGTH)
         throw new TackitException("Url is invalid!", 0);
-    if (strlen($_REQUEST[$requiredPosts[4]]) > Tack::DB_URL2_LENGTH)
+    if (strlen($_POST[$requiredPosts[4]]) > Tack::DB_URL2_LENGTH)
         throw new TackitException("Url is invalid!", 0);
 
     //get userid from session token
     if (($userid = Session::isLoggedIn($_COOKIE[Session::COOKIE])) !== FALSE) {
         //create board if user authorized
-        if (in_array($_REQUEST[$requiredPosts[0]], Board::getBoardFromUserId($userid)))
-            Tack::createTack($userid, $_REQUEST[$requiredPosts[0]], $_REQUEST[$requiredPosts[1]], $_REQUEST[$requiredPosts[2]], $_REQUEST[$requiredPosts[3]], $_REQUEST[$requiredPosts[4]]);
+        if (in_array($_POST[$requiredPosts[0]], Board::getBoardFromUserId($userid)))
+            Tack::createTack($userid, $_POST[$requiredPosts[0]], $_POST[$requiredPosts[1]], $_POST[$requiredPosts[2]], $_POST[$requiredPosts[3]], $_POST[$requiredPosts[4]]);
         else
             throw new TackitException("We could not create a tack!", 0);
     } else
