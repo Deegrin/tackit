@@ -10,10 +10,11 @@ require_once 'Database.php';
 class Session {
 
     const COOKIE = "tackit";
+    const COOKIE_PATH = "/";
     const COOKIE_EXPIRATION_SECONDS = 604800; //7 days
     const DEFAULT_SALT = "$2y$07\$UQLETgfk9isoM/OItngvME"; //triggers Blowfish hashing
     const EMPTY_STRING = "";
-    
+
     const DB_TOKEN_LENGTH = 36;
 
     public static function login($id, $password) {
@@ -34,7 +35,7 @@ class Session {
             $db->doQuery("INSERT INTO `tackit`.`session` (user_id, token, creation_time, expiration_time)
                 VALUES ('$row[0]', '$token', CURRENT_TIMESTAMP, TIMESTAMPADD(WEEK, 1, CURRENT_TIMESTAMP))");
             //send session token to user
-            setcookie(self::COOKIE, $token, time() + self::COOKIE_EXPIRATION_SECONDS);
+            setcookie(self::COOKIE, $token, time() + self::COOKIE_EXPIRATION_SECONDS, self::COOKIE_PATH);
 
             $result->free();
             return TRUE;
