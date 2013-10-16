@@ -13,6 +13,8 @@ class Session {
     const COOKIE_EXPIRATION_SECONDS = 604800; //7 days
     const DEFAULT_SALT = "$2y$07\$UQLETgfk9isoM/OItngvME"; //triggers Blowfish hashing
     const EMPTY_STRING = "";
+    
+    const DB_TOKEN_LENGTH = 36;
 
     public static function login($id, $password) {
         $db = new Database();
@@ -34,6 +36,7 @@ class Session {
             //send session token to user
             setcookie(self::COOKIE, $token, time() + self::COOKIE_EXPIRATION_SECONDS);
 
+            $result->free();
             return TRUE;
         } else
             throw new TackitException("The user or email does not exist, or the password is incorrect!", 0);
@@ -49,6 +52,7 @@ class Session {
         //search for session
         if (($result = $db->doQuery("SELECT user_id FROM `tackit`.`session` WHERE token='$token' AND expiration_time > CURRENT_TIMESTAMP"))
                 && ($row = $result->fetch_array()) !== NULL) {
+            $result->free();
             return $row[0];
         } else
             return FALSE;

@@ -87,5 +87,27 @@ class Board {
         //submit query
         return $db->doQuery($insertBoard);
     }
+
+    public static function getBoardFromUserId($userid) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        //escape input
+        $userid = $con->real_escape_string($userid);
+
+        //query
+        if (($result = $db->doQuery("SELECT id FROM `tackit`.`board` WHERE user_id = $userid")) !== FALSE) {
+            //build array from return
+            $array = array();
+            while (($row = $result->fetch_array()) !== NULL) {
+                $array[] = $row[0];
+            }
+
+            $result->free();
+            return $array;
+        }
+        else
+            return NULL;
+    }
 }
 ?>
