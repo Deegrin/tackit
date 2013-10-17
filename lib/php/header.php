@@ -13,6 +13,7 @@
         <script type="text/javascript" src="../lib/javascript/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="../lib/javascript/vpb_script.js"></script>
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
+        <script src = "../lib/javascript/signup.js"></script>
 
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
 
@@ -58,7 +59,8 @@
                     }
                     else { ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="../www/signup.php">Signup/Login</a></li>
+                            <li><a href="javascript:void(0);" onClick="vpb_show_sign_up_box();">Signup</a></li>
+                            <li><a href="javascript:void(0);" onClick="vpb_show_login_box();">Login</a></li>
                         </ul>
                         <?php
                     }
@@ -66,3 +68,66 @@
                 </div><!--/.navbar-collapse -->
             </div>
         </div>
+        
+        
+ <!-- Code Begins -->
+
+<div id="vpb_pop_up_background"></div><!-- General Pop-up Background -->
+
+
+<!-- Sign Up Box Starts Here -->
+<div id="vpb_signup_pop_up_box">
+<div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:16px; font-weight:bold;">TackIT Signup</div><br clear="all">
+<div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:11px;">To exit this sign-up box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Username:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" id="signup_username" name="usernames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Email Address:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" id="signup_email" name="emails" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Password:</div>
+<div style="width:300px;float:left;" align="left"><input type="password" id="signup_password1" name="pass1" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Repeat Password:</div>
+<div style="width:300px;float:left;" align="left"><input type="password" id="signup_password2" name="pass2" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">&nbsp;</div>
+<div style="width:300px;float:left;" align="left">
+<a href="javascript:void(0);" id="signup_button" class="vpb_general_button">Submit</a>
+
+<a href="javascript:void(0);" class="vpb_general_button" onClick="vpb_hide_popup_boxes();">Cancel</a>
+</div>
+
+<br clear="all"><br clear="all">
+</div>
+<!-- Sign Up Box Ends Here -->
+
+
+
+
+
+
+
+
+<!-- Login Box Starts Here -->
+<div id="vpb_login_pop_up_box" class="vpb_signup_pop_up_box">
+<div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:16px; font-weight:bold;">TackIT Users Login</div><br clear="all">
+<div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:11px;">To exit this login box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Username:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" id="usernames" name="usernames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Password:</div>
+<div style="width:300px;float:left;" align="left"><input type="password" id="passs" name="passs" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">&nbsp;</div>
+<div style="width:300px;float:left;" align="left">
+
+<a href="javascript:void(0);" class="vpb_general_button" onClick="alert('Hello There!\n\n There is no functionality associated with the button you have just clicked. \n\nThis is just a demonstration of Pop-up Boxes and that\'s all.\n\nThanks.');">Login</a>
+
+<a href="javascript:void(0);" class="vpb_general_button" onClick="vpb_hide_popup_boxes();">Cancel</a>
+</div>
+
+<br clear="all"><br clear="all">
+</div>

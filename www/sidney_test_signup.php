@@ -1,6 +1,5 @@
 <?php include "../lib/php/header.php"; ?>
 
-<script src = "../lib/javascript/signup.js"></script>
 
 <br><br><br><br><br>
 
