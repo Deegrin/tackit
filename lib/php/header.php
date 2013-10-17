@@ -14,6 +14,7 @@
         <script language="javascript" type="text/javascript" src="../lib/javascript/vpb_script.js"></script>
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
         <script src = "../lib/javascript/signup.js"></script>
+        <script src = "../lib/javascript/login.js"></script>
 
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
 
@@ -116,15 +117,15 @@
 <div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:11px;">To exit this login box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">
 
 <div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Username:</div>
-<div style="width:300px;float:left;" align="left"><input type="text" id="usernames" name="usernames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+<div style="width:300px;float:left;" align="left"><input type="text" id="login_username" name="usernames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
 <div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Password:</div>
-<div style="width:300px;float:left;" align="left"><input type="password" id="passs" name="passs" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+<div style="width:300px;float:left;" align="left"><input type="password" id="login_password" name="passs" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
 <div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">&nbsp;</div>
 <div style="width:300px;float:left;" align="left">
 
-<a href="javascript:void(0);" class="vpb_general_button" onClick="alert('Hello There!\n\n There is no functionality associated with the button you have just clicked. \n\nThis is just a demonstration of Pop-up Boxes and that\'s all.\n\nThanks.');">Login</a>
+<a href="javascript:void(0);" id="login_button" class="vpb_general_button">Login</a>
 
 <a href="javascript:void(0);" class="vpb_general_button" onClick="vpb_hide_popup_boxes();">Cancel</a>
 </div>
