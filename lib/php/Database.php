@@ -6,6 +6,7 @@
  * @author David
  */
 class Database {
+    //List of Constants
 
     const HOST = "206.253.164.146";
     const USER = "se165";
@@ -17,6 +18,9 @@ class Database {
 
     private $mysqli;
 
+    /**
+     * Constructor for Database Class
+     */
     public function __construct() {
         $this->mysqli = new mysqli(self::HOST, self::USER, self::PASS, self::NAME, (integer) self::PORT);
         if ($this->mysqli->connect_error)
@@ -24,10 +28,16 @@ class Database {
         $this->mysqli->set_charset(self::CHARSET);
     }
 
+    /**
+     * Function to create connection with database
+     */
     public function getConnection() {
         return $this->mysqli;
     }
 
+    /**
+     * Function to query the database
+     */
     public function doQuery($query) {
         if (is_string($query))
             return $this->mysqli->query($query);
@@ -35,6 +45,10 @@ class Database {
             return FALSE;
     }
 
+    /**
+     * Function to perform an automic transaction
+     * If failure occurs it rolls back
+     */
     public function doTransaction($queryArray) {
         if (is_array($queryArray)) {
             $this->mysqli->autocommit(FALSE);
@@ -52,8 +66,11 @@ class Database {
             $this->mysqli->commit();
             $this->mysqli->autocommit(self::AUTOCOMMIT);
             return TRUE;
-        } else
+        }
+        else
             return FALSE;
     }
+
 }
+
 ?>

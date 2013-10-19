@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Object for User class and its functions
+ */
 class Tack {
 
     const EMPTY_STRING = '';
@@ -19,6 +22,17 @@ class Tack {
     private $imageURL;
     private $creation_time;
 
+    /**
+     * Constructor function for a tack
+     * @param type $user_id is the user_id of the creator
+     * @param type $board_id is the board_id of the board it this tack will be tacked to
+     * @param type $title is the title of the tack
+     * @param type $description is the description of the tack
+     * @param type $tackURL is the URL that will be tacked
+     * @param type $imageURL is the URL of the image to represent the tack
+     * @param type $id is the unique id of the tack
+     * @param type $creation_time is the creation time of the tack
+     */
     public function __construct($user_id, $board_id, $title, $description, $tackURL, $imageURL, $id = self::EMPTY_STRING, $creation_time = self::EMPTY_STRING) {
         $this->user_id = $user_id;
         $this->board_id = $board_id;
@@ -26,7 +40,7 @@ class Tack {
         $this->description = $description;
         $this->tackURL = $tackURL;
         $this->imageURL = $imageURL;
-        $this->id= $id;
+        $this->id = $id;
         $this->creation_time = $creation_time;
     }
 
@@ -94,6 +108,11 @@ class Tack {
         return $this->creation_time;
     }
 
+    /**
+     * Function to create a Tack and save the data to the database
+     * It escapes the input parameters and then builds a transaction to
+     * update the database with a query
+     */
     public static function createTack($userId, $boardID, $title, $description, $tackUrl, $imageUrl, $creationTime) {
         $db = new Database();
         $con = $db->getConnection();
@@ -115,6 +134,15 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
+    /**
+     * Function to get a Tack from a specified unique id
+     * returns if found
+     *  the tack with its creators user ID
+     *  the board ID of the board it is originally tacked to
+     *  the title and description of the board
+     *  the URLs of the link tacked and the image representing the tack
+     * if fails returns a NULL
+     */
     public static function getTackFromID($id) {
         $db = new Database();
         $con = $db->getConnection();
@@ -127,17 +155,23 @@ class Tack {
         else
             return NULL;
     }
-    public static function searchTack($topic){
+
+    /**
+     * Function to search through database for a tack
+     * with a string in the description or title that matches the
+     * $topic parameter
+     */
+    public static function searchTack($topic) {
         $db = new Database();
         $con = $db->getConnection();
-        
+
         $topic = $con->real_escape_string($topic);
-        
+
         $results = "SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')";
-                
+
         return $db->doQuery($results);
     }
-    
+
 }
 
 ?>
