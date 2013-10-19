@@ -9,7 +9,7 @@ class TackitException extends Exception {
 
     const EXCEPTION_HEADER = 'error';
     const EXCEPTION_CODE = 'code';
-    const EXCEPTION_DESC = 'desc';
+    const EXCEPTION_DATA = 'data';
 
     public function __construct($message, $code, $previous = NULL) {
         parent::__construct($message, $code, $previous);
@@ -19,7 +19,7 @@ class TackitException extends Exception {
         $error = array(
             self::EXCEPTION_HEADER => true,
             self::EXCEPTION_CODE   => parent::getCode(),
-            self::EXCEPTION_DESC   => parent::getMessage()
+            self::EXCEPTION_DATA   => parent::getMessage()
         );
         return json_encode($error);
     }
