@@ -3,6 +3,7 @@ try {
     require_once '../lib/php/Session.php';
     require_once '../lib/php/User.php';
     require_once '../lib/php/TackitException.php';
+    require_once '../lib/php/TackitResponse.php';
 
     //check required input
     $requiredPosts = array('id', 'password');
@@ -19,7 +20,8 @@ try {
 
     //login user, sets cookie if authenticated
     if (Session::login($_POST[$requiredPosts[0]], Session::hash($_POST[$requiredPosts[1]])) === TRUE) {
-        throw new TackitException("Success!", 0);
+        $response = new TackitResponse('');
+        echo $response->getJson();
     } else
         throw new TackitException("We could not log you in!", 0);
 } catch (TackitException $ex) {
