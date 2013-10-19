@@ -61,7 +61,7 @@ class Session {
 
     public static function logout() {
         //expire the cookie
-        setcookie(self::COOKIE, self::EMPTY_STRING, time() - 1);
+        setcookie(self::COOKIE, self::EMPTY_STRING, time() - 1, self::COOKIE_PATH);
     }
 
     public static function hash($hashee) {
