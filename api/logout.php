@@ -1,6 +1,8 @@
 <?php
 try {
     require_once '../lib/php/Session.php';
+    require_once '../lib/php/TackitException.php';
+    require_once '../lib/php/TackitResponse.php';
 
     Session::logout();
     $response = new TackitResponse('');
