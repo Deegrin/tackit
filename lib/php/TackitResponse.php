@@ -21,7 +21,7 @@ class TackitResponse {
             self::RESPONSE_HEADER => false,
             self::RESPONSE_DATA => $this->data
         );
-        return json_encode($error);
+        return json_encode($response);
     }
 }
 ?>
