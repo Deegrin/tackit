@@ -44,7 +44,7 @@
                                         <li><a href="#">Add Board</a></li>
                                         <li><a href="#">View Profile</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Logout</a></li>
+                                        <li><a id="logout_button" href="#">Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
