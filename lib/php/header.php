@@ -15,7 +15,7 @@
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
         <script src = "../lib/javascript/signup.js"></script>
         <script src = "../lib/javascript/login.js"></script>
-
+        <script src = "../lib/javascript/logout.js"></script>
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
 
 
