@@ -15,7 +15,7 @@
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
         <script src = "../lib/javascript/signup.js"></script>
         <script src = "../lib/javascript/login.js"></script>
-
+        <script src = "../lib/javascript/logout.js"></script>
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
 
 
@@ -44,7 +44,7 @@
                                         <li><a href="#">Add Board</a></li>
                                         <li><a href="#">View Profile</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Logout</a></li>
+                                        <li><a id="logout_button" href="#">Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>

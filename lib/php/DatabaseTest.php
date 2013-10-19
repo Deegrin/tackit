@@ -16,7 +16,6 @@ echo $connection->error;
 // user:registerUser test
 //User::registerUser('davidng01234@live.com', 'Deegrin2', 'apassword', 'David', 'Nguyen');
 //User::registerUser('davidng0123@gmail.com', 'davidng0123', 'apassword');
-
 // user::getUserFromUserName test
 //$array = User::getUserFromUserName('Deegrin');
 //var_dump($array);

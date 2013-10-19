@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Object for User class and its functions
+ */
 require_once 'Database.php';
 
 class User {
@@ -24,6 +27,13 @@ class User {
     private $password_salt;
     private $creation_time;
 
+    /**
+     * Cnstructor function for users
+     * @param type $email is email of user
+     * @param type $userName the userName/alais of user
+     * @param type $firstName the real given name of user
+     * @param type $lastName te real family name of user
+     */
     public function __construct($email, $userName, $firstName = self::EMPTY_STRING, $lastName = self::EMPTY_STRING) {
         $this->email = $email;
         $this->username = $userName;
@@ -103,6 +113,11 @@ class User {
         return $this->creation_time;
     }
 
+    /**
+     * Function used when registering a user
+     * takes the parameters and escapes them to instert them into an array of 
+     * transactions to update the database.
+     */
     public static function registerUser($email, $userName, $password, $firstName = self::EMPTY_STRING, $lastName = self::EMPTY_STRING) {
         $db = new Database();
         $con = $db->getConnection();
@@ -130,6 +145,11 @@ class User {
         return $db->doTransaction($transaction);
     }
 
+    /*
+     * Function to obtain a user of the username 
+     * the user object has the email, username, firstname and last name
+     */
+
     public static function getUserFromUserName($userName) {
         $db = new Database();
         $con = $db->getConnection();
@@ -141,6 +161,7 @@ class User {
         }
         else
             return NULL;
-    }
+    } 
 }
+
 ?>
