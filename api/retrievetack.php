@@ -16,16 +16,25 @@ try {
 
     //TACKS BY BOARD
     //TODO in progress
-    if (isset($_POST['board'])) {
+    if (isset($_REQUEST['board'])) {
         //validate input
-        if (!is_numeric($_POST['board']) || $_POST['board'] < 0)
+        if (!is_numeric($_REQUEST['board']) || $_REQUEST['board'] < 0)
             throw new TackitException("Board is invalid", 0);
         
         //retrieve tacks if user authorized
-        $board = Board::getBoardFromID($_POST['board']);
+        $board = Board::getBoardFromID($_REQUEST['board']);
         //if board belongs to user, or board is public
         if ($userid == $board->get_user_id() || !$board->get_private()) {
-            
+            //get array of Tack objects
+            $tacks = Tack::getTackFromBoardId($_REQUEST['board']);
+            //get JSON array of Tacks
+            $data = array();
+            foreach ($tacks as $tack) {
+                $data[] = $tack->getJson();
+            }
+            //return data
+            $response = new TackitResponse(json_encode($data));
+            echo $response->getJson();
         } else
             throw new TackitException("Access denied!", 0);
     }

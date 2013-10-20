@@ -160,18 +160,6 @@ class Tack {
         else
             return NULL;
     }
-    
-    public static function getTackFromResult($result) {
-        $tacks = array();
-        while (($row = $result->fetch_assoc()) !== NULL) {
-            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD],
-                    $row[self::DB_TITLE], $row[self::DB_DESTRIPTION],
-                    $row[self::DB_TACKURL], $row[self::DB_IMAGE],
-                    $row[self::DB_ID], $row[self::DB_CREATION]);
-        }
-        $result->free();
-        return $tacks;
-    }
 
     public static function getTackFromBoardId($boardId) {
         $db = new Database();
@@ -200,7 +188,19 @@ class Tack {
 
         return $db->doQuery($results);
     }
-    
+
+    public static function getTackFromResult($result) {
+        $tacks = array();
+        while (($row = $result->fetch_assoc()) !== NULL) {
+            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD],
+                    $row[self::DB_TITLE], $row[self::DB_DESTRIPTION],
+                    $row[self::DB_TACKURL], $row[self::DB_IMAGE],
+                    $row[self::DB_ID], $row[self::DB_CREATION]);
+        }
+        $result->free();
+        return $tacks;
+    }
+
     public function getJson() {
         $json = array(
             self::DB_ID          => $this->get_id(),
@@ -211,6 +211,7 @@ class Tack {
             self::DB_TACKURL     => $this->get_tackURL(),
             self::DB_IMAGE       => $this->get_imageURL()
         );
+        return json_encode($json);
     }
 }
 ?>
