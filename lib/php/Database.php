@@ -66,11 +66,12 @@ class Database {
             $this->mysqli->commit();
             $this->mysqli->autocommit(self::AUTOCOMMIT);
             return TRUE;
-        }
-        else
+        } else
             return FALSE;
     }
 
+    public function real_escape_string($escapestr) {
+        return $this->mysqli->real_escape_string($escapestr);
+    }
 }
-
 ?>

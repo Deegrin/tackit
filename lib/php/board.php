@@ -156,9 +156,7 @@ class Board {
         $userid = $con->real_escape_string($userid);
 
         //query
-
         if (($result = $db->doQuery("SELECT id FROM `tackit`.`board` WHERE user_id = $userid")) !== FALSE) {
-
             //build array from return
             $array = array();
             while (($row = $result->fetch_array()) !== NULL) {
@@ -187,8 +185,7 @@ class Board {
 
         if (($result = $db->doQuery("SELECT * FROM tackit.board WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION]);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -201,13 +198,12 @@ class Board {
         $db = new Database();
         $con = $db->getConnection();
 
+        //escape input
         $topic = $con->real_escape_string($topic);
 
         $results = "SELECT * FROM `tackit`.`board` WHERE MATCH (title, description) AGAINST ('$topic')";
 
         return $db->doQuery($results);
     }
-
 }
-
 ?>
