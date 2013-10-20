@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `tackit`.`board` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `private` TINYINT(1) NOT NULL DEFAULT 0,
-  `title` VARCHAR(50) NOT NULL,
+  `title` VARCHAR(60) NOT NULL,
   `description` VARCHAR(200) NULL DEFAULT '',
   `creation_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `tackit`.`tack` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `board_id` INT NOT NULL,
-  `title` VARCHAR(50) NOT NULL,
+  `title` VARCHAR(60) NOT NULL,
   `description` VARCHAR(200) NULL DEFAULT '',
   `tackUrl` VARCHAR(200) NOT NULL,
   `imageURL` VARCHAR(200) NULL DEFAULT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `tackit`.`session` (
   `token` VARCHAR(45) NOT NULL,
   `creation_time` TIMESTAMP NULL,
   `expiration_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`token`),
   CONSTRAINT `session_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `tackit`.`user` (`id`)
