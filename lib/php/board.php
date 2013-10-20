@@ -149,6 +149,12 @@ class Board {
         return $db->doQuery($insertBoard);
     }
 
+    /**
+     * Gets an array of Board ids that belong to the specified User.
+     * 
+     * @param int $userid id number
+     * @return null enumerated array of board ids if successful, NULL otherwise
+     */
     public static function getBoardFromUserId($userid) {
         $db = new Database();
         $con = $db->getConnection();

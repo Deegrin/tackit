@@ -160,6 +160,12 @@ class Tack {
             return NULL;
     }
 
+    /**
+     * Gets an array of Tacks associated with a specified Board id.
+     * 
+     * @param int $boardId id number
+     * @return array array of Tack objects
+     */
     public static function getTackFromBoardId($boardId) {
         $db = new Database();
 
@@ -188,6 +194,12 @@ class Tack {
         return $db->doQuery($results);
     }
 
+    /**
+     * Gets an array of Tacks from a specified MySQL result set.
+     * 
+     * @param type $result MySQL result set
+     * @return \Tack array of Tack objects
+     */
     public static function getTackFromResult($result) {
         $tacks = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
@@ -200,6 +212,11 @@ class Tack {
         return $tacks;
     }
 
+    /**
+     * Gets an associative array representation of the Tack.
+     * 
+     * @return array array with keys: id, user_id, board_id, title, description, tackUrl, imageURL
+     */
     public function getArray() {
         return array(
             self::DB_ID          => $this->get_id(),
