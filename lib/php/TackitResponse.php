@@ -16,6 +16,11 @@ class TackitResponse {
         $this->data = $data;
     }
 
+    /**
+     * Gets the response as associative JSON array.
+     * 
+     * @return string JSON array
+     */
     public function getJson() {
         $response = array(
             self::RESPONSE_HEADER => false,

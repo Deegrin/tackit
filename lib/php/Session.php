@@ -17,6 +17,14 @@ class Session {
 
     const DB_TOKEN_LENGTH = 36;
 
+    /**
+     * Logs user in.
+     * 
+     * @param string $id user's username
+     * @param string $password user's hashed password
+     * @return boolean TRUE if login is successful, FALSE otherwise
+     * @throws TackitException
+     */
     public static function login($id, $password) {
         $db = new Database();
         $con = $db->getConnection();
@@ -43,6 +51,12 @@ class Session {
             throw new TackitException("The user or email does not exist, or the password is incorrect!", 0);
     }
 
+    /**
+     * Checks if user is logged in when token matches an unexpired session.
+     * 
+     * @param string $token session token
+     * @return boolean ID number if logged in, FALSE otherwise
+     */
     public static function isLoggedIn($token) {
         $db = new Database();
         $con = $db->getConnection();
@@ -59,15 +73,29 @@ class Session {
             return FALSE;
     }
 
+    /**
+     * Logs user out.
+     */
     public static function logout() {
         //expire the cookie
         setcookie(self::COOKIE, self::EMPTY_STRING, time() - 1, self::COOKIE_PATH);
     }
 
+    /**
+     * Hashes data with Blowfish method.
+     * 
+     * @param type $hashee data to be hashed
+     * @return string hashed data
+     */
     public static function hash($hashee) {
         return crypt($hashee, self::DEFAULT_SALT);
     }
 
+    /**
+     * Generates a random UUID v4.
+     * 
+     * @return string random UUID
+     */
     public static function getUuidV4() {
         $uuid = openssl_random_pseudo_bytes(16);
         //set uuid[6] to 4 (as decimal)
