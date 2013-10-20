@@ -20,7 +20,7 @@ try {
         //validate input
         if (!is_numeric($_REQUEST['board']) || $_REQUEST['board'] < 0)
             throw new TackitException("Board is invalid", 0);
-        
+
         //retrieve tacks if user authorized
         $board = Board::getBoardFromID($_REQUEST['board']);
         //if board belongs to user, or board is public
@@ -30,10 +30,10 @@ try {
             //get JSON array of Tacks
             $data = array();
             foreach ($tacks as $tack) {
-                $data[] = $tack->getJson();
+                $data[] = $tack->getArray();
             }
             //return data
-            $response = new TackitResponse(json_encode($data));
+            $response = new TackitResponse($data);
             echo $response->getJson();
         } else
             throw new TackitException("Access denied!", 0);

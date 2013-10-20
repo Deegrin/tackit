@@ -9,6 +9,7 @@ class Board {
      */
 
     const EMPTY_STRING = '';
+    const DB_USER = "user_id";
     const DB_PRIV = "private";
     const DB_TITLE = "title";
     const DB_DESTRIPTION = "description";
@@ -184,7 +185,7 @@ class Board {
         $id = $con->real_escape_string($id);
 
         if (($result = $db->doQuery("SELECT * FROM tackit.board WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
-            return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION]);
+            return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_USER]);
         } else
             return NULL;
     }
