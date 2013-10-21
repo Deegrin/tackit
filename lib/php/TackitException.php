@@ -15,6 +15,11 @@ class TackitException extends Exception {
         parent::__construct($message, $code, $previous);
     }
 
+    /**
+     * Gets the exception as associative JSON array.
+     * 
+     * @return string JSON array
+     */
     public function getJson() {
         $error = array(
             self::EXCEPTION_HEADER => true,

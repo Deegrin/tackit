@@ -6,12 +6,14 @@
 class Tack {
 
     const EMPTY_STRING = '';
+    const DB_ID = "id";
     const DB_USER = "user_id";
     const DB_BOARD = "board_id";
     const DB_TITLE = "title";
     const DB_DESTRIPTION = "description";
     const DB_TACKURL = "tackUrl";
     const DB_IMAGE = "imageURL";
+    const DB_CREATION = "creation_time";
     const DB_TITLE_LENGTH = 60;
     const DB_DESCRIPTION_LENGTH = 200;
     const DB_URL_LENGTH = 200;
@@ -154,8 +156,25 @@ class Tack {
         $id = $con->real_escape_string($id);
         if (($result = $db->doQuery("SELECT * FROM tackit.tack WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
-        }
-        else
+        } else
+            return NULL;
+    }
+
+    /**
+     * Gets an array of Tacks associated with a specified Board id.
+     * 
+     * @param int $boardId id number
+     * @return array array of Tack objects
+     */
+    public static function getTackFromBoardId($boardId) {
+        $db = new Database();
+
+        //escape input
+        $boardId = $db->real_escape_string($boardId);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
+            return self::getTackFromResult($result);
+        } else
             return NULL;
     }
 
@@ -175,6 +194,39 @@ class Tack {
         return $db->doQuery($results);
     }
 
-}
+    /**
+     * Gets an array of Tacks from a specified MySQL result set.
+     * 
+     * @param type $result MySQL result set
+     * @return \Tack array of Tack objects
+     */
+    public static function getTackFromResult($result) {
+        $tacks = array();
+        while (($row = $result->fetch_assoc()) !== NULL) {
+            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD],
+                    $row[self::DB_TITLE], $row[self::DB_DESTRIPTION],
+                    $row[self::DB_TACKURL], $row[self::DB_IMAGE],
+                    $row[self::DB_ID], $row[self::DB_CREATION]);
+        }
+        $result->free();
+        return $tacks;
+    }
 
+    /**
+     * Gets an associative array representation of the Tack.
+     * 
+     * @return array array with keys: id, user_id, board_id, title, description, tackUrl, imageURL
+     */
+    public function getArray() {
+        return array(
+            self::DB_ID          => $this->get_id(),
+            self::DB_USER        => $this->get_user_id(),
+            self::DB_BOARD       => $this->get_board_id(),
+            self::DB_TITLE       => $this->get_title(),
+            self::DB_DESTRIPTION => $this->get_description(),
+            self::DB_TACKURL     => $this->get_tackURL(),
+            self::DB_IMAGE       => $this->get_imageURL()
+        );
+    }
+}
 ?>

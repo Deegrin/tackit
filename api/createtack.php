@@ -8,7 +8,7 @@ try {
 
     //check & validate cookie
     if (!isset($_COOKIE[Session::COOKIE]) || strlen($_COOKIE[Session::COOKIE]) > Session::DB_TOKEN_LENGTH) {
-        throw new TackitException("Session token is missing.", 0);
+        throw new TackitException("Session token is invalid!", 0);
     }
     //check required input
     $requiredPosts = array('board', 'title', 'desc', 'url', 'image');
