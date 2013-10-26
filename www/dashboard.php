@@ -2,7 +2,7 @@
 
 	<link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 
-	<div id="board" class="col-md-12">
+	<div id="feed" class="col-md-12">
 
 		<div id="tack0" class="tack">
 			<div class="panel panel-default">
@@ -23,7 +23,7 @@
 	  			</div>
 
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_1.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_1.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -51,7 +51,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_2.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_2.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask  
@@ -79,7 +79,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_3.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_3.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -107,7 +107,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_4.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_4.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -135,7 +135,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_5.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_5.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -163,7 +163,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_6.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_6.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -191,7 +191,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_7.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_7.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -219,7 +219,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_8.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_8.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -247,7 +247,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_9.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_9.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -275,7 +275,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_10.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_10.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -303,7 +303,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_8.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_8.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -331,7 +331,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_8.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/meow.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -387,7 +387,7 @@
 	<script>
 		//Masonry organizing tacks
 	    $(function(){
-			var $container = $('#board');
+			var $container = $('#feed');
 
 		  $container.masonry({
 		    itemSelector : '.tack'

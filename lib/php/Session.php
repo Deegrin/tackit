@@ -105,5 +105,11 @@ class Session {
         //split and add hyphens
         return vsprintf("%s%s-%s-%s-%s-%s%s%s", str_split(bin2hex($uuid), 4));
     }
+
+    public static function validateCookie() {
+        if (!isset($_COOKIE[Session::COOKIE]) || strlen($_COOKIE[Session::COOKIE]) > Session::DB_TOKEN_LENGTH) {
+            throw new TackitException("Session token is invalid!", 0);
+        }
+    }
 }
 ?>
