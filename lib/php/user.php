@@ -133,7 +133,7 @@ class User {
         $insertUser = "INSERT INTO `tackit`.`user` (active, email, username, password, password_salt, first_name, last_name) 
             VALUES (0, '$email', '$userName', '$password', '', '$firstName', '$lastName')";
         $insertAccount = "INSERT INTO `tackit`.`account` (user_id, profile_title, profile_description, setting_autoprivate) 
-            VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), '', '', 1)";
+            VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), '', '', 0)";
         $insertBoard = "INSERT INTO `tackit`.`board` (user_id, private, title, description) 
             VALUES ((SELECT id FROM tackit.user WHERE username = '$userName'), 1, 'Dashboard', 'Default Board')";
 
