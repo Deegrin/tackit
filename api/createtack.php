@@ -5,6 +5,7 @@ try {
     require_once '../lib/php/Tack.php';
     require_once '../lib/php/Board.php';
     require_once '../lib/php/TackitException.php';
+    require_once '../lib/php/TackitResponse.php';
 
     //check & validate cookie
     Session::validateCookie();
