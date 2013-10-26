@@ -22,21 +22,23 @@ try {
             throw new TackitException("Board is invalid", 0);
 
         //retrieve tacks if user authorized
-        $board = Board::getBoardFromID($_POST['board']);
-        //if board belongs to user, or board is public
-        if ($userid == $board->get_user_id() || !$board->get_private()) {
-            //get array of Tack objects
-            $tacks = Tack::getTackFromBoardId($_POST['board']);
-            //get JSON array of Tacks
-            $data = array();
-            foreach ($tacks as $tack) {
-                $data[] = $tack->getArray();
-            }
-            //return data
-            $response = new TackitResponse($data);
-            echo $response->getJson();
+        if (($board = Board::getBoardFromID($_POST['board'])) !== NULL) {
+            //if board belongs to user, or board is public
+            if ($userid == $board->get_user_id() || !$board->get_private()) {
+                //get array of Tack objects
+                $tacks = Tack::getTackFromBoardId($_POST['board']);
+                //get JSON array of Tacks
+                $data = array();
+                foreach ($tacks as $tack) {
+                    $data[] = $tack->getArray();
+                }
+                //return data
+                $response = new TackitResponse($data);
+                echo $response->getJson();
+            } else
+                throw new TackitException("Access denied!", 0);
         } else
-            throw new TackitException("Access denied!", 0);
+            throw new TackitException("Board is invalid", 0);
     }
 } catch (TackitException $ex) {
     echo $ex->getJson();

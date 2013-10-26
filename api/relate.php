@@ -9,9 +9,31 @@ try {
     require_once '../lib/php/TackitResponse.php';
 
     //check & validate cookie
+    Session::validateCookie();
     //obtain userid
     if (($userid = Session::isLoggedIn($_COOKIE[Session::COOKIE])) === FALSE)
         throw new TackitException("Session does not exist or has expired!", 0);
+
+    //FOLLOW BOARD
+    if (isset($_POST['board'])) {
+        //validate input
+        if (!is_numeric($_POST['board']) || $_POST['board'] < 0)
+            throw new TackitException("Board is invalid", 0);
+
+        //follow board if user authorized
+        if (($board = Board::getBoardFromID($_POST['board'])) !== NULL) {
+            //if board is public
+            if (!$board->get_private()) {
+                if (Relationship::followBoard($userid, $_POST['board']) !== FALSE) {
+                    $response = new TackitResponse();
+                    echo $response->getJson();
+                } else
+                    throw new TackitException("We could not follow the board!", 0);
+            } else
+                throw new TackitException("Access denied!", 0);
+        } else
+            throw new TackitException("Board is invalid", 0);
+    }
 } catch (TackitException $ex) {
     echo $ex->getJson();
 } catch (Exception $ex) {
