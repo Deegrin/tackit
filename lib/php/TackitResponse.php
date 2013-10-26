@@ -7,12 +7,13 @@
  */
 class TackitResponse {
 
+    const EMPTY_STRING = "";
     const RESPONSE_HEADER = 'error';
     const RESPONSE_DATA = 'data';
 
     private $data;
 
-    public function __construct($data) {
+    public function __construct($data = self::EMPTY_STRING) {
         $this->data = $data;
     }
 

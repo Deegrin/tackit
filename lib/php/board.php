@@ -7,12 +7,14 @@ class Board {
     /**
      * List of constants
      */
-
     const EMPTY_STRING = '';
     const DB_USER = "user_id";
     const DB_PRIV = "private";
     const DB_TITLE = "title";
     const DB_DESTRIPTION = "description";
+    const DB_TITLE_LENGTH = 60;
+    const DB_DESCRIPTION_LENGTH = 200;
+    const DB_PRIVATE_LENGTH = 1;
 
     /**
      * List of Variables
@@ -143,7 +145,7 @@ class Board {
 
         //build transaction
         $insertBoard = "INSERT INTO `tackit`.`board` (user_id, private, title, description)
-            VALUES ('$userID','$priv','$title','$description')";
+            VALUES ('$userID',$priv,'$title','$description')";
 
         //submit query
         return $db->doQuery($insertBoard);
