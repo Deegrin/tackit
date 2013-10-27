@@ -11,12 +11,6 @@ body{
 	margin:5px;
 }
 
-.title{
-	font-size:12px;
-	max-height: 40px;
-	width: 170px;
-}
-
 .right {
 	float: right;
 	margin-top: -27px;
