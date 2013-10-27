@@ -5,6 +5,9 @@
 <div class="dashboard row">
   <div class="col-sm-2">
     <ul id="dashboard-sidebar-nav" class="nav nav-pills nav-stacked">
+        <li><a data-toggle="modal" href="#myModal">Create Tack</a></li>
+        <li><a href="#create-board" data-toggle="pill">Create Board</a></li>
+        <li class="divider"></li>
         <li class="active"><a href="#home" data-toggle="pill">Home</a></li>
         <li><a href="#profile" data-toggle="pill">Profile</a></li>
         <li><a href="#messages" data-toggle="pill">Messages</a></li>
@@ -365,6 +368,43 @@
     </div> 
   </div>
 </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            
+          <h4 class="modal-title">Create Tack</h4>
+       </div>
+         <div class="modal-body">
+        <div class="form-group">
+              <input type="text" placeholder="Title" class="form-control">
+        </div>
+        
+        <div class="form-group">
+              <input type="text" placeholder="Description" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <input type="text" placeholder="URL" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <input type="text" placeholder="Image URL" class="form-control">
+            </div>
+        
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
 <script src="../lib/masonry/masonry.pkgd.min.js"></script>
 
