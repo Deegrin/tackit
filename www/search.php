@@ -3,7 +3,7 @@
 <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 
 	<div class="row">
-	    <div class="col-lg-10 col-lg-offset-1">
+	    <div class="col-lg-8 col-lg-offset-2">
 		    <div class="input-group">
 		    	<input type="text" class="form-control" placeholder="Search">
 			    <span class="input-group-btn">
@@ -21,12 +21,12 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
+		<div class="col-lg-8 col-lg-offset-2">
 			<h3>Tack results for "?????" (# results)</h3>
 		</div>
 	</div>
 
-	<div id="board" class="col-md-12">
+	<div id="feed" class="col-md-12">
 
 		<div id="tack0" class="tack">
 			<div class="panel panel-default">
@@ -371,7 +371,7 @@
 	
 	<script>
 	    $(function(){
-			var $container = $('#board');
+			var $container = $('#feed');
 
 		  $container.masonry({
 		    itemSelector : '.tack'
