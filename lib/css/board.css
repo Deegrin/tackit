@@ -24,12 +24,12 @@ body{
 	margin-top: -27px;
 }
 
-.feed .img-rounded {
+.tackResults .img-rounded {
 	max-height: 100%;
 	max-width: 100%;
 }
 
-.feed .description{
+.tackResults .description{
 	border-color:#F0F0F0;
 	background-color: white;
 	width:250px;
@@ -37,36 +37,36 @@ body{
 	overflow:hidden;
 }
 
-.feed .panel{
+.tackResults .panel{
 	width:270px;
 }
 
-.feed .panel-title{
+.tackResults .panel-title{
 	font-size:12px;
 	max-height: 40px;
 	width: 170px;
 	overflow: hidden;
 }
 
-.feed .panel-body{
+.tackResults .panel-body{
 	text-align: center;
 	height:250px;
 	line-height: 210px;
 	vertical-align: middle;
 }
 
-.feed .panel-footer{
+.tackResults .panel-footer{
 	overflow: hidden;
 }
 
-.feed .likes{
+.tackResults .likes{
 	display: inline-block;
 	float: right;
 	position: relative;
 	margin-top: 5px;
 }
 
-.feed .likes a{
+.tackResults .likes a{
 	font-size: 11px;
 	color: #808080;
 }

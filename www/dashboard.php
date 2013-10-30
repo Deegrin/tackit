@@ -18,7 +18,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="home"> 
 
-                <div id="yourFeed" class="feed col-md-12">
+                <div id="yourFeed" class="tackResults col-md-12">
 
                     <div id="tack0" class="tack">
                         <div class="panel panel-default">
@@ -235,7 +235,7 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/image_8.jpg">
+                                <img class="img-rounded" src="../lib/sample-images/eggsinpatio.jpg">
                             </div>
                             <div class="panel-footer">
                                 hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -319,7 +319,7 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/image_8.jpg">
+                                <img class="img-rounded" src="../lib/sample-images/floralhairtie.jpg">
                             </div>
                             <div class="panel-footer">
                                 hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -449,7 +449,7 @@
 <script>
     //Masonry organizing tacks
     $(function(){
-        var $container = $('.feed');
+        var $container = $('.tackResults');
 
         $container.masonry({
             itemSelector : '.tack'

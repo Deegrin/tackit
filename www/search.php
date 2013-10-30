@@ -1,21 +1,20 @@
 <?php include "../lib/php/header.php";?>
 
-<link type="text/css" rel="stylesheet" href="../lib/css/board.css">
+<link type="text/css" rel="stylesheet" href="../lib/css/search.css">
 
 	<div class="row">
 	    <div class="col-lg-8 col-lg-offset-2">
 		    <div class="input-group">
 		    	<input type="text" class="form-control" placeholder="Search">
-			    <span class="input-group-btn">
-			    	<button type="button" class="btn btn-default" data-toggle="dropdown">Tacks</button>
-					<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-						<ul class="dropdown-menu">
+			    <div class="input-group-btn">
+			    	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tacks</button>
+						<ul class="dropdown-menu pull-right" role="menu">
 							<li><a href="#">Tacks</a></li>
 							<li><a href="#">Boards</a></li>
 							<li><a href="#">Users</a></li>
 						</ul>
-
-			    </span>
+			    </div>
 		    </div>
 	    </div>
 	</div>
@@ -26,7 +25,7 @@
 		</div>
 	</div>
 
-	<div id="feed" class="col-md-12">
+	<div class="tackResults col-md-12">
 
 		<div id="tack0" class="tack">
 			<div class="panel panel-default">
@@ -47,7 +46,7 @@
 	  			</div>
 
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_1.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_1.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -75,7 +74,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_2.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_2.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask  
@@ -103,7 +102,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_3.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_3.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -131,7 +130,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_4.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_4.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -159,7 +158,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_5.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_5.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -187,7 +186,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_6.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_6.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -215,7 +214,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_7.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_7.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -243,7 +242,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_8.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_8.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -271,7 +270,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_9.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_9.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -299,7 +298,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_10.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_10.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -327,7 +326,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_8.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_8.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -355,7 +354,7 @@
 						</div>
 	  			</div>
 		  		<div class="panel-body">
-					<img class="img-rounded" src="../lib/sample-images/image_8.jpg" width="240" height="240">
+					<img class="img-rounded" src="../lib/sample-images/image_8.jpg">
 		  		</div>
 		  		<div class="panel-footer">
 		  			hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
@@ -371,7 +370,7 @@
 	
 	<script>
 	    $(function(){
-			var $container = $('#feed');
+			var $container = $('.tackResults');
 
 		  $container.masonry({
 		    itemSelector : '.tack'
