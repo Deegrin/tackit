@@ -32,7 +32,7 @@
 	  		<div class="panel-body">
 	  			<img id="userAvatar" class="avatar" align="left" src="../lib/sample-avatars/avatar_1.jpg"></img>
 	  			<div class="title">
-	    		BoardTitle BoardTitle BoardTitle BoardTitle BoardTitle BoardTitle
+	    		UserTitle
 	    		</div>
 	    		<div id="user0FollowCount" class="followCount">
 	    			# Followers
@@ -49,7 +49,7 @@
 	  		<div class="panel-body">
 	  			<img id="userAvatar" class="avatar" align="left" src="../lib/sample-avatars/avatar_2.jpg"></img>
 	  			<div class="title">
-	    		BoardTitle BoardTitle BoardTitle BoardTitle BoardTitle BoardTitle
+	    		UserTitle
 	    		</div>
 	    		<div id="user0FollowCount" class="followCount">
 	    			# Followers
