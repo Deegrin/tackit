@@ -38,7 +38,7 @@ body{
 }
 
 .panel{
-	width:275px;
+	width:270px;
 }
 
 .panel-title{
@@ -51,6 +51,8 @@ body{
 .panel-body{
 	text-align: center;
 	height:250px;
+	line-height: 210px;
+	vertical-align: middle;
 }
 
 .panel-footer{

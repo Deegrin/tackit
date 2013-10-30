@@ -3,7 +3,7 @@ body{
 	background-color: #EBEBEB;
 }
 
-.panel{
+.boardList > panel{
 	margin-bottom: 5px;
 }
 

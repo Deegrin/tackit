@@ -1,6 +1,7 @@
 <?php include "../lib/php/header.php" ?>
 
 <link type="text/css" rel="stylesheet" href="../lib/css/following.css">
+<link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 
 <div id="following" class="boardList col-sm-8 col-sm-offset-2">
 	
