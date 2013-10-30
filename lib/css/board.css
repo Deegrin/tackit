@@ -29,14 +29,6 @@ body{
 	max-width: 100%;
 }
 
-.tackResults .description{
-	border-color:#F0F0F0;
-	background-color: white;
-	width:250px;
-	max-height: 50px;
-	overflow:hidden;
-}
-
 .tackResults .panel{
 	width:270px;
 }
