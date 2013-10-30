@@ -8,10 +8,10 @@
 	font-weight: bold;
 }
 
-/*.right {
+.boardList .right {
 	float: right;
 	margin-top: -37px;
-}*/
+}
  
 .boardList .panel a {
     width: 100%;

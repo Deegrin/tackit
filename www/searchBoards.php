@@ -37,6 +37,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 
 	  		</div>
   		</a>
@@ -51,7 +52,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
-
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 	  		</div>
   		</a>
   	</div>
@@ -65,7 +66,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
-
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 	  		</div>
   		</a>
   	</div>
@@ -79,7 +80,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
-
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 	  		</div>
   		</a>
   	</div>
@@ -93,7 +94,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
-
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 	  		</div>
   		</a>
   	</div>
@@ -107,7 +108,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
-
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 	  		</div>
   		</a>
   	</div>
@@ -121,7 +122,7 @@
 	    		<div class="description">
 	    			al;sdkflskdfjsa l;akjsdfl;kajsdfj;lkas ;lkasdjfl;akjsdflksd fjl;aksdfjlaksj dfl; laksjdflkajsd;flk l;aksjdf
 	    		</div>
-
+	    		<button type="button" class="btn btn-primary right">Follow</button>
 	  		</div>
   		</a>
   	</div>
