@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-	<div class="tackResults col-md-12">
+	<div class="tackResults col-md-12 center">
 
 		<div id="tack0" class="tack">
 			<div class="panel panel-default">

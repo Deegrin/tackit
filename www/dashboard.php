@@ -29,7 +29,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -59,7 +59,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -87,7 +87,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -115,7 +115,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -143,7 +143,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -171,7 +171,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -199,7 +199,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -227,7 +227,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -255,7 +255,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -283,7 +283,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -311,7 +311,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
@@ -339,7 +339,7 @@
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="#">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
