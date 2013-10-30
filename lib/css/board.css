@@ -7,7 +7,7 @@
 }
   
 body{
-	padding-top: 55px;
+	padding-top: 60px;
 	background-color: #EBEBEB;
 }
 
@@ -16,7 +16,7 @@ body{
 }
 
 .tack{
-	margin:5px;
+	margin:5px 5px -5px 5px;
 }
 
 .right {
@@ -24,12 +24,12 @@ body{
 	margin-top: -27px;
 }
 
-.img-rounded {
+.feed .img-rounded {
 	max-height: 100%;
 	max-width: 100%;
 }
 
-.description{
+.feed .description{
 	border-color:#F0F0F0;
 	background-color: white;
 	width:250px;
@@ -37,36 +37,36 @@ body{
 	overflow:hidden;
 }
 
-.panel{
+.feed .panel{
 	width:270px;
 }
 
-.panel-title{
+.feed .panel-title{
 	font-size:12px;
 	max-height: 40px;
 	width: 170px;
 	overflow: hidden;
 }
 
-.panel-body{
+.feed .panel-body{
 	text-align: center;
 	height:250px;
 	line-height: 210px;
 	vertical-align: middle;
 }
 
-.panel-footer{
+.feed .panel-footer{
 	overflow: hidden;
 }
 
-.likes{
+.feed .likes{
 	display: inline-block;
 	float: right;
 	position: relative;
 	margin-top: 5px;
 }
 
-.likes a{
+.feed .likes a{
 	font-size: 11px;
 	color: #808080;
 }

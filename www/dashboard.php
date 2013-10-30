@@ -18,7 +18,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="home"> 
 
-                <div id="feed" class="col-md-12">
+                <div id="yourFeed" class="feed col-md-12">
 
                     <div id="tack0" class="tack">
                         <div class="panel panel-default">
@@ -449,7 +449,7 @@
 <script>
     //Masonry organizing tacks
     $(function(){
-        var $container = $('#feed');
+        var $container = $('.feed');
 
         $container.masonry({
             itemSelector : '.tack'
