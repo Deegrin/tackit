@@ -3,6 +3,7 @@ try {
     require_once '../lib/php/Session.php';
     require_once '../lib/php/User.php';
     require_once '../lib/php/TackitException.php';
+    require_once '../lib/php/TackitResponse.php';
 
     //check required input
     $requiredPosts = array('email', 'username', 'password');
