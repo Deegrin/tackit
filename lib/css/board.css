@@ -1,5 +1,13 @@
+@media (min-width: 750px) { 
+    #dashboard-sidebar-nav.affix {
+        position: fixed;
+        top:100px;
+        width:120px;
+    }
+}
+  
 body{
-	padding-top: 55px;
+	padding-top: 60px;
 	background-color: #EBEBEB;
 }
 
@@ -8,13 +16,7 @@ body{
 }
 
 .tack{
-	margin:5px;
-}
-
-.title{
-	font-size:12px;
-	max-height: 40px;
-	width: 170px;
+	margin:5px 5px -5px 5px;
 }
 
 .right {
@@ -22,47 +24,41 @@ body{
 	margin-top: -27px;
 }
 
-.img-rounded {
+.tackResults .img-rounded {
 	max-height: 100%;
 	max-width: 100%;
 }
 
-.description{
-	border-color:#F0F0F0;
-	background-color: white;
-	width:250px;
-	max-height: 50px;
-	overflow:hidden;
+.tackResults .panel{
+	width:270px;
 }
 
-.panel{
-	width:275px;
-}
-
-.panel-title{
+.tackResults .panel-title{
 	font-size:12px;
 	max-height: 40px;
 	width: 170px;
 	overflow: hidden;
 }
 
-.panel-body{
+.tackResults .panel-body{
 	text-align: center;
 	height:250px;
+	line-height: 213px;
+	vertical-align: middle;
 }
 
-.panel-footer{
+.tackResults .panel-footer{
 	overflow: hidden;
 }
 
-.likes{
+.tackResults .likes{
 	display: inline-block;
 	float: right;
 	position: relative;
 	margin-top: 5px;
 }
 
-.likes a{
+.tackResults .likes a{
 	font-size: 11px;
 	color: #808080;
 }

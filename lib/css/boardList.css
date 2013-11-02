@@ -1,0 +1,29 @@
+
+.boardList .panel{
+	margin-bottom: 5px;
+}
+
+.boardList .title{
+	font-size: 16px;
+	font-weight: bold;
+    width: 86%;
+
+}
+
+.boardList .right {
+	float: right;
+	margin-top: -37px;
+}
+
+.boardList .description{
+    width: 86%;
+}
+ 
+.boardList .panel a {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    color: black;
+}

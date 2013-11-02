@@ -10,13 +10,15 @@
         <script src="../lib/javascript/facebook_login.js"></script>
         <script type="text/javascript" src="../lib/bootstrap/js/jquery-1.10.2.js"></script>
         <script src = "../lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="../lib/javascript/jquery.min.js"></script>
+        <!-- <script type="text/javascript" src="../lib/javascript/jquery.min.js"></script> -->
         <script language="javascript" type="text/javascript" src="../lib/javascript/vpb_script.js"></script>
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
         <script src = "../lib/javascript/signup.js"></script>
         <script src = "../lib/javascript/login.js"></script>
         <script src = "../lib/javascript/logout.js"></script>
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
+        <script src = "../lib/javascript/dashboard.js"></script>
+        <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 
 
     </head>
@@ -43,7 +45,6 @@
                                         <li><a href="#">Add Tack</a></li>
                                         <li><a href="#">Add Board</a></li>
                                         <li><a href="#">View Profile</a></li>
-                                        <li class="divider"></li>
                                         <li><a id="logout_button" href="#">Logout</a></li>
                                     </ul>
                                 </li>
