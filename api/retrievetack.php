@@ -41,7 +41,7 @@ try {
     }
     else if (isset($_POST['following'])) {
         //get array of Tack objects
-        $tack = Tack::getTackFromBoardFollowing($userid);
+        $tacks = Tack::getTackFromBoardFollowing($userid);
         //get JSON array of Tacks
         $data = array();
         foreach ($tacks as $tack) {
