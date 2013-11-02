@@ -24,7 +24,7 @@ require "board.php";
   var_dump($test->searchTack("davidiscool"));
  */
 
-$test = new board(0, 1, 3);
+//$test = new board(0, 1, 3);
 /*
 Board::getBoardFromID(2);
 Board::getBoardFromID(3);
@@ -35,7 +35,18 @@ Board::createBoard(24, 0, "three", "coolisdavid");
 //Board::createBoard(24, 0, "three", "david is cool");
 Board::createBoard(24, 0, "blah is cool", " is cool");
 */
-var_dump($test->searchBoard("cake"));
+//var_dump($test->searchBoard("cake"));
 
-//echo 'cake';
+//Retack Test
+/*
+$test = new tack(1,1,"test","test tack","tackdotcom","imagedotcom");
+Tack::retack(3,$test);
+echo 'cake';
+ */
+//Test array result returns
+/*
+$test = BOARD::getBoardFromBoardPriv(0);
+var_dump($test);
+ * 
+ */
 ?>

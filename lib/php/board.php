@@ -7,11 +7,13 @@ class Board {
     /**
      * List of constants
      */
+
     const EMPTY_STRING = '';
     const DB_USER = "user_id";
     const DB_PRIV = "private";
     const DB_TITLE = "title";
     const DB_DESTRIPTION = "description";
+    const DB_CREATION = "creation_time";
     const DB_TITLE_LENGTH = 60;
     const DB_DESCRIPTION_LENGTH = 200;
     const DB_PRIVATE_LENGTH = 1;
@@ -194,7 +196,8 @@ class Board {
 
         if (($result = $db->doQuery("SELECT * FROM tackit.board WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_USER]);
-        } else
+        }
+        else
             return NULL;
     }
 
@@ -214,5 +217,40 @@ class Board {
 
         return $db->doQuery($results);
     }
+
+    /**
+     * Gets an array of Tacks from a specified MySQL result set.
+     * 
+     * @param type $result MySQL result set
+     * @return \Tack array of Tack objects
+     */
+    public static function getBoardFromResult($result) {
+        $boards = array();
+        while (($row = $result->fetch_assoc()) !== NULL) {
+            $boards[] = new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_USER], $row[self::DB_CREATION]);
+        }
+        $result->free();
+        return $boards;
+    }
+
+    
+     /**
+     * Gets an array of Boards associated with a specified Board Private Status.
+     * 
+     * @param int $priv number
+     * @return array array of board objects
+     */
+    public static function getBoardFromBoardPriv($priv) {
+        $db = new Database();
+
+        //escape input
+        $priv = $db->real_escape_string($priv);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE private = $priv")) !== FALSE) {
+            return self::getBoardFromResult($result);
+        } else
+            return NULL;
+    }
 }
+
 ?>
