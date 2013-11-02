@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Relationship.php';
+
 /**
  * Object for User class and its functions
  */
@@ -175,6 +177,16 @@ class Tack {
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
             return self::getTackFromResult($result);
         } else
+            return NULL;
+    }
+
+    public static function getTackFromBoardFollowing($userId) {
+        $db = new Database();
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id =
+            (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " AND user_id = $userId)")) !== FALSE)
+            return self::getTackFromResult($result);
+        else
             return NULL;
     }
 

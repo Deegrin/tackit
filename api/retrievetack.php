@@ -8,8 +8,7 @@ try {
     require_once '../lib/php/TackitResponse.php';
 
     //check & validate cookie
-    if (!isset($_COOKIE[Session::COOKIE]) || strlen($_COOKIE[Session::COOKIE]) > Session::DB_TOKEN_LENGTH)
-        throw new TackitException("Session token is invalid!", 0);
+    Session::validateCookie();
     //obtain userid
     if (($userid = Session::isLoggedIn($_COOKIE[Session::COOKIE])) === FALSE)
         throw new TackitException("Session does not exist or has expired!", 0);
@@ -39,6 +38,18 @@ try {
                 throw new TackitException("Access denied!", 0);
         } else
             throw new TackitException("Board is invalid", 0);
+    }
+    else if (isset($_POST['following'])) {
+        //get array of Tack objects
+        $tacks = Tack::getTackFromBoardFollowing($userid);
+        //get JSON array of Tacks
+        $data = array();
+        foreach ($tacks as $tack) {
+            $data[] = $tack->getArray();
+        }
+        //return data
+        $response = new TackitResponse($data);
+        echo $response->getJson();
     }
 } catch (TackitException $ex) {
     echo $ex->getJson();
