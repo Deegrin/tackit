@@ -162,6 +162,40 @@ class User {
         else
             return NULL;
     } 
+        
+    /**
+     * Gets an array of Users from a specified MySQL result set.
+     * 
+     * @param type $result MySQL result set
+     * @return \Tack array of Tack objects
+     */
+    public static function getUserFromResult($result) {
+         $users = array();
+        while (($row = $result->fetch_assoc()) !== NULL) {
+            $users[] = new User('', $row[self::DB_USERNAME],
+                    $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME]);
+        }
+        $result->free();
+        return $users;        
+    }
+    
+         /**
+     * Gets an array of Users associated with a specified UserID.
+     * 
+     * @param int $userID number
+     * @return array array of User objects
+     */
+    public static function getUserFromUserID($userID) {
+        $db = new Database();
+
+        //escape input
+        $userID = $db->real_escape_string($userID);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`user` WHERE id = $userID")) !== FALSE) {
+            return self::getUserFromResult($result);
+        } else
+            return NULL;
+    }
 }
 
 ?>

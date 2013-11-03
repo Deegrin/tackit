@@ -158,7 +158,8 @@ class Tack {
         $id = $con->real_escape_string($id);
         if (($result = $db->doQuery("SELECT * FROM tackit.tack WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
-        } else
+        }
+        else
             return NULL;
     }
 
@@ -176,7 +177,8 @@ class Tack {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
             return self::getTackFromResult($result);
-        } else
+        }
+        else
             return NULL;
     }
 
@@ -201,9 +203,11 @@ class Tack {
 
         $topic = $con->real_escape_string($topic);
 
-        $results = "SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')";
-
-        return $db->doQuery($results);
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
+            return self::getTackFromResult($results);
+        }
+        else
+            return NULL;
     }
 
     /**
@@ -215,13 +219,36 @@ class Tack {
     public static function getTackFromResult($result) {
         $tacks = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD],
-                    $row[self::DB_TITLE], $row[self::DB_DESTRIPTION],
-                    $row[self::DB_TACKURL], $row[self::DB_IMAGE],
-                    $row[self::DB_ID], $row[self::DB_CREATION]);
+            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID], $row[self::DB_CREATION]);
         }
         $result->free();
         return $tacks;
+    }
+
+    /**
+     * Function to allow retacking function 
+     * by creating a whole new tack for the user
+     * takes in retacker's userID and the tack of interest
+     * Then copies the infor under the new users ID and saves it into the DB
+     */
+    public static function retack($userID, $boardID, $tack) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        // escape inputs
+        $userID = $con->real_escape_string($userID);
+        $boardID = $con->real_escape_string($boardID);
+        $tack->set_title($con->real_escape_string($tack->get_title()));
+        $tack->set_description($con->real_escape_string($tack->get_description()));
+        $tack->set_tackUrl($con->real_escape_string($tack->get_tackUrl()));
+        $tack->set_imageUrl($con->real_escape_string($tack->get_imageUrl()));
+
+        //build transaction
+        $insertTack = "INSERT INTO `tackit`.`tack` (user_id, board_id, title, description, tackUrl, imageURL)
+           VALUES ('$userID', '$boardID', '" . $tack->get_title() . "', '" . $tack->get_description() . "', '" . $tack->get_tackUrl() . "', '" . $tack->get_imageUrl() . "')";
+
+        //submit query
+        return $db->doQuery($insertTack);
     }
 
     /**
@@ -240,5 +267,7 @@ class Tack {
             self::DB_IMAGE       => $this->get_imageURL()
         );
     }
+
 }
+
 ?>
