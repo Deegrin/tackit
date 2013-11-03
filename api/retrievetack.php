@@ -38,8 +38,7 @@ try {
                 throw new TackitException("Access denied!", 0);
         } else
             throw new TackitException("Board is invalid", 0);
-    }
-    else if (isset($_POST['following'])) {
+    } else if (isset($_POST['following'])) {
         //get array of Tack objects
         $tacks = Tack::getTackFromBoardFollowing($userid);
         //get JSON array of Tacks
@@ -50,6 +49,8 @@ try {
         //return data
         $response = new TackitResponse($data);
         echo $response->getJson();
+    } else if (isset($_POST['favorite'])) {
+        
     }
 } catch (TackitException $ex) {
     echo $ex->getJson();
