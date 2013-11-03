@@ -40,7 +40,7 @@ Board::createBoard(24, 0, "blah is cool", " is cool");
 //Retack Test
 /*
 $test = new tack(1,1,"test","test tack","tackdotcom","imagedotcom");
-Tack::retack(3,$test);
+Tack::retack(3,2,$test);
 echo 'cake';
  */
 //Test array result returns
@@ -49,4 +49,15 @@ $test = BOARD::getBoardFromBoardPriv(0);
 var_dump($test);
  * 
  */
+
+//Test getBoardARR
+//var_dump(BOARD::getBoardArrFromUserId(1));
+//var_dump(BOARD::searchBoard('cake'));
+
+//Test boards getArray()
+//$test = new Board(0, 'water', 'H20');
+//var_dump($test->getArray());
+
+//Test searchTack
+//var_dump(TACK::searchTack('cake'));
 ?>
