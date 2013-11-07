@@ -82,16 +82,16 @@
 <div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:16px; font-weight:bold;">TackIT Signup</div><br clear="all">
 <div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:11px;">To exit this sign-up box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">
 
-<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Username:</div>
+<div style="width:100px; padding-top:10px;float:left;" align="left">Your Username:</div>
 <div style="width:300px;float:left;" align="left"><input type="text" id="signup_username" name="usernames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
-<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Email Address:</div>
+<div style="width:100px; padding-top:10px;float:left;" align="left">Email Address:</div>
 <div style="width:300px;float:left;" align="left"><input type="text" id="signup_email" name="emails" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
-<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Password:</div>
+<div style="width:100px; padding-top:10px;float:left;" align="left">Password:</div>
 <div style="width:300px;float:left;" align="left"><input type="password" id="signup_password1" name="pass1" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
-<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Repeat Password:</div>
+<div style="width:100px; padding-top:10px;float:left;" align="left">Repeat Password:</div>
 <div style="width:300px;float:left;" align="left"><input type="password" id="signup_password2" name="pass2" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
 <div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">&nbsp;</div>
@@ -117,10 +117,10 @@
 <div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:16px; font-weight:bold;">TackIT Users Login</div><br clear="all">
 <div align="left" style="font-family:Verdana, Geneva, sans-serif; font-size:11px;">To exit this login box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">
 
-<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Username:</div>
+<div style="width:100px; padding-top:10px;float:left;" align="left">Your Username:</div>
 <div style="width:300px;float:left;" align="left"><input type="text" id="login_username" name="usernames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
-<div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">Your Password:</div>
+<div style="width:100px; padding-top:10px;float:left;" align="left">Your Password:</div>
 <div style="width:300px;float:left;" align="left"><input type="password" id="login_password" name="passs" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
 <div style="width:100px; padding-top:10px;margin-left:10px;float:left;" align="left">&nbsp;</div>

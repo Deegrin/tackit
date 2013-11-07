@@ -28,7 +28,7 @@
 #vpb_signup_pop_up_box
 {
 	display:none;
-	width:420px;
+	width:450px;
 	border: solid 1px #000;
 	background-color: #FFF;
 	box-shadow: 0 0 20px #000;
@@ -70,7 +70,7 @@
 
 
 /*Textarea Boxes and Input Boxes Style*/
-.vpb_textAreaBoxInputs {min-width:260px; width:auto;height:20px;font-family:Verdana, Geneva, sans-serif; font-size:12px;padding:7px; padding-left:10px; padding-right:10px;border: 1px solid #6CF;outline:none;border-radius: 2px;-moz-border-radius: 2px;-webkit-border-radius:2px; line-height:20px;}
+.vpb_textAreaBoxInputs {min-width:260px; width:auto;height:30px;margin-top:5px;font-family:Verdana, Geneva, sans-serif; font-size:12px;padding:7px; padding-left:10px; padding-right:10px;border: 1px solid #6CF;outline:none;border-radius: 2px;-moz-border-radius: 2px;-webkit-border-radius:2px; line-height:20px;}
 .vpb_textAreaBoxInputs:focus {outline:none;border: 1px solid #6CF;box-shadow: 0 0 10px #6AB5FF;-moz-box-shadow: 0 0 10px #6AB5FF;-webkit-box-shadow: 0 0 10px #6AB5FF;}
 
 
