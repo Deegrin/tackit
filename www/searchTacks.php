@@ -1,18 +1,19 @@
 <?php include "../lib/php/header.php";?>
 
 <link type="text/css" rel="stylesheet" href="../lib/css/search.css">
+<script src="../lib/javascript/search.js"></script>
 
 	<div class="row">
 	    <div class="col-lg-8 col-lg-offset-2">
 		    <div class="input-group">
-		    	<input type="text" class="form-control" placeholder="Search">
+		    	<input type="text" id="searchTerm" class="form-control" placeholder="Search">
 			    <div class="input-group-btn">
-			    	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tacks</button>
+			    	<button type="button" id="search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+					<button type="button" id="activeSearch" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tacks</button>
 						<ul class="dropdown-menu pull-right" role="menu">
-							<li><a href="#">Tacks</a></li>
-							<li><a href="#">Boards</a></li>
-							<li><a href="#">Users</a></li>
+							<li><a id="searchTacks">Tacks</a></li>
+							<li><a id="searchBoards">Boards</a></li>
+							<li><a id="searchUsers">Users</a></li>
 						</ul>
 			    </div>
 		    </div>
@@ -37,7 +38,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Retack</a></li>
+								<li><a href="">Retack</a></li>
 								<li><a href="#">Email</a></li>
 								<li><a href="#">Favorite</a></li>
 							</ul>
