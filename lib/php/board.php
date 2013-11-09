@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Relationship.php';
+
 /**
  * Object for Board class and its functions.
  */
@@ -9,6 +11,7 @@ class Board {
      */
 
     const EMPTY_STRING = '';
+    const DB_ID = "id";
     const DB_USER = "user_id";
     const DB_PRIV = "private";
     const DB_TITLE = "title";
@@ -36,8 +39,9 @@ class Board {
      * @param type $user_id is the user_id of the creator of the Board
      * @param type $creation_time is the time the board was created
      */
-    public function __construct($priv, $title, $description, $user_id = self::EMPTY_STRING, $creation_time = self::EMPTY_STRING) {
+    public function __construct($priv, $title, $description, $id = self::EMPTY_STRING, $user_id = self::EMPTY_STRING, $creation_time = self::EMPTY_STRING) {
         $this->priv = $priv;
+        $this->id = $id;
         $this->user_id = $user_id;
         $this->title = $title;
         $this->description = $description;
@@ -215,9 +219,21 @@ class Board {
         $id = $con->real_escape_string($id);
 
         if (($result = $db->doQuery("SELECT * FROM tackit.board WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
-            return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_USER]);
-        }
-        else
+            return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_ID], $row[self::DB_USER]);
+        } else
+            return NULL;
+    }
+    
+    public static function getBoardFollowing($userid) {
+        $db = new Database();
+
+        //escape input
+        $userid = $db->real_escape_string($userid);
+
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE id =
+            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userid AND type = " . Relationship::TYPE_FOLLOW_BOARD . ")")) !== FALSE) {
+            return self::getBoardFromResult($results);
+        } else
             return NULL;
     }
 
@@ -249,7 +265,7 @@ class Board {
     public static function getBoardFromResult($result) {
         $boards = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $boards[] = new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_USER], $row[self::DB_CREATION]);
+            $boards[] = new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_ID], $row[self::DB_USER], $row[self::DB_CREATION]);
         }
         $result->free();
         return $boards;
@@ -281,6 +297,7 @@ class Board {
      */
     public function getArray() {
         return array(
+            self::DB_ID          => $this->get_id(),
             self::DB_USER        => $this->get_user_id(),
             self::DB_PRIV        => $this->get_private(),
             self::DB_TITLE       => $this->get_title(),
@@ -288,7 +305,5 @@ class Board {
             self::DB_CREATION    => $this->get_creation_time()
         );
     }
-
 }
-
 ?>
