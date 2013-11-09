@@ -24,8 +24,7 @@ try {
             //return data
             $response = new TackitResponse($data);
             echo $response->getJson();
-        }
-        else
+        } else
             throw new TackitException("We could not retrieve the boards!", 0);
     }
 } catch (TackitException $ex) {
