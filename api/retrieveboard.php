@@ -25,6 +25,19 @@ try {
             $response = new TackitResponse($data);
             echo $response->getJson();
         } else
+            throw new TackitException("We could not retrieve your boards!", 0);
+    }
+    if (isset($_POST['following'])) {
+        //get array of Board objects
+        if (($boards = Board::getBoardFollowing($userid)) !== NULL) {
+            //get JSON array of Boards
+            $data = array();
+            foreach ($boards as $board)
+                $data[] = $board->getArray();
+            //return data
+            $response = new TackitResponse($data);
+            echo $response->getJson();
+        } else
             throw new TackitException("We could not retrieve the boards!", 0);
     }
 } catch (TackitException $ex) {
