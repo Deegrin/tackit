@@ -230,7 +230,7 @@ class Board {
         //escape input
         $userid = $db->real_escape_string($userid);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE id =
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE id IN
             (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userid AND type = " . Relationship::TYPE_FOLLOW_BOARD . ")")) !== FALSE) {
             return self::getBoardFromResult($results);
         } else
