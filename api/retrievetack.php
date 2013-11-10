@@ -1,4 +1,5 @@
 <?php
+
 try {
     require_once '../lib/php/Session.php';
     require_once '../lib/php/User.php';
@@ -34,9 +35,11 @@ try {
                 //return data
                 $response = new TackitResponse($data);
                 echo $response->getJson();
-            } else
+            }
+            else
                 throw new TackitException("Access denied!", 0);
-        } else
+        }
+        else
             throw new TackitException("Board is invalid", 0);
     } else if (isset($_POST['following'])) {
         //get array of Tack objects
@@ -51,6 +54,13 @@ try {
         echo $response->getJson();
     } else if (isset($_POST['favorite'])) {
         
+    } else if (isset($_POST['feed'])) {
+        if (($tacks = Tack::getTackFeed($_POST['feed'])) !== NULL)
+            $data = array();
+        foreach ($tacks as $tack)
+            $data[] = $tack->getArray();
+        $response = new TackitResponse($data);
+        echo $response->getJson();
     }
 } catch (TackitException $ex) {
     echo $ex->getJson();

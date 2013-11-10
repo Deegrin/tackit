@@ -251,6 +251,18 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
+    public static function getTackFeed($userID){
+        $db = new Database();
+        $con = $db->getConnection();
+
+        // escape inputs
+        $userID = $con->real_escape_string($userID);
+        
+        $tacks = "SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and userid = $userID) ORDER BY creation_time DESC";
+        
+        return $tacks;
+    }
+    
     /**
      * Gets an associative array representation of the Tack.
      * 
@@ -267,6 +279,8 @@ class Tack {
             self::DB_IMAGE       => $this->get_imageURL()
         );
     }
+    
+
 
 }
 
