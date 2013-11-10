@@ -12,7 +12,6 @@ class User {
     const DB_USERNAME = "username";
     const DB_FIRSTNAME = "first_name";
     const DB_LASTNAME = "last_name";
-
     const DB_EMAIL_LENGTH = 200;
     const DB_USERNAME_LENGTH = 30;
     const DB_PASSWORD_LENGTH = 30;
@@ -161,8 +160,8 @@ class User {
         }
         else
             return NULL;
-    } 
-        
+    }
+
     /**
      * Gets an array of Users from a specified MySQL result set.
      * 
@@ -170,16 +169,28 @@ class User {
      * @return \Tack array of Tack objects
      */
     public static function getUserFromResult($result) {
-         $users = array();
+        $users = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $users[] = new User('', $row[self::DB_USERNAME],
-                    $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME]);
+            $users[] = new User('', $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME]);
         }
         $result->free();
-        return $users;        
+        return $users;
     }
-    
-         /**
+
+    public static function searchUser($topic) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        $topic = $con->real_escape_string($topic);
+
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`user` WHERE username = '$topic'")) !== FALSE) {
+            return self::getUserFromResult($results);
+        }
+        else
+            return NULL;
+    }
+
+    /**
      * Gets an array of Users associated with a specified UserID.
      * 
      * @param int $userID number
@@ -193,9 +204,24 @@ class User {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`user` WHERE id = $userID")) !== FALSE) {
             return self::getUserFromResult($result);
-        } else
+        }
+        else
             return NULL;
     }
+
+    /**
+     * Gets an associative array representation of the Tack.
+     * 
+     * @return array array with keys: id, user_id, board_id, title, description, tackUrl, imageURL
+     */
+    public function getArray() {
+        return array(
+            self::DB_USERNAME  => $this->get_username(),
+            self::DB_FIRSTNAME => $this->get_first_name(),
+            self::DB_LASTNAME  => $this->get_last_name()
+        );
+    }
+
 }
 
 ?>
