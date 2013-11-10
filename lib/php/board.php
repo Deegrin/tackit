@@ -220,10 +220,11 @@ class Board {
 
         if (($result = $db->doQuery("SELECT * FROM tackit.board WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_ID], $row[self::DB_USER]);
-        } else
+        }
+        else
             return NULL;
     }
-    
+
     public static function getBoardFollowing($userid) {
         $db = new Database();
 
@@ -233,7 +234,8 @@ class Board {
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE id IN
             (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userid AND type = " . Relationship::TYPE_FOLLOW_BOARD . ")")) !== FALSE) {
             return self::getBoardFromResult($results);
-        } else
+        }
+        else
             return NULL;
     }
 
@@ -242,16 +244,18 @@ class Board {
      * with a string in the description or title that matches the
      * $topic parameter
      */
-    public static function searchBoard($topic) {
+    public static function searchBoard($topic, $priv = TRUE) {
         $db = new Database();
         $con = $db->getConnection();
 
         //escape input
         $topic = $con->real_escape_string($topic);
+        $query = "SELECT * FROM `tackit`.`board` WHERE MATCH (title, description) AGAINST ('$topic')";
+        if ($priv == TRUE)
+            $query .= "AND private = 0";
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
+        if (($results = $db->doQuery($query)) !== FALSE)
             return self::getBoardFromResult($results);
-        }
         else
             return NULL;
     }
@@ -297,13 +301,15 @@ class Board {
      */
     public function getArray() {
         return array(
-            self::DB_ID          => $this->get_id(),
-            self::DB_USER        => $this->get_user_id(),
-            self::DB_PRIV        => $this->get_private(),
-            self::DB_TITLE       => $this->get_title(),
+            self::DB_ID => $this->get_id(),
+            self::DB_USER => $this->get_user_id(),
+            self::DB_PRIV => $this->get_private(),
+            self::DB_TITLE => $this->get_title(),
             self::DB_DESTRIPTION => $this->get_description(),
-            self::DB_CREATION    => $this->get_creation_time()
+            self::DB_CREATION => $this->get_creation_time()
         );
     }
+
 }
+
 ?>
