@@ -1,13 +1,13 @@
 <?php include "../lib/php/header.php" ?>
 
 <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
+<script src = "../lib/javascript/dashboard.js"></script>
 
 <div class="dashboard row">
     <div class="col-sm-2">
         <ul id="dashboard-sidebar-nav" class="nav nav-pills nav-stacked">
             <li><a data-toggle="modal" href="#createTackModal">Create Tack</a></li>
             <li><a data-toggle="modal" href="#createBoardModal">Create Board</a></li>
-            <li class="divider"></li>
             <li class="active"><a href="#home" data-toggle="pill">Home</a></li>
             <li><a href="#profile" data-toggle="pill">Profile</a></li>
             <li><a href="#messages" data-toggle="pill">Messages</a></li>

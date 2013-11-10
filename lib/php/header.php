@@ -17,7 +17,6 @@
         <script src = "../lib/javascript/login.js"></script>
         <script src = "../lib/javascript/logout.js"></script>
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
-        <script src = "../lib/javascript/dashboard.js"></script>
         <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 
 
@@ -45,6 +44,7 @@
                                         <li><a href="#">Add Tack</a></li>
                                         <li><a href="#">Add Board</a></li>
                                         <li><a href="#">View Profile</a></li>
+                                        <li class="divider"></li>
                                         <li><a id="logout_button" href="#">Logout</a></li>
                                     </ul>
                                 </li>
