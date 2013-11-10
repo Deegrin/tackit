@@ -15,17 +15,17 @@ try {
 
     //TACKS BY BOARD
     //TODO in progress
-    if (isset($_POST['board'])) {
+    if (isset($_REQUEST['board'])) {
         //validate input
-        if (!is_numeric($_POST['board']) || $_POST['board'] < 0)
+        if (!is_numeric($_REQUEST['board']) || $_REQUEST['board'] < 0)
             throw new TackitException("Board is invalid", 0);
 
         //retrieve tacks if user authorized
-        if (($board = Board::getBoardFromID($_POST['board'])) !== NULL) {
+        if (($board = Board::getBoardFromID($_REQUEST['board'])) !== NULL) {
             //if board belongs to user, or board is public
             if ($userid == $board->get_user_id() || !$board->get_private()) {
                 //get array of Tack objects
-                $tacks = Tack::getTackFromBoardId($_POST['board']);
+                $tacks = Tack::getTackFromBoardId($_REQUEST['board']);
                 //get JSON array of Tacks
                 $data = array();
                 foreach ($tacks as $tack) {
@@ -40,7 +40,7 @@ try {
         }
         else
             throw new TackitException("Board is invalid", 0);
-    } else if (isset($_POST['following'])) {
+    } else if (isset($_REQUEST['following'])) {
         //get array of Tack objects
         $tacks = Tack::getTackFromBoardFollowing($userid);
         //get JSON array of Tacks
@@ -51,9 +51,9 @@ try {
         //return data
         $response = new TackitResponse($data);
         echo $response->getJson();
-    } else if (isset($_POST['favorite'])) {
+    } else if (isset($_REQUEST['favorite'])) {
         
-    } else if (isset($_POST['feed'])) {
+    } else if (isset($_REQUEST['feed'])) {
         if (($tacks = Tack::getTackFeed($userid)) !== NULL) {
             $data = array();
             foreach ($tacks as $tack)

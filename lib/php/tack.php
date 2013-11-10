@@ -158,8 +158,7 @@ class Tack {
         $id = $con->real_escape_string($id);
         if (($result = $db->doQuery("SELECT * FROM tackit.tack WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -177,8 +176,7 @@ class Tack {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
             return self::getTackFromResult($result);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -205,8 +203,7 @@ class Tack {
 
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
             return self::getTackFromResult($results);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -258,7 +255,7 @@ class Tack {
         // escape inputs
         $userID = $con->real_escape_string($userID);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and userid = $userID) ORDER BY creation_time DESC")) !== FALSE)
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
             return self::getTackFromResult($results);
         else
             return NULL;
@@ -271,7 +268,7 @@ class Tack {
      */
     public function getArray() {
         return array(
-            self::DB_ID => $this->get_id(),
+            self::DB_ID          => $this->get_id(),
             self::DB_USER        => $this->get_user_id(),
             self::DB_BOARD       => $this->get_board_id(),
             self::DB_TITLE       => $this->get_title(),
@@ -280,7 +277,5 @@ class Tack {
             self::DB_IMAGE       => $this->get_imageURL()
         );
     }
-
 }
-
 ?>
