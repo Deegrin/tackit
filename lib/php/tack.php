@@ -251,18 +251,19 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
-    public static function getTackFeed($userID){
+    public static function getTackFeed($userID) {
         $db = new Database();
         $con = $db->getConnection();
 
         // escape inputs
         $userID = $con->real_escape_string($userID);
-        
-        $tacks = "SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and userid = $userID) ORDER BY creation_time DESC";
-        
-        return $tacks;
+
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and userid = $userID) ORDER BY creation_time DESC")) !== FALSE)
+            return self::getTackFromResult($results);
+        else
+            return NULL;
     }
-    
+
     /**
      * Gets an associative array representation of the Tack.
      * 
@@ -270,7 +271,7 @@ class Tack {
      */
     public function getArray() {
         return array(
-            self::DB_ID          => $this->get_id(),
+            self::DB_ID => $this->get_id(),
             self::DB_USER        => $this->get_user_id(),
             self::DB_BOARD       => $this->get_board_id(),
             self::DB_TITLE       => $this->get_title(),
@@ -279,8 +280,6 @@ class Tack {
             self::DB_IMAGE       => $this->get_imageURL()
         );
     }
-    
-
 
 }
 
