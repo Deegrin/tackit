@@ -1,5 +1,4 @@
 <?php
-
 try {
     require_once '../lib/php/Session.php';
     require_once '../lib/php/User.php';
@@ -55,12 +54,14 @@ try {
     } else if (isset($_POST['favorite'])) {
         
     } else if (isset($_POST['feed'])) {
-        if (($tacks = Tack::getTackFeed($_POST['feed'])) !== NULL)
+        if (($tacks = Tack::getTackFeed($userid)) !== NULL) {
             $data = array();
-        foreach ($tacks as $tack)
-            $data[] = $tack->getArray();
-        $response = new TackitResponse($data);
-        echo $response->getJson();
+            foreach ($tacks as $tack)
+                $data[] = $tack->getArray();
+            $response = new TackitResponse($data);
+            echo $response->getJson();
+        } else
+            throw new TackitException("We could not get your feed!", 0);
     }
 } catch (TackitException $ex) {
     echo $ex->getJson();
