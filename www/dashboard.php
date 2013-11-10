@@ -30,7 +30,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Retack</a></li>
+                                        <li><a data-toggle="modal" href="#viewTack">Retack</a></li>
                                         <li><a href="#">Email</a></li>
                                         <li><a href="#">Favorite</a></li>
                                     </ul>
@@ -443,6 +443,35 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="viewTack" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            
+          <h4 class="modal-title">View Tack</h4>
+       </div>
+         <div class="modal-body">
+        <div class="form-group">
+              <input type="text" placeholder="Title" class="form-control">
+        </div>
+              
+            <button type="button" class="btn btn-primary btn-lg btn-block">Favorite</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block">Retack</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block">Follow Board</button>
+                
+        
+        </div>
+        
+        <div class="modal-footer">
+        
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 
 <script src="../lib/masonry/masonry.pkgd.min.js"></script>
 
