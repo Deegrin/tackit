@@ -34,11 +34,9 @@ try {
                 //return data
                 $response = new TackitResponse($data);
                 echo $response->getJson();
-            }
-            else
+            } else
                 throw new TackitException("Access denied!", 0);
-        }
-        else
+        } else
             throw new TackitException("Board is invalid", 0);
     } else if (isset($_REQUEST['following'])) {
         //get array of Tack objects
