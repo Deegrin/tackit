@@ -148,7 +148,7 @@ class Tack {
 
         //build transaction
         $deleteTack = "DELETE FROM `tackit`.`tack` WHERE id = $id";
-        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id";
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id AND type = " . Relationship::TYPE_FAVORITE_TACK;
         $transaction = array($deleteTack, $deleteRelationship);
 
         return $db->doTransaction($transaction);
