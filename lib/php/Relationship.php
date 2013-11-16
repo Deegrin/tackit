@@ -12,7 +12,7 @@ class Relationship {
     const TYPE_FOLLOW_BOARD = 1;
     const TYPE_FAVORITE_TACK = 2;
 
-    public function favoriteTack($tackId, $userId){
+    public static function favoriteTack($tackId, $userId){
         $db = new Database();
 
         $userId = $db->real_escape_string($userId);
