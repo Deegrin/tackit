@@ -141,6 +141,14 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
+    public static function deleteTack($id) {
+        $db = new Database();
+
+        $id = $db->real_escape_string($id);
+
+        return $db->doQuery("DELETE FROM `tackit`.`tack` WHERE id = $id");
+    }
+
     /**
      * Function to get a Tack from a specified unique id
      * returns if found
