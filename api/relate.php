@@ -34,6 +34,22 @@ try {
         } else
             throw new TackitException("Board is invalid", 0);
     }
+    if (isset($_POST['favorite'])) {
+        //validate input
+        if (!is_numeric($_POST['favorite']) || $_POST['favorite'] < 0)
+            throw new TackitException("favorite is invalid", 0);
+
+        //follow board if user authorized
+        if (($tack = Tack::getTackFromID($_POST['favorite'])) !== NULL) {
+            //if board is public
+            if (Relationship::favoriteTack($_POST['favorite'], $userid) !== FALSE) {
+                $response = new TackitResponse();
+                echo $response->getJson();
+            } else
+                throw new TackitException("We could not favorite the tack!", 0);
+        } else
+            throw new TackitException("tack is invalid", 0);
+    }
 } catch (TackitException $ex) {
     echo $ex->getJson();
 } catch (Exception $ex) {
