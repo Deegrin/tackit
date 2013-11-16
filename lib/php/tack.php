@@ -266,7 +266,7 @@ class Tack {
 
         $userId = $db->real_escape_string($userId);
 
-        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id =
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id IN
             (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ")")) !== FALSE)
             return self::getTackFromResult($result);
         else
