@@ -34,7 +34,9 @@ try {
         } else
             throw new TackitException("Board is invalid", 0);
     }
-    if (isset($_POST['favorite'])) {
+
+
+if (isset($_POST['favorite'])) {
         //validate input
         if (!is_numeric($_POST['favorite']) || $_POST['favorite'] < 0)
             throw new TackitException("favorite is invalid", 0);
@@ -42,14 +44,48 @@ try {
         //follow board if user authorized
         if (($tack = Tack::getTackFromID($_POST['favorite'])) !== NULL) {
             //if board is public
-            if (Relationship::favoriteTack($_POST['favorite'], $userid) !== FALSE) {
-                $response = new TackitResponse();
-                echo $response->getJson();
-            } else
-                throw new TackitException("We could not favorite the tack!", 0);
+        
+                if (Relationship::favoriteTack($_POST['favorite'], $userid) !== FALSE) {
+                    $response = new TackitResponse();
+                    echo $response->getJson();
+                } else
+                    throw new TackitException("We could not favorite the tack!", 0);
+            
         } else
             throw new TackitException("tack is invalid", 0);
     }
+
+// recent
+
+if (isset($_POST['retackTack'] && $_POST['retackBoard'])) {
+        //validate input
+        if (!is_numeric($_POST['retackTack']) || $_POST['retackTack'] < 0)
+            throw new TackitException("retackTack is invalid", 0);
+        if (!is_numeric($_POST['retackBoard']) || $_POST['retackBoard'] < 0)
+            throw new TackitException("retackBoard is invalid", 0);
+
+            //check if the board exists
+           if (in_array($_POST['retackBoard'], Board::getBoardFromUserID($userid))){
+
+            if (Tack::getTackFromID($_POST['retackTack'])!==NULL){
+                if (Relationship::followBoard($userid, $_POST['board']) !== FALSE) {
+                    $response = new TackitResponse();
+                    echo $response->getJson();
+                } else
+                    throw new TackitException("We could not follow the board!", 0);
+            } else
+            throw new TackitException("The tack does not exists", 0);
+
+        }else
+                throw new TackitException("Access denied!", 0);
+
+       
+    }
+
+
+
+
+
 } catch (TackitException $ex) {
     echo $ex->getJson();
 } catch (Exception $ex) {
