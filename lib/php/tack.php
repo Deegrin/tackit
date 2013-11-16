@@ -146,7 +146,12 @@ class Tack {
 
         $id = $db->real_escape_string($id);
 
-        return $db->doQuery("DELETE FROM `tackit`.`tack` WHERE id = $id");
+        //build transaction
+        $deleteTack = "DELETE FROM `tackit`.`tack` WHERE id = $id";
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id";
+        $transaction = array($deleteTack, $deleteRelationship);
+
+        return $db->doTransaction($transaction);
     }
 
     /**
@@ -158,13 +163,19 @@ class Tack {
      *  the URLs of the link tacked and the image representing the tack
      * if fails returns a NULL
      */
-    public static function getTackFromID($id) {
+    public static function getTackFromID($id, $userId = NULL) {
         $db = new Database();
         $con = $db->getConnection();
 
         //escape input
         $id = $con->real_escape_string($id);
-        if (($result = $db->doQuery("SELECT * FROM tackit.tack WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
+
+        $query = "SELECT * FROM tackit.tack WHERE id = '$id'";
+        if ($userId !== NULL) {
+            $userId = $db->real_escape_string($userId);
+            $query .= " AND user_id = $userId";
+        }
+        if (($result = $db->doQuery($query)) && ($row = $result->fetch_assoc())) {
             return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
         } else
             return NULL;
