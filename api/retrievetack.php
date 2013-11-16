@@ -34,13 +34,14 @@ try {
                 //return data
                 $response = new TackitResponse($data);
                 echo $response->getJson();
-            }
-            else
+                exit();
+            } else
                 throw new TackitException("Access denied!", 0);
-        }
-        else
+        } else
             throw new TackitException("Board is invalid", 0);
-    } else if (isset($_REQUEST['following'])) {
+    } //TACKS BY BOARD
+    //TACKS BY FOLLOWED BOARDS
+    else if (isset($_REQUEST['following'])) {
         //get array of Tack objects
         $tacks = Tack::getTackFromBoardFollowing($userid);
         //get JSON array of Tacks
@@ -51,22 +52,37 @@ try {
         //return data
         $response = new TackitResponse($data);
         echo $response->getJson();
-    } else if (isset($_REQUEST['favorite'])) {
-        
-    } else if (isset($_REQUEST['feed'])) {
+        exit();
+    } //TACKS BY FOLLOWED BOARDS
+    //TACKS BY FAVORITE
+    else if (isset($_REQUEST['favorite'])) {
+        if (($tacks = Tack::getTackFavorite($userid)) !== NULL) {
+            $data = array();
+            foreach ($tacks as $tack) {
+                $data[] = $tack->getArray();
+            }
+            $response = new TackitResponse($data);
+            echo $response->getJson();
+            exit();
+        } else
+            throw new TackitException("We could not get your favorites!", 0);
+    } //TACKS BY FAVORITE
+    //TACKS BY FEED
+    else if (isset($_REQUEST['feed'])) {
         if (($tacks = Tack::getTackFeed($userid)) !== NULL) {
             $data = array();
             foreach ($tacks as $tack)
                 $data[] = $tack->getArray();
             $response = new TackitResponse($data);
             echo $response->getJson();
+            exit();
         } else
             throw new TackitException("We could not get your feed!", 0);
-    }
+    } //TACKS BY FEED
 } catch (TackitException $ex) {
-    echo $ex->getJson();
+    exit($ex->getJson());
 } catch (Exception $ex) {
     $exception = new TackitException("We could not fulfill your request!", 0);
-    echo $exception->getJson();
+    exit($exception->getJson());
 }
 ?>
