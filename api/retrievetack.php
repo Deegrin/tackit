@@ -15,17 +15,17 @@ try {
 
     //TACKS BY BOARD
     //TODO in progress
-    if (isset($_REQUEST['board'])) {
+    if (isset($_POST['board'])) {
         //validate input
-        if (!is_numeric($_REQUEST['board']) || $_REQUEST['board'] < 0)
+        if (!is_numeric($_POST['board']) || $_POST['board'] < 0)
             throw new TackitException("Board is invalid", 0);
 
         //retrieve tacks if user authorized
-        if (($board = Board::getBoardFromID($_REQUEST['board'])) !== NULL) {
+        if (($board = Board::getBoardFromID($_POST['board'])) !== NULL) {
             //if board belongs to user, or board is public
             if ($userid == $board->get_user_id() || !$board->get_private()) {
                 //get array of Tack objects
-                $tacks = Tack::getTackFromBoardId($_REQUEST['board']);
+                $tacks = Tack::getTackFromBoardId($_POST['board']);
                 //get JSON array of Tacks
                 $data = array();
                 foreach ($tacks as $tack) {
@@ -41,7 +41,7 @@ try {
             throw new TackitException("Board is invalid", 0);
     } //TACKS BY BOARD
     //TACKS BY FOLLOWED BOARDS
-    else if (isset($_REQUEST['following'])) {
+    else if (isset($_POST['following'])) {
         //get array of Tack objects
         $tacks = Tack::getTackFromBoardFollowing($userid);
         //get JSON array of Tacks
@@ -55,7 +55,7 @@ try {
         exit();
     } //TACKS BY FOLLOWED BOARDS
     //TACKS BY FAVORITE
-    else if (isset($_REQUEST['favorite'])) {
+    else if (isset($_POST['favorite'])) {
         if (($tacks = Tack::getTackFavorite($userid)) !== NULL) {
             $data = array();
             foreach ($tacks as $tack) {
@@ -68,7 +68,7 @@ try {
             throw new TackitException("We could not get your favorites!", 0);
     } //TACKS BY FAVORITE
     //TACKS BY FEED
-    else if (isset($_REQUEST['feed'])) {
+    else if (isset($_POST['feed'])) {
         if (($tacks = Tack::getTackFeed($userid)) !== NULL) {
             $data = array();
             foreach ($tacks as $tack)
