@@ -11,9 +11,9 @@
 			    	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tacks</button>
 						<ul class="dropdown-menu pull-right" role="menu">
-							<li><a href="#">Tacks</a></li>
-							<li><a href="#">Boards</a></li>
-							<li><a href="#">Users</a></li>
+							<li>Tacks</li>
+							<li>Boards</li>
+							<li>Users</li>
 						</ul>
 			    </div>
 		    </div>
