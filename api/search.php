@@ -13,11 +13,11 @@ try {
     require_once '../lib/php/TackitResponse.php';
 
     //searching tacks
-    if (isset($_REQUEST['tack'])) {
-        if (strlen($_REQUEST['tack']) > MAXSTRLEN)
+    if (isset($_POST['tack'])) {
+        if (strlen($_POST['tack']) > MAXSTRLEN)
             throw new TackitException(STRLENERR, 0);
 
-        if (($tacks = Tack::searchTack($_REQUEST['tack'])) !== NULL) {
+        if (($tacks = Tack::searchTack($_POST['tack'])) !== NULL) {
             $data = array();
             foreach ($tacks as $tack)
                 $data[] = $tack->getArray();
@@ -29,11 +29,11 @@ try {
     }
 
     //searching boards
-    if (isset($_REQUEST['board'])) {
-        if (strlen($_REQUEST['board']) > MAXSTRLEN)
+    if (isset($_POST['board'])) {
+        if (strlen($_POST['board']) > MAXSTRLEN)
             throw new TackitException(STRLENERR, 0);
 
-        if (($boards = Board::searchBoard($_REQUEST['board'])) !== NULL) {
+        if (($boards = Board::searchBoard($_POST['board'])) !== NULL) {
             $data = array();
             foreach ($boards as $board)
                 $data[] = $board->getArray();
@@ -45,11 +45,11 @@ try {
     }
 
     //searching users
-    if (isset($_REQUEST['user'])) {
-        if (strlen($_REQUEST['user']) > MAXSTRLEN)
+    if (isset($_POST['user'])) {
+        if (strlen($_POST['user']) > MAXSTRLEN)
             throw new TackitException(STRLENERR, 0);
 
-        if (($users = User::searchUser($_REQUEST['user'])) !== NULL) {
+        if (($users = User::searchUser($_POST['user'])) !== NULL) {
             $data = array();
             foreach ($users as $user)
                 $data[] = $user->getArray();
