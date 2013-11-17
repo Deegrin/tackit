@@ -2,6 +2,8 @@
 
 <link type="text/css" rel="stylesheet" href="../lib/css/search.css">
 <script src="../lib/javascript/search.js"></script>
+<link type="text/css" rel="stylesheet" href="../lib/css/boardList.css">
+<link type="text/css" rel="stylesheet" href="../lib/css/userList.css">
 
 	<div class="row">
 	    <div class="col-lg-8 col-lg-offset-2">
@@ -26,8 +28,8 @@
 		</div>
 	</div>
 
-	<div class="tackResults col-md-12 center">
-
+	<div id="search_results">
+<!-- 
 		<div id="tack0" class="tack">
 			<div class="panel panel-default">
 	  			<div class="panel-heading">
@@ -364,24 +366,10 @@
 					</div>
 		  		</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<script src="../lib/masonry/masonry.pkgd.min.js"></script>
-	
-	<script>
-	    $(function(){
-			var $container = $('.tackResults');
-
-		  $container.masonry({
-		    itemSelector : '.tack'
-		  });
-
-		  $(".tack").each(function(index) {
-		  	$(this).attr("id", "tack"+index);
-		  });
-		});
-	</script>
 
 
 <?php include "../lib/php/footer.php"; ?>
