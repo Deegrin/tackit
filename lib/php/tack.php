@@ -141,6 +141,19 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
+    public static function deleteTack($id) {
+        $db = new Database();
+
+        $id = $db->real_escape_string($id);
+
+        //build transaction
+        $deleteTack = "DELETE FROM `tackit`.`tack` WHERE id = $id";
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id AND type = " . Relationship::TYPE_FAVORITE_TACK;
+        $transaction = array($deleteTack, $deleteRelationship);
+
+        return $db->doTransaction($transaction);
+    }
+
     /**
      * Function to get a Tack from a specified unique id
      * returns if found
@@ -150,13 +163,19 @@ class Tack {
      *  the URLs of the link tacked and the image representing the tack
      * if fails returns a NULL
      */
-    public static function getTackFromID($id) {
+    public static function getTackFromID($id, $userId = NULL) {
         $db = new Database();
         $con = $db->getConnection();
 
         //escape input
         $id = $con->real_escape_string($id);
-        if (($result = $db->doQuery("SELECT * FROM tackit.tack WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
+
+        $query = "SELECT * FROM tackit.tack WHERE id = '$id'";
+        if ($userId !== NULL) {
+            $userId = $db->real_escape_string($userId);
+            $query .= " AND user_id = $userId";
+        }
+        if (($result = $db->doQuery($query)) && ($row = $result->fetch_assoc())) {
             return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
         } else
             return NULL;
@@ -257,6 +276,18 @@ class Tack {
 
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
             return self::getTackFromResult($results);
+        else
+            return NULL;
+    }
+
+    public static function getTackFavorite($userId) {
+        $db = new Database();
+
+        $userId = $db->real_escape_string($userId);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id IN
+            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ")")) !== FALSE)
+            return self::getTackFromResult($result);
         else
             return NULL;
     }

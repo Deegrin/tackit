@@ -157,6 +157,14 @@ class Board {
         return $db->doQuery($insertBoard);
     }
 
+    public static function deleteBoard($id) {
+        $db = new Database();
+
+        $id = $db->real_escape_string($id);
+
+        return $db->doQuery("DELETE FROM `tackit`.`board` WHERE id = $id");
+    }
+
     /**
      * Gets an array of Board ids that belong to the specified User.
      * 
