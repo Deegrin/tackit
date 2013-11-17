@@ -16,7 +16,7 @@ try {
     //REMOVE TACK
     if (isset($_POST['tack'])) {
         //validate input
-        if (!is_numeric($_REQUEST['tack']) || $_REQUEST['tack'] < 0)
+        if (!is_numeric($_POST['tack']) || $_POST['tack'] < 0)
             throw new TackitException("Tack is invalid!", 0);
 
         if (Tack::getTackFromID($_POST['tack'], $userid) !== NULL) {
