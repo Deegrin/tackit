@@ -1,18 +1,18 @@
 
 .boardList .panel{
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .boardList .title{
-	font-size: 16px;
-	font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
     width: 86%;
 
 }
 
 .boardList .right {
-	float: right;
-	margin-top: -37px;
+    float: right;
+    margin-top: -37px;
 }
 
 .boardList .description{

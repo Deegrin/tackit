@@ -7,59 +7,59 @@
 }
   
 body{
-	padding-top: 60px;
-	background-color: #EBEBEB;
+    padding-top: 60px;
+    background-color: #EBEBEB;
 }
 
 .row{
-	margin: 0px;
+    margin: 0px;
 }
 
 .tack{
-	margin:5px 5px -5px 5px;
+    margin:5px 5px -5px 5px;
 }
 
 .right {
-	float: right;
-	margin-top: -27px;
+    float: right;
+    margin-top: -27px;
 }
 
 .tackResults .img-rounded {
-	max-height: 100%;
-	max-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .tackResults .panel{
-	width:270px;
+    width:270px;
 }
 
 .tackResults .panel-title{
-	font-size:12px;
-	min-height: 26px;
-	max-height: 26px;
-	width: 170px;
-	overflow: hidden;
+    font-size:12px;
+    min-height: 26px;
+    max-height: 26px;
+    width: 170px;
+    overflow: hidden;
 }
 
 .tackResults .panel-body{
-	text-align: center;
-	height:250px;
-	line-height: 213px;
-	vertical-align: middle;
+    text-align: center;
+    height:250px;
+    line-height: 213px;
+    vertical-align: middle;
 }
 
 .tackResults .panel-footer{
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .tackResults .likes{
-	display: inline-block;
-	float: right;
-	position: relative;
-	margin-top: 5px;
+    display: inline-block;
+    float: right;
+    position: relative;
+    margin-top: 5px;
 }
 
 .tackResults .likes a{
-	font-size: 11px;
-	color: #808080;
+    font-size: 11px;
+    color: #808080;
 }
