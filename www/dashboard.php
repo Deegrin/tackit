@@ -17,8 +17,7 @@
     <div class="col-sm-10">
         <div class="tab-content">
             <div class="tab-pane active" id="home"> 
-
-                <div id="yourFeed" class="tackResults col-md-12">
+                <div class="tackResults col-md-12">
 
 <!--                     <div id="tack0" class="tack">
                         <div class="panel panel-default">
@@ -160,8 +159,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>    -->  
+                    </div> -->  
+                </div>
 
 
 
