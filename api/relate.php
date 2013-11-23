@@ -61,9 +61,9 @@ try {
         //check if the board exists
         if (in_array($_POST['retackBoard'], Board::getBoardFromUserID($userid))) {
             // check if the tack exists
-            if (Tack::getTackFromID($_POST['retackTack']) !== NULL) {
-                // retack the tack to board
-                if (Tack::retack($userid, $_POST['retackBoard'], $_POST['retackTack']) !== FALSE) {
+            if (($tack = Tack::getTackFromID($_POST['retackTack'])) !== NULL) {
+                // retack the tack to board, remember to pass in Tack object
+                if (Tack::retack($userid, $_POST['retackBoard'], $tack) !== FALSE) {
                     $response = new TackitResponse();
                     exit($response->getJson());
                 } else
