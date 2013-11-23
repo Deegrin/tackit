@@ -8,10 +8,9 @@
         <ul id="dashboard-sidebar-nav" class="nav nav-pills nav-stacked">
             <li><a data-toggle="modal" href="#createTackModal">Create Tack</a></li>
             <li><a data-toggle="modal" href="#createBoardModal">Create Board</a></li>
-            <li class="active"><a href="#home" data-toggle="pill">Home</a></li>
-            <li><a href="#profile" data-toggle="pill">Profile</a></li>
-            <li><a href="#messages" data-toggle="pill">Messages</a></li>
-            <li><a href="#settings" data-toggle="pill">Settings</a></li>
+            <li class="active"><a href="#feed" data-toggle="pill">Feed</a></li>
+            <li><a href="#favorites" data-toggle="pill">Favorites</a></li>
+            <li><a href="#self" data-toggle="pill">Own Tacks</a></li>
         </ul>
     </div>
     <div class="col-sm-10">
@@ -165,9 +164,9 @@
 
 
             </div>
-            <div class="tab-pane" id="profile"> Profile </div>
-            <div class="tab-pane" id="messages"> Messages </div>
-            <div class="tab-pane" id="settings"> Settings </div>
+            <div class="tab-pane" id="feed"> Feed </div>
+            <div class="tab-pane" id="favorites"> Favorites </div>
+            <div class="tab-pane" id="self"> Self </div>
         </div> 
     </div>
 </div>
