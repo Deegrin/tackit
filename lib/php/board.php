@@ -167,7 +167,7 @@ class Board {
                 AND object_id IN (SELECT id FROM `tackit`.`tack` WHERE board_id = $id))
             OR (type = " . Relationship::TYPE_FOLLOW_BOARD . "
                 AND object_id IN (SELECT id FROM `tackit`.`board` WHERE id = $id))";
-        $deleteTack = "DELETE FROM `tackit`.`tack` WHERE board_id = $id)";
+        $deleteTack = "DELETE FROM `tackit`.`tack` WHERE board_id = $id";
         $deleteBoard = "DELETE FROM `tackit`.`board` WHERE id = $id";
         $transaction = array($deleteRelationship, $deleteTack, $deleteBoard);
 
