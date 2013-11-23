@@ -274,7 +274,7 @@ class Tack {
         // escape inputs
         $userID = $con->real_escape_string($userID);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
             return self::getTackFromResult($results);
         else
             return NULL;
