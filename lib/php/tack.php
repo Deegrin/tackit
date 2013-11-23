@@ -274,7 +274,7 @@ class Tack {
         // escape inputs
         $userID = $con->real_escape_string($userID);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = 1 and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
             return self::getTackFromResult($results);
         else
             return NULL;
@@ -291,7 +291,47 @@ class Tack {
         else
             return NULL;
     }
+    
+    public function edit() {
+        $db = new Database();
 
+        $query = "UPDATE `tackit`.`tack` SET";
+
+        if (($this->board_id === NULL) && ($this->title === NULL) &&
+                ($this->description === NULL) && ($this->tackURL === NULL) &&
+                ($this->imageURL === NULL))
+            return false;
+
+        if ($this->board_id !== NULL) {
+            $db->real_escape_string($this->board_id);
+            $query.=" board_id = $this->board_id,";
+        }
+
+        if ($this->title !== NULL) {
+            $db->real_escape_string($this->title);
+            $query.=" title = '$this->title',";
+        }
+
+        if ($this->description !== NULL) {
+            $db->real_escape_string($this->description);
+            $query.=" description = '$this->description',";
+        }
+
+        if ($this->tackURL !== NULL) {
+            $db->real_escape_string($this->tackURL);
+            $query.=" tackUrl = '$this->tackURL',";
+        }
+
+        if ($this->imageURL !== NULL) {
+            $db->real_escape_string($this->imageURL);
+            $query.=" imageURL = '$this->imageURL',";
+        }
+
+        $query = substr($query, 0, (strlen($query) - 1));
+        $query.=" WHERE id = $this->id";
+        return $db->doQuery($query);
+    }
+    
     /**
      * Gets an associative array representation of the Tack.
      * 
