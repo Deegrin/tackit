@@ -60,4 +60,12 @@ var_dump($test);
 
 //Test searchTack
 //var_dump(TACK::searchTack('cake'));
+
+
+//board.edit() test
+//$bd = new Board(0,NULL,"cake",2);
+//var_dump($bd->edit());
+
+
+
 ?>

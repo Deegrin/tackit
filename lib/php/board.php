@@ -306,6 +306,37 @@ class Board {
             return NULL;
     }
 
+    
+    public function edit() {
+        $db = new Database();
+        
+        $query = "UPDATE `tackit`.`board` SET";
+        
+        if(($this->priv === NULL) && ($this->title === NULL) && ($this->description === NULL))
+            return false;
+            
+        if($this->priv !== NULL){
+            $db->real_escape_string($this->priv);
+            $query.=" private = $this->priv,";
+            } 
+        
+        if($this->title !== NULL){
+            $db->real_escape_string($this->title);
+            $query.=" title = '$this->title',";
+            } 
+            
+        if($this->description !== NULL){
+            $db->real_escape_string($this->description);
+            $query.=" description = '$this->description',";
+            }            
+            
+        $query = substr($query, 0, (strlen($query)-1));
+        
+        $query.=" WHERE id = $this->id";
+        echo $query;
+        return $db->doQuery($query);
+        
+    }
     /**
      * Gets an associative array representation of Board
      * 
