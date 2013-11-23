@@ -66,6 +66,9 @@ var_dump($test);
 //$bd = new Board(0,NULL,"cake",2);
 //var_dump($bd->edit());
 
+//tack.edit() test
+//$tk = new Tack(NULL,3,"cake","cake","cake","cake",75);
+//var_dump($tk->edit());
 
 
 ?>
