@@ -72,6 +72,20 @@ try {
                 throw new TackitException("The tack does not exist!", 0);
         } else
             throw new TackitException("Access denied!", 0);
+    } //FOLLOW USER
+    if (isset($_POST['user'])) {
+        if (!is_numeric($_POST['user']) || $_POST['user'] < 0)
+            throw new TackitException("User is invalid", 0);
+        if (USER::getUserFromUserID($_POST['user'] !== NULL)) {
+            if (Relationship::followUser($userid, $_POST['user']) !== FALSE) {
+                $response = new TackitResponse();
+                exit($response->getJson());
+            }
+            else
+                throw new TackitException("Unable to follow the user.", 0);
+        }
+        else
+            throw new TackitException("User does not exist.", 0);
     }
 } catch (TackitException $ex) {
     exit($ex->getJson());
