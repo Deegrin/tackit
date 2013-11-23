@@ -15,7 +15,7 @@
         </ul>
     </div>
     <div class="col-sm-10">
-        <div class="tab-content">
+        <div id="content" class="tab-content">
             <div class="tab-pane active" id="home"> 
                 <div class="tackResults col-md-12">
 
@@ -161,13 +161,12 @@
                         </div>
                     </div> -->  
                 </div>
-
-
-
             </div>
+
             <div class="tab-pane" id="profile"> Profile </div>
             <div class="tab-pane" id="messages"> Messages </div>
             <div class="tab-pane" id="settings"> Settings </div>
+            
         </div> 
     </div>
 </div>
