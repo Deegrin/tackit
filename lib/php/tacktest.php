@@ -70,5 +70,6 @@ var_dump($test);
 //$tk = new Tack(NULL,3,"cake","cake","cake","cake",75);
 //var_dump($tk->edit());
 
+Relationship::followUser(1, 6);
 
 ?>
