@@ -70,6 +70,11 @@ var_dump($test);
 //$tk = new Tack(NULL,3,"cake","cake","cake","cake",75);
 //var_dump($tk->edit());
 
-Relationship::followUser(1, 6);
+Relationship::unfollowBoard(1, 85);
+
+Relationship::unfavoriteTack(4, 11);
+
+Relationship::unfollowUser(1, 6);
+
 
 ?>
