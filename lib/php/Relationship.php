@@ -11,7 +11,8 @@ class Relationship {
 
     const TYPE_FOLLOW_BOARD = 1;
     const TYPE_FAVORITE_TACK = 2;
-
+    const TYPE_FOLLOW_USER = 3;
+    
     public static function favoriteTack($tackId, $userId) {
         $db = new Database();
 
@@ -35,6 +36,18 @@ class Relationship {
         $followBoard = "INSERT INTO `tackit`.`relationship` (user_id, type, object_id)
             VALUES ($userId, " . self::TYPE_FOLLOW_BOARD . ", $boardId)";
         return $db->doQuery($followBoard);
+    }
+    
+    public static function followUser($stalker, $stalked) {
+        $db = new Database();
+        
+        $stalker = $db->real_escape_string($stalker);
+        $stalked = $db->real_escape_string($stalked);
+        
+        $query = "INSERT INTO `tackit`.`relationship` (user_id, type, object_id) 
+            VALUES ($stalker, " . self::TYPE_FOLLOW_USER . ", $stalked)";
+        return $db->doQuery($query);
+        
     }
 }
 ?>
