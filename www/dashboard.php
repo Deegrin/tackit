@@ -15,154 +15,16 @@
     </div>
     <div class="col-sm-10">
         <div id="content" class="tab-content">
-            <div class="tab-pane active" id="home"> 
-                <div class="tackResults col-md-12">
+            <div class="tab-pane active" id="feed">
+                <div class="tackResults">
 
-<!--                     <div id="tack0" class="tack">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h6 class="panel-title">Panel Title Panel Title Panel Title Panel Title</h6>
-                                <div class="btn-group btn-group-sm right">
-                                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pushpin"></span></button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a data-toggle="modal" href="#viewTack">Retack</a></li>
-                                        <li><a href="#">Email</a></li>
-                                        <li><a href="#">Favorite</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/image_1.jpg">
-                            </div>
-                            <div class="panel-footer">
-                                hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
-                                <div class="likes">
-                                    <a href="#"># likes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tack1" class="tack">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h6 class="panel-title">Panel Title Panel Title Panel Title Panel Title</h6>
-                                <div class="btn-group btn-group-sm right">
-                                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pushpin"></span></button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Retack</a></li>
-                                        <li><a href="#">Email</a></li>
-                                        <li><a href="#">Favorite</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/image_2.jpg">
-                            </div>
-                            <div class="panel-footer">
-                                hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask  
-                                <div class="likes">
-                                    <a href="#"># likes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tack2" class="tack">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h6 class="panel-title">Panel Title Panel Title Panel Title Panel Title</h6>
-                                <div class="btn-group btn-group-sm right">
-                                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pushpin"></span></button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Retack</a></li>
-                                        <li><a href="#">Email</a></li>
-                                        <li><a href="#">Favorite</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/image_3.jpg">
-                            </div>
-                            <div class="panel-footer">
-                                hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
-                                <div class="likes">
-                                    <a href="#"># likes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tack10" class="tack">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h6 class="panel-title">Panel Title Panel Title Panel Title Panel Title</h6>
-                                <div class="btn-group btn-group-sm right">
-                                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pushpin"></span></button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Retack</a></li>
-                                        <li><a href="#">Email</a></li>
-                                        <li><a href="#">Favorite</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/floralhairtie.jpg">
-                            </div>
-                            <div class="panel-footer">
-                                hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
-                                <div class="likes">
-                                    <a href="#"># likes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tack11" class="tack">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h6 class="panel-title">Panel Title Panel Title Panel Title Panel Title</h6>
-                                <div class="btn-group btn-group-sm right">
-                                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pushpin"></span></button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Retack</a></li>
-                                        <li><a href="#">Email</a></li>
-                                        <li><a href="#">Favorite</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <img class="img-rounded" src="../lib/sample-images/meow.jpg">
-                            </div>
-                            <div class="panel-footer">
-                                hi al;sdfkj a;lkdfjl aeksjf;lasdfj; alkdfj l alsdkjf;ladj al;ksdfjl;saj lakssdjf ;aj ksf alksdfj;las f;lka dfl;kaj dfl;kjasd fla;kj df;laksj dflks;aj dflakjd flks djf;lalkjsd flaskdj ;lkasdfj aosdknf;ask
-                                <div class="likes">
-                                    <a href="#"># likes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->  
                 </div>
             </div>
-            <div class="tab-pane" id="feed"> Feed </div>
-            <div class="tab-pane" id="favorites"> Favorites </div>
+            <div class="tab-pane" id="favorites"> 
+                <div class="tackResults1">
+
+                </div>
+            </div>
             <div class="tab-pane" id="self"> Self </div>
         </div> 
     </div>
