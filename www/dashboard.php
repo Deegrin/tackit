@@ -8,8 +8,8 @@
         <ul id="dashboard-sidebar-nav" class="nav nav-pills nav-stacked">
             <li><a data-toggle="modal" href="#createTackModal">Create Tack</a></li>
             <li><a data-toggle="modal" href="#createBoardModal">Create Board</a></li>
-            <li class="active"><a href="#feed" data-toggle="pill">Feed</a></li>
-            <li><a href="#favorites" data-toggle="pill">Favorites</a></li>
+            <li id="feedButton" class="active"><a href="#feed" data-toggle="pill">Feed</a></li>
+            <li id="favoriteButton"><a href="#favorites" data-toggle="pill">Favorites</a></li>
             <li><a href="#self" data-toggle="pill">Own Tacks</a></li>
         </ul>
     </div>
@@ -138,6 +138,7 @@
 
 
 <script src="../lib/masonry/masonry.pkgd.min.js"></script>
+<script src="../lib/masonry/bower_components/imagesloaded/imagesloaded.js"></script>
 
 <script>
     //Masonry organizing tacks
