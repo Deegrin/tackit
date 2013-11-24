@@ -80,23 +80,21 @@ try {
             if (Relationship::followUser($userid, $_POST['user']) !== FALSE) {
                 $response = new TackitResponse();
                 exit($response->getJson());
-            }
-            else
+            } else
                 throw new TackitException("Unable to follow the user.", 0);
-        }
-        else
+        } else
             throw new TackitException("User does not exist.", 0);
     } //UNFOLLOW BOARD
-    if (isset($_POST['board'])) {
+    if (isset($_POST['unBoard'])) {
         //validate input
-        if (!is_numeric($_POST['board']) || $_POST['board'] < 0)
+        if (!is_numeric($_POST['unBoard']) || $_POST['unBoard'] < 0)
             throw new TackitException("Board is invalid", 0);
 
         //follow board if user authorized
-        if (($board = Board::getBoardFromID($_POST['board'])) !== NULL) {
+        if (($board = Board::getBoardFromID($_POST['unBoard'])) !== NULL) {
             //if board is public
             if (!$board->get_private()) {
-                if (Relationship::unfollowBoard($userid, $_POST['board']) !== FALSE) {
+                if (Relationship::unfollowBoard($userid, $_POST['unBoard']) !== FALSE) {
                     $response = new TackitResponse();
                     echo $response->getJson();
                 } else
@@ -106,16 +104,15 @@ try {
         } else
             throw new TackitException("Board is invalid", 0);
     } // UNFAVORITE TACK
-    if (isset($_POST['favorite'])) {
+    if (isset($_POST['unFavorite'])) {
         //validate input
-        if (!is_numeric($_POST['favorite']) || $_POST['favorite'] < 0)
+        if (!is_numeric($_POST['unFavorite']) || $_POST['unFavorite'] < 0)
             throw new TackitException("favorite is invalid", 0);
 
         //follow board if user authorized
-        if (($tack = Tack::getTackFromID($_POST['favorite'])) !== NULL) {
+        if (($tack = Tack::getTackFromID($_POST['unFavorite'])) !== NULL) {
             //if board is public
-
-            if (Relationship::unfavoriteTack($_POST['favorite'], $userid) !== FALSE) {
+            if (Relationship::unfavoriteTack($userid, $_POST['unFavorite']) !== FALSE) {
                 $response = new TackitResponse();
                 echo $response->getJson();
             } else
@@ -123,18 +120,16 @@ try {
         } else
             throw new TackitException("tack is invalid", 0);
     }//UNFOLLOW USER
-    if (isset($_POST['user'])) {
-        if (!is_numeric($_POST['user']) || $_POST['user'] < 0)
+    if (isset($_POST['unUser'])) {
+        if (!is_numeric($_POST['unUser']) || $_POST['unUser'] < 0)
             throw new TackitException("User is invalid", 0);
-        if (USER::getUserFromUserID($_POST['user'] !== NULL)) {
-            if (Relationship::unfollowUser($userid, $_POST['user']) !== FALSE) {
+        if (USER::getUserFromUserID($_POST['unUser'] !== NULL)) {
+            if (Relationship::unfollowUser($userid, $_POST['unUser']) !== FALSE) {
                 $response = new TackitResponse();
                 exit($response->getJson());
-            }
-            else
+            } else
                 throw new TackitException("Unable to follow the user.", 0);
-        }
-        else
+        } else
             throw new TackitException("User does not exist.", 0);
     }
 } catch (TackitException $ex) {
