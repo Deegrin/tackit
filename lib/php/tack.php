@@ -141,6 +141,19 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
+    public static function deleteTack($id) {
+        $db = new Database();
+
+        $id = $db->real_escape_string($id);
+
+        //build transaction
+        $deleteTack = "DELETE FROM `tackit`.`tack` WHERE id = $id";
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id AND type = " . Relationship::TYPE_FAVORITE_TACK;
+        $transaction = array($deleteTack, $deleteRelationship);
+
+        return $db->doTransaction($transaction);
+    }
+
     /**
      * Function to get a Tack from a specified unique id
      * returns if found
@@ -150,16 +163,21 @@ class Tack {
      *  the URLs of the link tacked and the image representing the tack
      * if fails returns a NULL
      */
-    public static function getTackFromID($id) {
+    public static function getTackFromID($id, $userId = NULL) {
         $db = new Database();
         $con = $db->getConnection();
 
         //escape input
         $id = $con->real_escape_string($id);
-        if (($result = $db->doQuery("SELECT * FROM tackit.tack WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
-            return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
+
+        $query = "SELECT * FROM tackit.tack WHERE id = '$id'";
+        if ($userId !== NULL) {
+            $userId = $db->real_escape_string($userId);
+            $query .= " AND user_id = $userId";
         }
-        else
+        if (($result = $db->doQuery($query)) && ($row = $result->fetch_assoc())) {
+            return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
+        } else
             return NULL;
     }
 
@@ -177,8 +195,7 @@ class Tack {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
             return self::getTackFromResult($result);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -205,8 +222,7 @@ class Tack {
 
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
             return self::getTackFromResult($results);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -251,6 +267,71 @@ class Tack {
         return $db->doQuery($insertTack);
     }
 
+    public static function getTackFeed($userID) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        // escape inputs
+        $userID = $con->real_escape_string($userID);
+
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
+            return self::getTackFromResult($results);
+        else
+            return NULL;
+    }
+
+    public static function getTackFavorite($userId) {
+        $db = new Database();
+
+        $userId = $db->real_escape_string($userId);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id IN
+            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ")")) !== FALSE)
+            return self::getTackFromResult($result);
+        else
+            return NULL;
+    }
+    
+    public function edit() {
+        $db = new Database();
+
+        $query = "UPDATE `tackit`.`tack` SET";
+
+        if (($this->board_id === NULL) && ($this->title === NULL) &&
+                ($this->description === NULL) && ($this->tackURL === NULL) &&
+                ($this->imageURL === NULL))
+            return false;
+
+        if ($this->board_id !== NULL) {
+            $db->real_escape_string($this->board_id);
+            $query.=" board_id = $this->board_id,";
+        }
+
+        if ($this->title !== NULL) {
+            $db->real_escape_string($this->title);
+            $query.=" title = '$this->title',";
+        }
+
+        if ($this->description !== NULL) {
+            $db->real_escape_string($this->description);
+            $query.=" description = '$this->description',";
+        }
+
+        if ($this->tackURL !== NULL) {
+            $db->real_escape_string($this->tackURL);
+            $query.=" tackUrl = '$this->tackURL',";
+        }
+
+        if ($this->imageURL !== NULL) {
+            $db->real_escape_string($this->imageURL);
+            $query.=" imageURL = '$this->imageURL',";
+        }
+
+        $query = substr($query, 0, (strlen($query) - 1));
+        $query.=" WHERE id = $this->id";
+        return $db->doQuery($query);
+    }
+    
     /**
      * Gets an associative array representation of the Tack.
      * 
@@ -267,7 +348,5 @@ class Tack {
             self::DB_IMAGE       => $this->get_imageURL()
         );
     }
-
 }
-
 ?>

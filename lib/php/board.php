@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Relationship.php';
 
 /**
@@ -157,6 +156,24 @@ class Board {
         return $db->doQuery($insertBoard);
     }
 
+    public static function deleteBoard($id) {
+        $db = new Database();
+
+        $id = $db->real_escape_string($id);
+
+        //build transaction
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship`
+            WHERE (type = " . Relationship::TYPE_FAVORITE_TACK . "
+                AND object_id IN (SELECT id FROM `tackit`.`tack` WHERE board_id = $id))
+            OR (type = " . Relationship::TYPE_FOLLOW_BOARD . "
+                AND object_id IN (SELECT id FROM `tackit`.`board` WHERE id = $id))";
+        $deleteTack = "DELETE FROM `tackit`.`tack` WHERE board_id = $id";
+        $deleteBoard = "DELETE FROM `tackit`.`board` WHERE id = $id";
+        $transaction = array($deleteRelationship, $deleteTack, $deleteBoard);
+
+        return $db->doTransaction($transaction);
+    }
+
     /**
      * Gets an array of Board ids that belong to the specified User.
      * 
@@ -180,8 +197,7 @@ class Board {
 
             $result->free();
             return $array;
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -200,8 +216,7 @@ class Board {
 
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE user_id =$userid")) !== FALSE) {
             return self::getBoardFromResult($results);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -220,8 +235,7 @@ class Board {
 
         if (($result = $db->doQuery("SELECT * FROM tackit.board WHERE id = '$id'")) && ($row = $result->fetch_assoc())) {
             return new Board($row[self::DB_PRIV], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_ID], $row[self::DB_USER]);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -234,8 +248,7 @@ class Board {
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE id IN
             (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userid AND type = " . Relationship::TYPE_FOLLOW_BOARD . ")")) !== FALSE) {
             return self::getBoardFromResult($results);
-        }
-        else
+        } else
             return NULL;
     }
 
@@ -289,11 +302,39 @@ class Board {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE private = $priv")) !== FALSE) {
             return self::getBoardFromResult($result);
-        }
-        else
+        } else
             return NULL;
     }
 
+    public function edit() {
+        $db = new Database();
+
+        $query = "UPDATE `tackit`.`board` SET";
+
+        if (($this->priv === NULL) && ($this->title === NULL) && ($this->description === NULL))
+            return false;
+
+        if ($this->priv !== NULL) {
+            $db->real_escape_string($this->priv);
+            $query.=" private = $this->priv,";
+        }
+
+        if ($this->title !== NULL) {
+            $db->real_escape_string($this->title);
+            $query.=" title = '$this->title',";
+        }
+
+        if ($this->description !== NULL) {
+            $db->real_escape_string($this->description);
+            $query.=" description = '$this->description',";
+        }
+
+        $query = substr($query, 0, (strlen($query) - 1));
+
+        $query.=" WHERE id = $this->id";
+        
+        return $db->doQuery($query);
+    }
     /**
      * Gets an associative array representation of Board
      * 
@@ -301,15 +342,13 @@ class Board {
      */
     public function getArray() {
         return array(
-            self::DB_ID => $this->get_id(),
-            self::DB_USER => $this->get_user_id(),
-            self::DB_PRIV => $this->get_private(),
-            self::DB_TITLE => $this->get_title(),
+            self::DB_ID          => $this->get_id(),
+            self::DB_USER        => $this->get_user_id(),
+            self::DB_PRIV        => $this->get_private(),
+            self::DB_TITLE       => $this->get_title(),
             self::DB_DESTRIPTION => $this->get_description(),
-            self::DB_CREATION => $this->get_creation_time()
+            self::DB_CREATION    => $this->get_creation_time()
         );
     }
-
 }
-
 ?>

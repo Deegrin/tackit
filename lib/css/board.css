@@ -7,58 +7,66 @@
 }
   
 body{
-	padding-top: 60px;
-	background-color: #EBEBEB;
+    padding-top: 60px;
+    background-color: #EBEBEB;
 }
 
 .row{
-	margin: 0px;
+    margin: 0px;
 }
 
 .tack{
-	margin:5px 5px -5px 5px;
+    margin:5px 5px -5px 5px;
 }
 
 .right {
-	float: right;
-	margin-top: -27px;
+    float: right;
+    margin-top: -27px;
 }
 
 .tackResults .img-rounded {
-	max-height: 100%;
-	max-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .tackResults .panel{
-	width:270px;
+    width:270px;
 }
 
 .tackResults .panel-title{
-	font-size:12px;
-	max-height: 40px;
-	width: 170px;
-	overflow: hidden;
+    font-size:12px;
+    min-height: 26px;
+    max-height: 26px;
+    width: 170px;
+    overflow: hidden;
 }
 
 .tackResults .panel-body{
-	text-align: center;
-	height:250px;
-	line-height: 213px;
-	vertical-align: middle;
+    text-align: center;
+    height:250px;
+    line-height: 213px;
+    vertical-align: middle;
 }
 
 .tackResults .panel-footer{
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .tackResults .likes{
-	display: inline-block;
-	float: right;
-	position: relative;
-	margin-top: 5px;
+    display: inline-block;
+    float: right;
+    position: relative;
+    margin-top: 5px;
 }
 
 .tackResults .likes a{
-	font-size: 11px;
-	color: #808080;
+    font-size: 11px;
+    color: #808080;
 }
+
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}

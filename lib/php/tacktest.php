@@ -60,4 +60,21 @@ var_dump($test);
 
 //Test searchTack
 //var_dump(TACK::searchTack('cake'));
+
+
+//board.edit() test
+//$bd = new Board(0,NULL,"cake",2);
+//var_dump($bd->edit());
+
+//tack.edit() test
+//$tk = new Tack(NULL,3,"cake","cake","cake","cake",75);
+//var_dump($tk->edit());
+
+Relationship::unfollowBoard(1, 85);
+
+Relationship::unfavoriteTack(4, 11);
+
+Relationship::unfollowUser(1, 6);
+
+
 ?>

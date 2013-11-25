@@ -43,23 +43,22 @@ try {
         else
             throw new TackitException(SEARCHERR, 0);
     }
-    /*
-      //searching users
-      if (isset($_POST['user'])) {
-      if (strlen($_POST['user']) > MAXSTRLEN)
-      throw new TackitException(STRLENERR, 0);
 
-      if (($users = User::searchUser($_POST['user'])) !== NULL) {
-      $data = array();
-      foreach ($users as $user)
-      $data[] = $user->getArray();
-      $response = new TackitResponse($data);
-      echo $response->getJson();
-      }
-      else
-      throw new TackitException(SEARCHERR, 0);
-      }
-     * */
+    //searching users
+    if (isset($_POST['user'])) {
+        if (strlen($_POST['user']) > MAXSTRLEN)
+            throw new TackitException(STRLENERR, 0);
+
+        if (($users = User::searchUser($_POST['user'])) !== NULL) {
+            $data = array();
+            foreach ($users as $user)
+                $data[] = $user->getArray();
+            $response = new TackitResponse($data);
+            echo $response->getJson();
+        }
+        else
+            throw new TackitException(SEARCHERR, 0);
+    }
 } catch (TackitException $ex) {
     echo $ex->getJson();
 } catch (Exception $ex) {
@@ -67,3 +66,4 @@ try {
     echo $exception->getJson();
 }
 ?>
+
