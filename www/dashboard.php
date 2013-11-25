@@ -19,7 +19,7 @@
             </div>
             <div class="tab-pane" id="favorites"> 
             </div>
-            <div class="tab-pane" id="self"> Self 
+            <div class="tab-pane" id="self">
             </div>
         </div> 
     </div>
