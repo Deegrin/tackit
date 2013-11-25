@@ -12,6 +12,7 @@ class User {
     const DB_USERNAME = "username";
     const DB_FIRSTNAME = "first_name";
     const DB_LASTNAME = "last_name";
+    const DB_ID = "id";
     const DB_EMAIL_LENGTH = 200;
     const DB_USERNAME_LENGTH = 30;
     const DB_PASSWORD_LENGTH = 30;
@@ -33,11 +34,12 @@ class User {
      * @param type $firstName the real given name of user
      * @param type $lastName te real family name of user
      */
-    public function __construct($email, $userName, $firstName = self::EMPTY_STRING, $lastName = self::EMPTY_STRING) {
+    public function __construct($email, $userName, $firstName = self::EMPTY_STRING, $lastName = self::EMPTY_STRING, $id = self::EMPTY_STRING) {
         $this->email = $email;
         $this->username = $userName;
         $this->first_name = $firstName;
         $this->last_name = $lastName;
+        $this->id = $id;
     }
 
     public function set_id($new_id) {
@@ -156,7 +158,7 @@ class User {
         //escape input
         $userName = $con->real_escape_string($userName);
         if (($result = $db->doQuery("SELECT * FROM tackit.user WHERE username = '$userName'")) && ($row = $result->fetch_assoc())) {
-            return new User($row[self::DB_EMAIL], $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME]);
+            return new User($row[self::DB_EMAIL], $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME], $row[self::DB_ID]);
         }
         else
             return NULL;
@@ -171,7 +173,7 @@ class User {
     public static function getUserFromResult($result) {
         $users = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $users[] = new User('', $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME]);
+            $users[] = new User('', $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME], $row[self::DB_ID]);
         }
         $result->free();
         return $users;
@@ -216,6 +218,7 @@ class User {
      */
     public function getArray() {
         return array(
+            self::DB_ID        => $this->get_id(),
             self::DB_USERNAME  => $this->get_username(),
             self::DB_FIRSTNAME => $this->get_first_name(),
             self::DB_LASTNAME  => $this->get_last_name()
