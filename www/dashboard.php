@@ -16,12 +16,11 @@
     <div class="col-sm-10">
         <div id="content" class="tab-content">
             <div class="tab-pane active" id="feed">
-
             </div>
             <div class="tab-pane" id="favorites"> 
-
             </div>
-            <div class="tab-pane" id="self"> Self </div>
+            <div class="tab-pane" id="self"> Self 
+            </div>
         </div> 
     </div>
 </div>
@@ -36,32 +35,34 @@
 
                 <h4 class="modal-title">Create Tack</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <input id="form_create_tack_title" type="text" placeholder="Title" class="form-control">
+            <form id="create_tack_form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="form_create_tack_title" type="text" placeholder="Title" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_tack_description" type="text" placeholder="Description" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_tack_url" type="text" placeholder="URL" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_tack_img" type="text" placeholder="Image URL" class="form-control">
+                    </div>
+
+                    <select id="form_create_tack_board_dropdown" class="form-control">
+                    </select>
+
                 </div>
 
-                <div class="form-group">
-                    <input id="form_create_tack_description" type="text" placeholder="Description" class="form-control">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="submit_tack_create" type="submit" class="btn btn-danger">Save changes</button>
                 </div>
-
-                <div class="form-group">
-                    <input id="form_create_tack_url" type="text" placeholder="URL" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <input id="form_create_tack_img" type="text" placeholder="Image URL" class="form-control">
-                </div>
-                
-                <select id="form_create_tack_board_dropdown" class="form-control">
-                </select>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="submit_tack_create" type="button" class="btn btn-danger">Save changes</button>
-            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -75,62 +76,64 @@
 
                 <h4 class="modal-title">Create Board</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <input id="form_create_board_title" type="text" placeholder="Title" class="form-control">
+            <form id="create_board_form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="form_create_board_title" type="text" placeholder="Title" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_board_description" type="text" placeholder="Description" class="form-control">
+                    </div>
+
+
+                    <div id="board_access" class="btn-group" data-toggle="buttons">
+                        <label class="btn  btn-sm btn-info">
+                            <input type="radio" name="board_access" value="1"> Private
+                        </label>
+                        <label class="btn active btn-sm btn-info">
+                            <input type="radio" name="board_access" value="0" checked="checked"> Public
+                        </label>
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <input id="form_create_board_description" type="text" placeholder="Description" class="form-control">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="submit_board_create" type="submit" class="btn btn-danger">Save changes</button>
                 </div>
-
-
-                <div id="board_access" class="btn-group" data-toggle="buttons">
-                     <label class="btn  btn-sm btn-info">
-                        <input type="radio" name="board_access" value="1"> Private
-                    </label>
-                    <label class="btn active btn-sm btn-info">
-                        <input type="radio" name="board_access" value="0" checked="checked"> Public
-                    </label>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="submit_board_create" type="button" class="btn btn-danger">Save changes</button>
-            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <div class="modal fade" id="viewTack" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            
-          <h4 class="modal-title">View Tack</h4>
-       </div>
-         <div class="modal-body">
-        <div class="form-group">
-              <input type="text" placeholder="Title" class="form-control">
-        </div>
-              
-            <button type="button" class="btn btn-primary btn-lg btn-block">Favorite</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">Retack</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">Follow Board</button>
-                
-        
-        </div>
-        
-        <div class="modal-footer">
-        
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                <h4 class="modal-title">View Tack</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" placeholder="Title" class="form-control">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-lg btn-block">Favorite</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block">Retack</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block">Follow Board</button>
+
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->
 
 
 <script src="../lib/masonry/masonry.pkgd.min.js"></script>
