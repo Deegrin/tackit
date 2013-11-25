@@ -1,6 +1,6 @@
 <?php include "../lib/php/header.php"; ?>
 
-<link type="text/css" rel="stylesheet" href="../lib/css/search.css">
+<!--<link type="text/css" rel="stylesheet" href="../lib/css/search.css">-->
 <script src="../lib/javascript/search.js"></script>
 <link type="text/css" rel="stylesheet" href="../lib/css/boardList.css">
 <link type="text/css" rel="stylesheet" href="../lib/css/userList.css">
@@ -31,6 +31,20 @@
 </div>
 
 <script src="../lib/masonry/masonry.pkgd.min.js"></script>
+
+<?php
+if (isset($_GET['search'])) {
+    ?>
+    <script> 
+        $(document).ready(function() {
+            var param = '<?php echo $_GET['search']; ?>';
+            $('#searchTerm').val(param);
+            $('#search_page_form').submit(); 
+        });
+    </script>
+    <?php
+}
+?>
 
 
 <?php include "../lib/php/footer.php"; ?>
