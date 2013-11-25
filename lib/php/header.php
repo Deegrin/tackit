@@ -10,7 +10,6 @@
         <script src="../lib/javascript/facebook_login.js"></script>
         <script type="text/javascript" src="../lib/bootstrap/js/jquery-1.10.2.js"></script>
         <script src = "../lib/bootstrap/dist/js/bootstrap.js"></script>
-        <!-- <script type="text/javascript" src="../lib/javascript/jquery.min.js"></script> -->
         <script language="javascript" type="text/javascript" src="../lib/javascript/vpb_script.js"></script>
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
         <script src = "../lib/javascript/signup.js"></script>
@@ -49,9 +48,9 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <form class="navbar-form navbar-right">
+                            <form id="navbar_search" class="navbar-form navbar-right">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Email" class="form-control">
+                                    <input id="navbar_search_param" type="text" placeholder="Tack" class="form-control">
                                 </div>
                                 <button type="submit" class="btn btn-success">Search</button>
                             </form>
@@ -133,3 +132,15 @@
 
 <br clear="all"><br clear="all">
 </div>
+
+<script>
+    $(document).ready(function(e) {
+       
+       $('#navbar_search').submit(function(e) {
+           e.preventDefault();
+           var search = $('#navbar_search_param').val();
+           window.location.href = "search_page.php?search=" + search;
+       });
+       
+    });
+</script>
