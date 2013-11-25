@@ -1,7 +1,5 @@
 <?php include "../lib/php/header.php"; ?>
 
-<!--<link type="text/css" rel="stylesheet" href="../lib/css/search.css">-->
-<script src="../lib/javascript/search.js"></script>
 <link type="text/css" rel="stylesheet" href="../lib/css/boardList.css">
 <link type="text/css" rel="stylesheet" href="../lib/css/userList.css">
 

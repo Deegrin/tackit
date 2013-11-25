@@ -17,6 +17,7 @@
         <script src = "../lib/javascript/logout.js"></script>
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
             <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
+                <script src="../lib/javascript/search.js"></script>
 
 
                 </head>
