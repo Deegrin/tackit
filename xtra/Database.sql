@@ -118,6 +118,8 @@ CREATE TABLE IF NOT EXISTS `tackit`.`relationship` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE UNIQUE INDEX relationship_unique ON `tackit`.`relationship` (user_id, type, object_id);
+
 
 -- -----------------------------------------------------
 -- Table `tackit`.`account`
