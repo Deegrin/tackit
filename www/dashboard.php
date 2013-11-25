@@ -10,20 +10,16 @@
             <li><a data-toggle="modal" href="#createBoardModal">Create Board</a></li>
             <li id="feedButton" class="active"><a href="#feed" data-toggle="pill">Feed</a></li>
             <li id="favoriteButton"><a href="#favorites" data-toggle="pill">Favorites</a></li>
-            <li><a href="#self" data-toggle="pill">Own Tacks</a></li>
+            <li id="selfButton"><a href="#self" data-toggle="pill">Own Tacks</a></li>
         </ul>
     </div>
     <div class="col-sm-10">
         <div id="content" class="tab-content">
             <div class="tab-pane active" id="feed">
-                <div class="tackResults">
 
-                </div>
             </div>
             <div class="tab-pane" id="favorites"> 
-                <div class="tackResults1">
 
-                </div>
             </div>
             <div class="tab-pane" id="self"> Self </div>
         </div> 
