@@ -30,7 +30,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="#">TackIT</a>
+                                <a class="navbar-brand" href="dashboard.php">TackIT</a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <?php
