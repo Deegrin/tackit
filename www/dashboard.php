@@ -179,33 +179,33 @@
                 <h4 class="modal-title">Create Tack</h4>
             </div>
             <form id="create_tack_form">
-            <div class="modal-body">
-                <div class="form-group">
-                    <input id="form_create_tack_title" type="text" placeholder="Title" class="form-control">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="form_create_tack_title" type="text" placeholder="Title" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_tack_description" type="text" placeholder="Description" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_tack_url" type="text" placeholder="URL" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_create_tack_img" type="text" placeholder="Image URL" class="form-control">
+                    </div>
+
+                    <select id="form_create_tack_board_dropdown" class="form-control">
+                    </select>
+
                 </div>
 
-                <div class="form-group">
-                    <input id="form_create_tack_description" type="text" placeholder="Description" class="form-control">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="submit_tack_create" type="submit" class="btn btn-danger">Save changes</button>
                 </div>
-
-                <div class="form-group">
-                    <input id="form_create_tack_url" type="text" placeholder="URL" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <input id="form_create_tack_img" type="text" placeholder="Image URL" class="form-control">
-                </div>
-
-                <select id="form_create_tack_board_dropdown" class="form-control">
-                </select>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="submit_tack_create" type="submit" class="btn btn-danger">Save changes</button>
-            </div>
-        </form>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
