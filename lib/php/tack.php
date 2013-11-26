@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Relationship.php';
+require_once 'User.php';
 
 /**
  * Object for User class and its functions
@@ -20,9 +21,11 @@ class Tack {
     const DB_DESCRIPTION_LENGTH = 200;
     const DB_URL_LENGTH = 200;
     const DB_URL2_LENGTH = 200;
+    const USER_DATA = "user_data";
 
     private $id;
     private $user_id;
+    private $user_data;
     private $board_id;
     private $title;
     private $description;
@@ -43,6 +46,7 @@ class Tack {
      */
     public function __construct($user_id, $board_id, $title, $description, $tackURL, $imageURL, $id = self::EMPTY_STRING, $creation_time = self::EMPTY_STRING) {
         $this->user_id = $user_id;
+        $this->user_data = NULL;
         $this->board_id = $board_id;
         $this->title = $title;
         $this->description = $description;
@@ -58,6 +62,10 @@ class Tack {
 
     public function set_user_id($new_user_id) {
         $this->user_id = $new_user_id;
+    }
+
+    public function set_user_data($user) {
+        $this->user_data = $user;
     }
 
     public function set_board_id($new_board_id) {
@@ -90,6 +98,10 @@ class Tack {
 
     public function get_user_id() {
         return $this->user_id;
+    }
+
+    public function get_user_data() {
+        return $this->user_data;
     }
 
     public function get_board_id() {
@@ -221,7 +233,7 @@ class Tack {
         $topic = $con->real_escape_string($topic);
 
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
-            return self::getTackFromResult($results);
+            return self::getTackFromResult($results, TRUE);
         } else
             return NULL;
     }
@@ -232,10 +244,25 @@ class Tack {
      * @param type $result MySQL result set
      * @return \Tack array of Tack objects
      */
-    public static function getTackFromResult($result) {
+    public static function getTackFromResult($result, $getUser = FALSE) {
+        if ($getUser === TRUE)
+            $db = new Database();
+
         $tacks = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID], $row[self::DB_CREATION]);
+            $tack = new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID], $row[self::DB_CREATION]);
+            //if extra user data is requested
+            if ($getUser === TRUE) {
+                $userQuery = "SELECT * FROM `tackit`.`user` WHERE id = " . $row[self::DB_USER];
+                if (($results = $db->doQuery($userQuery)) !== FALSE) {
+                    $user = User::getUserFromResult($results)[0]; //getUserFromResults returns an array
+                    $user->set_email(""); //hide user's email
+                    $user->set_first_name(""); //hide user's first name
+                    $user->set_last_name(""); //hide user's last name
+                    $tack->set_user_data($user);
+                }
+            }
+            $tacks[] = $tack;
         }
         $result->free();
         return $tacks;
@@ -277,7 +304,7 @@ class Tack {
         $userID = $con->real_escape_string($userID);
 
         if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
-            return self::getTackFromResult($results);
+            return self::getTackFromResult($results, TRUE);
         else
             return NULL;
     }
@@ -289,7 +316,7 @@ class Tack {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id IN
             (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ")")) !== FALSE)
-            return self::getTackFromResult($result);
+            return self::getTackFromResult($result, TRUE);
         else
             return NULL;
     }
@@ -343,6 +370,7 @@ class Tack {
         return array(
             self::DB_ID          => $this->get_id(),
             self::DB_USER        => $this->get_user_id(),
+            self::USER_DATA      => $this->get_user_data()->getArray(),
             self::DB_BOARD       => $this->get_board_id(),
             self::DB_TITLE       => $this->get_title(),
             self::DB_DESTRIPTION => $this->get_description(),
