@@ -63,7 +63,7 @@ try {
             // check if the tack exists
             if (($tack = Tack::getTackFromID($_POST['retackTack'])) !== NULL) {
                 // retack the tack to board, remember to pass in Tack object
-                if (Tack::retack($userid, $_POST['retackBoard'], $tack) !== FALSE) {
+                if (Tack::retack($userid, $_POST['retackBoard'], $tack) === TRUE) {
                     $response = new TackitResponse();
                     exit($response->getJson());
                 } else
