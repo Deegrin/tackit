@@ -148,7 +148,7 @@ class Tack {
 
         //build transaction
         $deleteTack = "DELETE FROM `tackit`.`tack` WHERE id = $id";
-        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id AND type = " . Relationship::TYPE_FAVORITE_TACK;
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE (type = " . Relationship::TYPE_FAVORITE_TACK . " OR type = " . Relationship::TYPE_RETACK_TACK . ") AND object_id = $id";
         $transaction = array($deleteTack, $deleteRelationship);
 
         return $db->doTransaction($transaction);
@@ -176,7 +176,7 @@ class Tack {
             $query .= " AND user_id = $userId";
         }
         if (($result = $db->doQuery($query)) && ($row = $result->fetch_assoc())) {
-            return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
+            return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID]);
         } else
             return NULL;
     }
@@ -262,9 +262,11 @@ class Tack {
         //build transaction
         $insertTack = "INSERT INTO `tackit`.`tack` (user_id, board_id, title, description, tackUrl, imageURL)
            VALUES ('$userID', '$boardID', '" . $tack->get_title() . "', '" . $tack->get_description() . "', '" . $tack->get_tackUrl() . "', '" . $tack->get_imageUrl() . "')";
+        $relationship = "INSERT INTO `tackit`.`relationship` (user_id, type, object_id) VALUES ($userID, " . Relationship::TYPE_RETACK_TACK . ", " . $tack->get_id() . ")";
+        $queryArray = array($insertTack, $relationship);
 
         //submit query
-        return $db->doQuery($insertTack);
+        return $db->doTransaction($queryArray);
     }
 
     public static function getTackFeed($userID) {
