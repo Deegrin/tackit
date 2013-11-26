@@ -21,7 +21,7 @@ class Tack {
     const DB_DESCRIPTION_LENGTH = 200;
     const DB_URL_LENGTH = 200;
     const DB_URL2_LENGTH = 200;
-    const USER_DATA = "user_data";
+    const USER_NAME = "user_name";
 
     private $id;
     private $user_id;
@@ -256,9 +256,6 @@ class Tack {
                 $userQuery = "SELECT * FROM `tackit`.`user` WHERE id = " . $row[self::DB_USER];
                 if (($results = $db->doQuery($userQuery)) !== FALSE) {
                     $user = User::getUserFromResult($results)[0]; //getUserFromResults returns an array
-                    $user->set_email(""); //hide user's email
-                    $user->set_first_name(""); //hide user's first name
-                    $user->set_last_name(""); //hide user's last name
                     $tack->set_user_data($user);
                 }
             }
@@ -367,10 +364,15 @@ class Tack {
      * @return array array with keys: id, user_id, board_id, title, description, tackUrl, imageURL
      */
     public function getArray() {
+        if ($this->get_user_data() === NULL)
+            $userName = NULL;
+        else
+            $userName = $this->get_user_data()->get_username();
+
         return array(
             self::DB_ID          => $this->get_id(),
             self::DB_USER        => $this->get_user_id(),
-            self::USER_DATA      => $this->get_user_data()->getArray(),
+            self::USER_NAME      => $userName,
             self::DB_BOARD       => $this->get_board_id(),
             self::DB_TITLE       => $this->get_title(),
             self::DB_DESTRIPTION => $this->get_description(),
