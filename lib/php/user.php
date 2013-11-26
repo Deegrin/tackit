@@ -4,6 +4,7 @@
  * Object for User class and its functions
  */
 require_once 'Database.php';
+require_once 'Relationship.php';
 
 class User {
 
@@ -206,8 +207,19 @@ class User {
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`user` WHERE id = $userID")) !== FALSE) {
             return self::getUserFromResult($result);
-        }
-        else
+        } else
+            return NULL;
+    }
+
+    public static function getUserFollowing($userId) {
+        $db = new Database();
+
+        $userId = $db->real_escape_string($userId);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`user` WHERE id IN
+                (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FOLLOW_USER . ")")) !== FALSE) {
+            return self::getUserFromResult($result);
+        } else
             return NULL;
     }
 
@@ -224,7 +236,5 @@ class User {
             self::DB_LASTNAME  => $this->get_last_name()
         );
     }
-
 }
-
 ?>

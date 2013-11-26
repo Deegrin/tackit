@@ -73,7 +73,8 @@ try {
                 $data[] = $tack->getArray();
             $response = new TackitResponse($data);
             exit($response->getJson());
-        }
+        } else
+            throw new TackitException("We could not get your tacks!", 0);
     } //TACKS OWNED
 } catch (TackitException $ex) {
     exit($ex->getJson());
