@@ -205,19 +205,20 @@ class Tack {
         //escape input
         $boardId = $db->real_escape_string($boardId);
 
-        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId ORDER BY id DESC")) !== FALSE) {
             return self::getTackFromResult($result);
         } else
             return NULL;
     }
 
-    public static function getTackFromBoardFollowing($userId) {
+    public static function getTackFromUserId($userId) {
         $db = new Database();
 
-        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id =
-            (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " AND user_id = $userId)")) !== FALSE)
+        $userId = $db->real_escape_string($userId);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE user_id = $userId ORDER BY id DESC")) !== FALSE) {
             return self::getTackFromResult($result);
-        else
+        } else
             return NULL;
     }
 
@@ -300,7 +301,10 @@ class Tack {
         // escape inputs
         $userID = $con->real_escape_string($userID);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack`
+                WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID)
+                    OR user_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_USER . " and user_id = $userID)
+                ORDER BY id DESC")) !== FALSE)
             return self::getTackFromResult($results, TRUE);
         else
             return NULL;
@@ -312,7 +316,7 @@ class Tack {
         $userId = $db->real_escape_string($userId);
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id IN
-            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ")")) !== FALSE)
+            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ") ORDER BY id DESC")) !== FALSE)
             return self::getTackFromResult($result, TRUE);
         else
             return NULL;
