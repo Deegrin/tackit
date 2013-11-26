@@ -65,6 +65,16 @@ try {
         } else
             throw new TackitException("We could not get your feed!", 0);
     } //TACKS BY FEED
+    //TACKS OWNED
+    else if (isset($_POST['own'])) {
+        if (($tacks = Tack::getTackFromUserId($userid)) !== NULL) {
+            $data = array();
+            foreach ($tacks as $tack)
+                $data[] = $tack->getArray();
+            $response = new TackitResponse($data);
+            exit($response->getJson());
+        }
+    } //TACKS OWNED
 } catch (TackitException $ex) {
     exit($ex->getJson());
 } catch (Exception $ex) {

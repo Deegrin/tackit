@@ -211,6 +211,17 @@ class Tack {
             return NULL;
     }
 
+    public static function getTackFromUserId($userId) {
+        $db = new Database();
+
+        $userId = $db->real_escape_string($userId);
+
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE user_id = $userId ORDER BY id DESC")) !== FALSE) {
+            return self::getTackFromResult($result);
+        } else
+            return NULL;
+    }
+
     /**
      * Function to search through database for a tack
      * with a string in the description or title that matches the
