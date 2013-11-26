@@ -40,20 +40,6 @@ try {
         } else
             throw new TackitException("Board is invalid", 0);
     } //TACKS BY BOARD
-    //TACKS BY FOLLOWED BOARDS
-    else if (isset($_POST['following'])) {
-        //get array of Tack objects
-        $tacks = Tack::getTackFromBoardFollowing($userid);
-        //get JSON array of Tacks
-        $data = array();
-        foreach ($tacks as $tack) {
-            $data[] = $tack->getArray();
-        }
-        //return data
-        $response = new TackitResponse($data);
-        echo $response->getJson();
-        exit();
-    } //TACKS BY FOLLOWED BOARDS
     //TACKS BY FAVORITE
     else if (isset($_POST['favorite'])) {
         if (($tacks = Tack::getTackFavorite($userid)) !== NULL) {
