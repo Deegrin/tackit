@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Database.php';
 require_once '../swift/swift_required.php';
 
 /**
@@ -32,6 +33,13 @@ class Mail {
     }
 
     public static function verifyRegistration($user) {
+        //insert token into database
+        $db = new Database();
+        $userId = $db->real_escape_string($user->get_id());
+
+        $db->doQuery("INSERT INTO `tackit`.`authorization` (user_id, token, creation_time, expiration_time) VALUES
+            ($userId, " . self::getToken() . ", CURRENT_TIMESTAMP, TIMESTAMPADD(DAY, 1, CURRENT_TIMESTAMP))"); //1 day
+        //send confirmation/verification email to user
         $mailer = self::getMailer();
 
         $message = Swift_Message::newInstance("Verify Registration");
@@ -40,6 +48,10 @@ class Mail {
         $message->setBody("Cake.");
 
         $mailer->send($message);
+    }
+
+    public static function getToken() {
+        return openssl_random_pseudo_bytes(16);
     }
 }
 ?>

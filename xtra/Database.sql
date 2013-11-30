@@ -99,6 +99,20 @@ CREATE TABLE IF NOT EXISTS `tackit`.`session` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS `tackit`.`authorization` ;
+
+CREATE TABLE IF NOT EXISTS `tackit`.`authorization` (
+  `user_id` INT NOT NULL,
+  `token` VARCHAR(45) NOT NULL,
+  `creation_time` TIMESTAMP NULL,
+  `expiration_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`token`),
+  CONSTRAINT `authorization_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `tackit`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `tackit`.`relationship`

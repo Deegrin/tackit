@@ -174,7 +174,7 @@ class User {
     public static function getUserFromResult($result) {
         $users = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $users[] = new User('', $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME], $row[self::DB_ID]);
+            $users[] = new User($row[self::DB_EMAIL], $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME], $row[self::DB_ID]);
         }
         $result->free();
         return $users;
