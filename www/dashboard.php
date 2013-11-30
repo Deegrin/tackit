@@ -155,9 +155,4 @@
     });
 </script>
 
-<?php
-    if (isset($_GET["verify"])) {
-    }
-?>
-
 <?php include "../lib/php/footer.php" ?>

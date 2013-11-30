@@ -1,6 +1,6 @@
 <?php
 
-require_once '../swift/swift_required.php';
+require_once dirname(__FILE__) . '/../swift/swift_required.php'; //TODO hack for web access
 require_once 'Database.php';
 require_once 'User.php';
 
@@ -9,7 +9,7 @@ require_once 'User.php';
  *
  * @author David
  */
-class Mail {
+class TackitMail {
 
     const SERVER_NAME = "smtp.gmail.com";
     const SERVER_PORT = 587;
@@ -36,7 +36,7 @@ class Mail {
     public static function verifyRegistration($user) {
         //get verification token
         $token = self::getToken();
-        $link = '' . $token;
+        $link = 'link?verify=' . $token;
 
         //insert token into database
         $db = new Database();
@@ -50,15 +50,17 @@ class Mail {
             $message = Swift_Message::newInstance("Verify Registration");
             $message->setFrom("tackit165@gmail.com");
             $message->setTo($user->get_email());
-            $message->setBody("<p>Hi " . $user->get_username() . ",</p><p>Thanks for creating a Tackit account. Please verify your account by clicking the following link:</p><p><a href=\"$link\">$link</a></p>", "text/html");
-            $message->addPart("Hi " . $user->get_username() . ",\n\nThanks for creating a Tackit account. Please verify your account by clicking the following link:\n\n$link", "text/plain");
+            $message->setBody("<p>Hi " . $user->get_username() . ",</p><p>Thanks for creating a Tackit account. Please verify your account by clicking the following link:</p><p><a href=\"$link\">$link</a></p>",
+                    "text/html"); //HTML body
+            $message->addPart("Hi " . $user->get_username() . ",\n\nThanks for creating a Tackit account. Please verify your account by clicking the following link:\n\n$link",
+                    "text/plain"); //plain text body (fallback)
 
-            if ($mailer->send($message) > 0)
-                return true;
+            if ($mailer->send($message) > 0) //if message was sent to at least 1 user
+                return TRUE;
             else
-                return false;
+                return FALSE;
         } else
-            return false;
+            return FALSE;
     }
 
     public static function getToken() {

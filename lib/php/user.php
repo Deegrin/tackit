@@ -4,6 +4,7 @@
  * Object for User class and its functions
  */
 require_once 'Database.php';
+require_once 'TackitMail.php';
 require_once 'Relationship.php';
 
 class User {
@@ -144,7 +145,11 @@ class User {
         $transaction[] = $insertUser;
         $transaction[] = $insertAccount;
         $transaction[] = $insertBoard;
-        return $db->doTransaction($transaction);
+        if ($db->doTransaction($transaction) === TRUE) {
+            $user = self::getUserFromUserName($userName);
+            return TackitMail::verifyRegistration($user);
+        } else
+            return false;
     }
 
     /*
