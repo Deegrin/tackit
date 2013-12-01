@@ -16,6 +16,7 @@ class TackitMail {
     const SERVER_ENCRYPTION = "tls";
     const SERVER_USERNAME = "tackit165";
     const SERVER_PASSWORD = "sjsusoftware";
+    //const MESSAGE_CHARSET = "ascii";
 
     private static function getSmtpTransport() {
         $transport = Swift_SmtpTransport::newInstance(self::SERVER_NAME, self::SERVER_PORT);
@@ -36,7 +37,7 @@ class TackitMail {
     public static function verifyRegistration($user) {
         //get verification token
         $token = self::getToken();
-        $link = 'link?verify=' . $token;
+        $link = "http://" . $_SERVER['HTTP_HOST'] . "/tackit/www/homepage.php?verify=" . $token;
 
         //insert token into database
         $db = new Database();
@@ -48,11 +49,12 @@ class TackitMail {
             $mailer = self::getMailer();
 
             $message = Swift_Message::newInstance("Verify Registration");
+            //$message->setCharset(self::MESSAGE_CHARSET);
             $message->setFrom("tackit165@gmail.com");
             $message->setTo($user->get_email());
-            $message->setBody("<p>Hi " . $user->get_username() . ",</p><p>Thanks for creating a Tackit account. Please verify your account by clicking the following link:</p><p><a href=\"$link\">$link</a></p>",
-                    "text/html"); //HTML body
-            $message->addPart("Hi " . $user->get_username() . ",\n\nThanks for creating a Tackit account. Please verify your account by clicking the following link:\n\n$link",
+            //$message->setBody("<p>Hi " . $user->get_username() . ",</p><p>Thanks for creating a Tackit account. Please verify your account by clicking the following link:</p><p><a href=\"$link\">http://www.tackit165.com/homepage.php?verify=$token</a></p>",
+            //        "text/html"); //HTML body
+            $message->setBody("Hi " . $user->get_username() . ",\n\nThanks for creating a Tackit account. Please verify your account by clicking the following link:\n\n$link",
                     "text/plain"); //plain text body (fallback)
 
             if ($mailer->send($message) > 0) //if message was sent to at least 1 user
