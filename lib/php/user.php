@@ -152,6 +152,14 @@ class User {
             return false;
     }
 
+    public static function activateUser($token) {
+        $db = new Database();
+
+        $token = $db->real_escape_string($token);
+
+        return $db->doQuery("UPDATE `tackit`.`user` SET active = true WHERE id = (SELECT user_id FROM authorization WHERE token = '$token')");
+    }
+
     /*
      * Function to obtain a user of the username 
      * the user object has the email, username, firstname and last name
