@@ -54,4 +54,6 @@
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
+<script src="../lib/javascript/homepage.js" type="text/javascript"></script>
+
 <?php include "../lib/php/footer.php" ?>

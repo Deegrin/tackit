@@ -10,6 +10,7 @@
         <script src="../lib/javascript/facebook_login.js"></script>
         <script type="text/javascript" src="../lib/bootstrap/js/jquery-1.10.2.js"></script>
         <script src = "../lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../lib/javascript/purl.js" type="text/javascript"></script>
         <script language="javascript" type="text/javascript" src="../lib/javascript/vpb_script.js"></script>
         <link type ="text/css" rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css"/>
         <script src = "../lib/javascript/signup.js"></script>
@@ -18,7 +19,6 @@
         <link href="../lib/css/style.css" rel="stylesheet" type="text/css">
             <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
                 <script src="../lib/javascript/search.js"></script>
-
 
                 </head>
                 <body>

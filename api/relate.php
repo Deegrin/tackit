@@ -8,6 +8,18 @@ try {
     require_once '../lib/php/TackitException.php';
     require_once '../lib/php/TackitResponse.php';
 
+    //VERIFY
+    if (isset($_POST['verify'])) {
+        if (strlen($_POST['verify']) > 32)
+            throw new TackitException("Token is invalid!", 0);
+
+        if (User::activateUser($_POST['verify']) === TRUE) {
+            $response = new TackitResponse();
+            exit($response->getJson());
+        } else
+            throw new TackitException("We could not verify your account!", 0);
+    }
+
     //check & validate cookie
     Session::validateCookie();
     //obtain userid
