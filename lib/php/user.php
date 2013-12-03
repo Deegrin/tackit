@@ -4,6 +4,7 @@
  * Object for User class and its functions
  */
 require_once 'Database.php';
+require_once 'TackitMail.php';
 require_once 'Relationship.php';
 
 class User {
@@ -144,7 +145,19 @@ class User {
         $transaction[] = $insertUser;
         $transaction[] = $insertAccount;
         $transaction[] = $insertBoard;
-        return $db->doTransaction($transaction);
+        if ($db->doTransaction($transaction) === TRUE) {
+            $user = self::getUserFromUserName($userName);
+            return TackitMail::verifyRegistration($user);
+        } else
+            return false;
+    }
+
+    public static function activateUser($token) {
+        $db = new Database();
+
+        $token = $db->real_escape_string($token);
+
+        return $db->doQuery("UPDATE `tackit`.`user` SET active = true WHERE id = (SELECT user_id FROM authorization WHERE token = '$token')");
     }
 
     /*
@@ -174,7 +187,7 @@ class User {
     public static function getUserFromResult($result) {
         $users = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $users[] = new User('', $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME], $row[self::DB_ID]);
+            $users[] = new User($row[self::DB_EMAIL], $row[self::DB_USERNAME], $row[self::DB_FIRSTNAME], $row[self::DB_LASTNAME], $row[self::DB_ID]);
         }
         $result->free();
         return $users;
