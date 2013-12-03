@@ -1,8 +1,8 @@
 <?php
 
-require "tack.php";
-require "user.php";
-require "board.php";
+require_once "tack.php";
+require_once "user.php";
+require_once "board.php";
 
 //$test = new tack();
 //$test->set_id(45);
@@ -70,11 +70,13 @@ var_dump($test);
 //$tk = new Tack(NULL,3,"cake","cake","cake","cake",75);
 //var_dump($tk->edit());
 
-Relationship::unfollowBoard(1, 85);
+//Relationship::unfollowBoard(1, 85);
+//
+//Relationship::unfavoriteTack(4, 11);
+//
+//Relationship::unfollowUser(1, 6);
 
-Relationship::unfavoriteTack(4, 11);
-
-Relationship::unfollowUser(1, 6);
-
-
+echo "<pre>"; //magic: leaves output formatted and indented
+var_dump(Tack::getTackFromUserId(1, TRUE));
+echo "</pre>";
 ?>
