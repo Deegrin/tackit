@@ -242,7 +242,12 @@ class Tack {
 
         $topic = $con->real_escape_string($topic);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
+        $query = "SELECT tack.id AS id, tack.user_id AS user_id, tack.board_id AS board_id, tack.title AS title, tack.description AS description, tack.tackUrl AS tackUrl, tack.imageURL AS imageURL, tack.creation_time AS creation_time
+                FROM `tackit`.`tack` AS tack, `tackit`.`board` AS board
+                WHERE MATCH (tack.title, tack.description) AGAINST ('$topic')
+                  AND tack.board_id = board.id
+                  AND board.private = FALSE";
+        if (($results = $db->doQuery($query)) !== FALSE) {
             return self::getTackFromResult($results, TRUE);
         } else
             return NULL;
