@@ -1,5 +1,5 @@
 <?php include "../lib/php/header.php" ?>
-
+<link type="text/css" rel="stylesheet" href="../lib/css/boardList.css">
 <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 <script src = "../lib/javascript/dashboard.js"></script>
 
@@ -18,7 +18,8 @@
         <div id="content" class="tab-content">
             <div class="tab-pane active" id="feed">
             </div>
-            <div class="tab-pane" id="boardsFollowing">
+            <div class="tab-pane boardList col-sm-8 col-sm-offset-2" id="boardsFollowing">
+                <h3> Following Boards </h3>
             </div>
             <div class="tab-pane" id="favorites"> 
             </div>
