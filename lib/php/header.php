@@ -61,7 +61,7 @@
                                     ?>
                                     <script>$(document).ready(function() {
                                         if(window.location.pathname != "/tackit/www/homepage.php") {
-                                            window.location.href = "homepage.php";
+                                            // window.location.href = "homepage.php";
                                         }
                                     });
                                     </script>
