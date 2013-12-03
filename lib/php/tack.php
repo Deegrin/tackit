@@ -211,12 +211,21 @@ class Tack {
             return NULL;
     }
 
-    public static function getTackFromUserId($userId) {
+    public static function getTackFromUserId($userId, $private = FALSE) {
         $db = new Database();
 
         $userId = $db->real_escape_string($userId);
 
-        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE user_id = $userId ORDER BY id DESC")) !== FALSE) {
+        if ($private == TRUE)
+            $query = "SELECT tack.id AS id, tack.user_id AS user_id, tack.board_id AS board_id, tack.title AS title, tack.description AS description, tack.tackUrl AS tackUrl, tack.imageURL AS imageURL, tack.creation_time AS creation_time
+                    FROM `tackit`.`tack` AS tack, `tackit`.`board` AS board
+                    WHERE tack.user_id = $userId
+                      AND tack.board_id = board.id
+                      AND board.private = FALSE
+                    ORDER BY tack.id DESC";
+        else
+            $query = "SELECT * FROM `tackit`.`tack` WHERE user_id = $userId ORDER BY id DESC";
+        if (($result = $db->doQuery($query)) !== FALSE) {
             return self::getTackFromResult($result);
         } else
             return NULL;
