@@ -256,8 +256,8 @@ class Tack {
             if ($getUser === TRUE) {
                 $userQuery = "SELECT * FROM `tackit`.`user` WHERE id = " . $row[self::DB_USER];
                 if (($results = $db->doQuery($userQuery)) !== FALSE) {
-                    $user = User::getUserFromResult($results)[0]; //getUserFromResults returns an array
-                    $tack->set_user_data($user);
+                    $user = User::getUserFromResult($results); //getUserFromResults returns an array
+                    $tack->set_user_data($user[0]);
                 }
             }
             $tacks[] = $tack;
