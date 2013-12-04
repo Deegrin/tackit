@@ -219,6 +219,19 @@ class Board {
         } else
             return NULL;
     }
+    
+    public static function getPublicBoardArrFromUserId($userid) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        //escape input
+        $userid = $con->real_escape_string($userid);
+
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE user_id =$userid AND private =0")) !== FALSE) {
+            return self::getBoardFromResult($results);
+        } else
+            return NULL;
+    }
 
     /**
      * 
