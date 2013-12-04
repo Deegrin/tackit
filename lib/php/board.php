@@ -265,7 +265,7 @@ class Board {
         $topic = $con->real_escape_string($topic);
         $query = "SELECT * FROM `tackit`.`board` WHERE MATCH (title, description) AGAINST ('$topic')";
         if ($priv == TRUE)
-            $query .= "AND private = 0";
+            $query .= " AND private = 0";
 
         if (($results = $db->doQuery($query)) !== FALSE)
             return self::getBoardFromResult($results);
