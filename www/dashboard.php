@@ -23,7 +23,7 @@
             <div class="tab-pane boardList col-sm-8 col-sm-offset-2" id="boardsFollowing">
                 <h3> Following Boards </h3>
             </div>
-            <div class="tab-pane boardList col-sm-8 col-sm-offset-2" id="usersFollowing">
+            <div class="tab-pane userList col-sm-8 col-sm-offset-2" id="usersFollowing">
                 <h3> Following Users </h3>
             </div>
             <div class="tab-pane" id="favorites"> 
