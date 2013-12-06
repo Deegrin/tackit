@@ -40,6 +40,19 @@ try {
         } else
             throw new TackitException("We could not retrieve the boards!", 0);
     }
+    if (isset($_POST['user'])) {
+        //get array of Board objects
+        if (($boards = Board::getPublicBoardArrFromUserId($_POST['user'])) !== NULL) {
+            //get JSON array of Boards
+            $data = array();
+            foreach ($boards as $board)
+                $data[] = $board->getArray();
+            //return data
+            $response = new TackitResponse($data);
+            echo $response->getJson();
+        } else
+            throw new TackitException("We could not retrieve the boards!", 0);
+    }
 } catch (TackitException $ex) {
     echo $ex->getJson();
 } catch (Exception $ex) {

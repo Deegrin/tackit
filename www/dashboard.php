@@ -1,5 +1,6 @@
 <?php include "../lib/php/header.php" ?>
-
+<link type="text/css" rel="stylesheet" href="../lib/css/boardList.css">
+<link type="text/css" rel="stylesheet" href="../lib/css/userList.css">
 <link type="text/css" rel="stylesheet" href="../lib/css/board.css">
 <script src = "../lib/javascript/dashboard.js"></script>
 
@@ -9,6 +10,8 @@
             <li><a data-toggle="modal" href="#createTackModal">Create Tack</a></li>
             <li><a data-toggle="modal" href="#createBoardModal">Create Board</a></li>
             <li id="feedButton" class="active"><a href="#feed" data-toggle="pill">Feed</a></li>
+            <li id="boardsFollowingButton"><a href="#boardsFollowing" data-toggle="pill">Boards Following</a></li>
+            <li id="usersFollowingButton"><a href="#usersFollowing" data-toggle="pill">Users Following</a></li>
             <li id="favoriteButton"><a href="#favorites" data-toggle="pill">Favorites</a></li>
             <li id="selfButton"><a href="#self" data-toggle="pill">Own Tacks</a></li>
         </ul>
@@ -16,6 +19,12 @@
     <div class="col-sm-10">
         <div id="content" class="tab-content">
             <div class="tab-pane active" id="feed">
+            </div>
+            <div class="tab-pane boardList col-sm-8 col-sm-offset-2" id="boardsFollowing">
+                <h3> Following Boards </h3>
+            </div>
+            <div class="tab-pane userList col-sm-8 col-sm-offset-2" id="usersFollowing">
+                <h3> Following Users </h3>
             </div>
             <div class="tab-pane" id="favorites"> 
             </div>

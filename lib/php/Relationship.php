@@ -9,6 +9,7 @@ require_once 'Database.php';
  */
 class Relationship {
 
+    const TYPE_RETACK_TACK = 0;
     const TYPE_FOLLOW_BOARD = 1;
     const TYPE_FAVORITE_TACK = 2;
     const TYPE_FOLLOW_USER = 3;

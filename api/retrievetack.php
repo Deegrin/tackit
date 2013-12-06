@@ -40,20 +40,6 @@ try {
         } else
             throw new TackitException("Board is invalid", 0);
     } //TACKS BY BOARD
-    //TACKS BY FOLLOWED BOARDS
-    else if (isset($_POST['following'])) {
-        //get array of Tack objects
-        $tacks = Tack::getTackFromBoardFollowing($userid);
-        //get JSON array of Tacks
-        $data = array();
-        foreach ($tacks as $tack) {
-            $data[] = $tack->getArray();
-        }
-        //return data
-        $response = new TackitResponse($data);
-        echo $response->getJson();
-        exit();
-    } //TACKS BY FOLLOWED BOARDS
     //TACKS BY FAVORITE
     else if (isset($_POST['favorite'])) {
         if (($tacks = Tack::getTackFavorite($userid)) !== NULL) {
@@ -79,6 +65,33 @@ try {
         } else
             throw new TackitException("We could not get your feed!", 0);
     } //TACKS BY FEED
+    //TACKS OWNED
+    else if (isset($_POST['own'])) {
+        if (($tacks = Tack::getTackFromUserId($userid)) !== NULL) {
+            $data = array();
+            foreach ($tacks as $tack)
+                $data[] = $tack->getArray();
+            $response = new TackitResponse($data);
+            exit($response->getJson());
+        } else
+            throw new TackitException("We could not get your tacks!", 0);
+    } //TACKS OWNED
+    // TACKS BY USER (PUBLIC)
+    else if (isset($_POST['user'])) {
+        //validate input
+        if (!is_numeric($_POST['user']) || $_POST['user'] < 0)
+            throw new TackitException("User is invalid", 0);
+
+        //TODO authorization checking
+        if (($tacks = Tack::getTackFromUserId($_POST['user'], TRUE)) !== NULL) {
+            $data = array();
+            foreach ($tacks as $tack)
+                $data[] = $tack->getArray();
+            $response = new TackitResponse($data);
+            exit($response->getJson());
+        } else
+            throw new TackitException("We could not get the tacks!", 0);
+    } //TACKS BY USER (PUBLIC)
 } catch (TackitException $ex) {
     exit($ex->getJson());
 } catch (Exception $ex) {

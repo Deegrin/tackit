@@ -8,6 +8,18 @@ try {
     require_once '../lib/php/TackitException.php';
     require_once '../lib/php/TackitResponse.php';
 
+    //VERIFY
+    if (isset($_POST['verify'])) {
+        if (strlen($_POST['verify']) > 32)
+            throw new TackitException("Token is invalid!", 0);
+
+        if (User::activateUser($_POST['verify']) === TRUE) {
+            $response = new TackitResponse();
+            exit($response->getJson());
+        } else
+            throw new TackitException("We could not verify your account!", 0);
+    }
+
     //check & validate cookie
     Session::validateCookie();
     //obtain userid
@@ -63,7 +75,7 @@ try {
             // check if the tack exists
             if (($tack = Tack::getTackFromID($_POST['retackTack'])) !== NULL) {
                 // retack the tack to board, remember to pass in Tack object
-                if (Tack::retack($userid, $_POST['retackBoard'], $tack) !== FALSE) {
+                if (Tack::retack($userid, $_POST['retackBoard'], $tack) === TRUE) {
                     $response = new TackitResponse();
                     exit($response->getJson());
                 } else
@@ -116,9 +128,9 @@ try {
                 $response = new TackitResponse();
                 echo $response->getJson();
             } else
-                throw new TackitException("We could not favorite the tack!", 0);
+                throw new TackitException("We could not unfavorite the tack!", 0);
         } else
-            throw new TackitException("tack is invalid", 0);
+            throw new TackitException("Tack is invalid", 0);
     }//UNFOLLOW USER
     if (isset($_POST['unUser'])) {
         if (!is_numeric($_POST['unUser']) || $_POST['unUser'] < 0)
@@ -128,7 +140,7 @@ try {
                 $response = new TackitResponse();
                 exit($response->getJson());
             } else
-                throw new TackitException("Unable to follow the user.", 0);
+                throw new TackitException("We could not unfollow the user.", 0);
         } else
             throw new TackitException("User does not exist.", 0);
     }

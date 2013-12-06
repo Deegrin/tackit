@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Relationship.php';
+require_once 'User.php';
 
 /**
  * Object for User class and its functions
@@ -20,9 +21,11 @@ class Tack {
     const DB_DESCRIPTION_LENGTH = 200;
     const DB_URL_LENGTH = 200;
     const DB_URL2_LENGTH = 200;
+    const USER_NAME = "user_name";
 
     private $id;
     private $user_id;
+    private $user_data;
     private $board_id;
     private $title;
     private $description;
@@ -43,6 +46,7 @@ class Tack {
      */
     public function __construct($user_id, $board_id, $title, $description, $tackURL, $imageURL, $id = self::EMPTY_STRING, $creation_time = self::EMPTY_STRING) {
         $this->user_id = $user_id;
+        $this->user_data = NULL;
         $this->board_id = $board_id;
         $this->title = $title;
         $this->description = $description;
@@ -58,6 +62,10 @@ class Tack {
 
     public function set_user_id($new_user_id) {
         $this->user_id = $new_user_id;
+    }
+
+    public function set_user_data($user) {
+        $this->user_data = $user;
     }
 
     public function set_board_id($new_board_id) {
@@ -90,6 +98,10 @@ class Tack {
 
     public function get_user_id() {
         return $this->user_id;
+    }
+
+    public function get_user_data() {
+        return $this->user_data;
     }
 
     public function get_board_id() {
@@ -148,7 +160,7 @@ class Tack {
 
         //build transaction
         $deleteTack = "DELETE FROM `tackit`.`tack` WHERE id = $id";
-        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE object_id = $id AND type = " . Relationship::TYPE_FAVORITE_TACK;
+        $deleteRelationship = "DELETE FROM `tackit`.`relationship` WHERE (type = " . Relationship::TYPE_FAVORITE_TACK . " OR type = " . Relationship::TYPE_RETACK_TACK . ") AND object_id = $id";
         $transaction = array($deleteTack, $deleteRelationship);
 
         return $db->doTransaction($transaction);
@@ -176,7 +188,7 @@ class Tack {
             $query .= " AND user_id = $userId";
         }
         if (($result = $db->doQuery($query)) && ($row = $result->fetch_assoc())) {
-            return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE]);
+            return new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID]);
         } else
             return NULL;
     }
@@ -193,19 +205,29 @@ class Tack {
         //escape input
         $boardId = $db->real_escape_string($boardId);
 
-        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId")) !== FALSE) {
+        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id = $boardId ORDER BY id DESC")) !== FALSE) {
             return self::getTackFromResult($result);
         } else
             return NULL;
     }
 
-    public static function getTackFromBoardFollowing($userId) {
+    public static function getTackFromUserId($userId, $private = FALSE) {
         $db = new Database();
 
-        if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id =
-            (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " AND user_id = $userId)")) !== FALSE)
-            return self::getTackFromResult($result);
+        $userId = $db->real_escape_string($userId);
+
+        if ($private == TRUE)
+            $query = "SELECT tack.id AS id, tack.user_id AS user_id, tack.board_id AS board_id, tack.title AS title, tack.description AS description, tack.tackUrl AS tackUrl, tack.imageURL AS imageURL, tack.creation_time AS creation_time
+                    FROM `tackit`.`tack` AS tack, `tackit`.`board` AS board
+                    WHERE tack.user_id = $userId
+                      AND tack.board_id = board.id
+                      AND board.private = FALSE
+                    ORDER BY tack.id DESC";
         else
+            $query = "SELECT * FROM `tackit`.`tack` WHERE user_id = $userId ORDER BY id DESC";
+        if (($result = $db->doQuery($query)) !== FALSE) {
+            return self::getTackFromResult($result);
+        } else
             return NULL;
     }
 
@@ -220,8 +242,13 @@ class Tack {
 
         $topic = $con->real_escape_string($topic);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE MATCH (title, description) AGAINST ('$topic')")) !== FALSE) {
-            return self::getTackFromResult($results);
+        $query = "SELECT tack.id AS id, tack.user_id AS user_id, tack.board_id AS board_id, tack.title AS title, tack.description AS description, tack.tackUrl AS tackUrl, tack.imageURL AS imageURL, tack.creation_time AS creation_time
+                FROM `tackit`.`tack` AS tack, `tackit`.`board` AS board
+                WHERE MATCH (tack.title, tack.description) AGAINST ('$topic')
+                  AND tack.board_id = board.id
+                  AND board.private = FALSE";
+        if (($results = $db->doQuery($query)) !== FALSE) {
+            return self::getTackFromResult($results, TRUE);
         } else
             return NULL;
     }
@@ -232,10 +259,22 @@ class Tack {
      * @param type $result MySQL result set
      * @return \Tack array of Tack objects
      */
-    public static function getTackFromResult($result) {
+    public static function getTackFromResult($result, $getUser = FALSE) {
+        if ($getUser === TRUE)
+            $db = new Database();
+
         $tacks = array();
         while (($row = $result->fetch_assoc()) !== NULL) {
-            $tacks[] = new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID], $row[self::DB_CREATION]);
+            $tack = new Tack($row[self::DB_USER], $row[self::DB_BOARD], $row[self::DB_TITLE], $row[self::DB_DESTRIPTION], $row[self::DB_TACKURL], $row[self::DB_IMAGE], $row[self::DB_ID], $row[self::DB_CREATION]);
+            //if extra user data is requested
+            if ($getUser === TRUE) {
+                $userQuery = "SELECT * FROM `tackit`.`user` WHERE id = " . $row[self::DB_USER];
+                if (($results = $db->doQuery($userQuery)) !== FALSE) {
+                    $user = User::getUserFromResult($results); //getUserFromResults returns an array
+                    $tack->set_user_data($user[0]);
+                }
+            }
+            $tacks[] = $tack;
         }
         $result->free();
         return $tacks;
@@ -262,9 +301,11 @@ class Tack {
         //build transaction
         $insertTack = "INSERT INTO `tackit`.`tack` (user_id, board_id, title, description, tackUrl, imageURL)
            VALUES ('$userID', '$boardID', '" . $tack->get_title() . "', '" . $tack->get_description() . "', '" . $tack->get_tackUrl() . "', '" . $tack->get_imageUrl() . "')";
+        $relationship = "INSERT INTO `tackit`.`relationship` (user_id, type, object_id) VALUES ($userID, " . Relationship::TYPE_RETACK_TACK . ", " . $tack->get_id() . ")";
+        $queryArray = array($insertTack, $relationship);
 
         //submit query
-        return $db->doQuery($insertTack);
+        return $db->doTransaction($queryArray);
     }
 
     public static function getTackFeed($userID) {
@@ -274,8 +315,11 @@ class Tack {
         // escape inputs
         $userID = $con->real_escape_string($userID);
 
-        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID) ORDER BY creation_time DESC")) !== FALSE)
-            return self::getTackFromResult($results);
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`tack`
+                WHERE board_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_BOARD . " and user_id = $userID)
+                    OR user_id IN (SELECT object_id FROM `tackit`.`relationship` WHERE type = " . Relationship::TYPE_FOLLOW_USER . " and user_id = $userID)
+                ORDER BY id DESC")) !== FALSE)
+            return self::getTackFromResult($results, TRUE);
         else
             return NULL;
     }
@@ -286,8 +330,8 @@ class Tack {
         $userId = $db->real_escape_string($userId);
 
         if (($result = $db->doQuery("SELECT * FROM `tackit`.`tack` WHERE id IN
-            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ")")) !== FALSE)
-            return self::getTackFromResult($result);
+            (SELECT object_id FROM `tackit`.`relationship` WHERE user_id = $userId AND type = " . Relationship::TYPE_FAVORITE_TACK . ") ORDER BY id DESC")) !== FALSE)
+            return self::getTackFromResult($result, TRUE);
         else
             return NULL;
     }
@@ -338,9 +382,15 @@ class Tack {
      * @return array array with keys: id, user_id, board_id, title, description, tackUrl, imageURL
      */
     public function getArray() {
+        if ($this->get_user_data() === NULL)
+            $userName = NULL;
+        else
+            $userName = $this->get_user_data()->get_username();
+
         return array(
             self::DB_ID          => $this->get_id(),
             self::DB_USER        => $this->get_user_id(),
+            self::USER_NAME      => $userName,
             self::DB_BOARD       => $this->get_board_id(),
             self::DB_TITLE       => $this->get_title(),
             self::DB_DESTRIPTION => $this->get_description(),

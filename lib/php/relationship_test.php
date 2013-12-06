@@ -1,17 +1,7 @@
 <?php
 
+require_once 'User.php';
 
-
-require_once 'relationship.php';
-
-relationship::favoriteTack(11, 4);
-
-
-
-
-
-
-
-
+var_dump(User::getUserFollowing(1));
 
 ?>

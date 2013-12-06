@@ -163,7 +163,7 @@ class Board {
 
         //build transaction
         $deleteRelationship = "DELETE FROM `tackit`.`relationship`
-            WHERE (type = " . Relationship::TYPE_FAVORITE_TACK . "
+            WHERE ((type = " . Relationship::TYPE_FAVORITE_TACK . " OR type = " . Relationship::TYPE_RETACK_TACK . ")
                 AND object_id IN (SELECT id FROM `tackit`.`tack` WHERE board_id = $id))
             OR (type = " . Relationship::TYPE_FOLLOW_BOARD . "
                 AND object_id IN (SELECT id FROM `tackit`.`board` WHERE id = $id))";
@@ -219,6 +219,19 @@ class Board {
         } else
             return NULL;
     }
+    
+    public static function getPublicBoardArrFromUserId($userid) {
+        $db = new Database();
+        $con = $db->getConnection();
+
+        //escape input
+        $userid = $con->real_escape_string($userid);
+
+        if (($results = $db->doQuery("SELECT * FROM `tackit`.`board` WHERE user_id =$userid AND private =0")) !== FALSE) {
+            return self::getBoardFromResult($results);
+        } else
+            return NULL;
+    }
 
     /**
      * 
@@ -265,7 +278,7 @@ class Board {
         $topic = $con->real_escape_string($topic);
         $query = "SELECT * FROM `tackit`.`board` WHERE MATCH (title, description) AGAINST ('$topic')";
         if ($priv == TRUE)
-            $query .= "AND private = 0";
+            $query .= " AND private = 0";
 
         if (($results = $db->doQuery($query)) !== FALSE)
             return self::getBoardFromResult($results);
